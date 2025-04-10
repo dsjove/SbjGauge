@@ -18,7 +18,11 @@ To create the basic uncustomized gauge:
 
 `Gauge.CompositionView(.init(value: 1.5))`
 
-The CompositionView's constructor exposes all the view builders for the various components. I have created two builtin schemes for the Gauge; Power and Clock.
+<img src="Sample-Default.png" alt="Default" width="200">
+
+The CompositionView's constructor exposes all the view builders for the various components. I have created two other builtin schemes for the Gauge; Clock and Power.
+<img src="Sample-Clock.png" alt="Clock" width="200">
+<img src="Sample-Power.png" alt="Power" width="200">
 
 
 
