@@ -27,8 +27,8 @@ extension Gauge {
 		public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
 
 		public func angle(_ value: Double) -> Angle {
-			let scale = value / (range.upperBound - range.lowerBound) 
-			let angle = scale * (angles.upperBound.degrees - angles.lowerBound.degrees)
+			let scale = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
+			let angle = angles.lowerBound.degrees + (scale * (angles.upperBound.degrees - angles.lowerBound.degrees))
 			return .degrees(angle)
 		}
 
@@ -42,7 +42,7 @@ extension Gauge {
 			case start
 			case end
 		}
-		var tickEnds: TickEnds = .end
+		var tickEnds: TickEnds = .start
 
 		public func tickValues(inc: Double) -> [(element: Double, offset: Int)] {
 			var result: [(Double, Int)] = []

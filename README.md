@@ -1,6 +1,6 @@
 # SbjGauge
 
-Custumizable znalog multi-indicator SwiftUI gauge
+Custumizable analog multi-indicator SwiftUI gauge
 
 Inspired by: https://github.com/Will-tm/WMGaugeView
 
@@ -21,8 +21,10 @@ To create the basic uncustomized gauge:
 <img src="Sample-Default.png" alt="Default" width="200">
 
 The CompositionView's constructor exposes all the view builders for the various components. I have created two other builtin schemes for the Gauge; Clock and Power.
+
 <img src="Sample-Clock.png" alt="Clock" width="200">
 <img src="Sample-Power.png" alt="Power" width="200">
+<img src="Sample-UpTo11.png" alt="11" width="200">
 
 
 

@@ -72,6 +72,7 @@ public extension Gauge.Model {
 		values = [secondPos, minutePos, hourPos, hour]
 
 		tickIncrements = [3600, 3600, 720]
+		tickEnds = .end
 	}
 }
 
