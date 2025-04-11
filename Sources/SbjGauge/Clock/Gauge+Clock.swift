@@ -14,7 +14,7 @@ public extension Gauge {
 
 public extension Gauge {
 	/**
-	 * Given a swift Date, render the time in a 12 hour analog clock.
+	 * Given a Swift Date, render the time in a 12 hour analog clock.
 	 */
 	static func clock(preview: Bool = false, _ date: Date) -> some View {
 		return Gauge.CompositionView(

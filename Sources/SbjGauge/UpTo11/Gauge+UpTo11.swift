@@ -27,9 +27,10 @@ public extension Gauge {
 						color: .black)
 				},
 				needle: { geom, _, _, _ in
-					UpTo11.GuitarAmpKnob(geom: geom)
+					UpTo11.Knob(geom: geom, width: 0.45)
 				},
-				foreground: { _, _ in EmptyView()
+				foreground: { geom, _ in
+					UpTo11.Shine(geom: geom, width: 0.45)
 				}
 			)
 	}
