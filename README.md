@@ -26,6 +26,8 @@ The CompositionView's constructor exposes all the component view builders for cu
 
 <img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 
-
-
-
+## TODOS
+- Create a new CompositeView that does not expose sub view innards
+- Use swiftplayground as example
+- Can we set view scale so drawing values are always normalized?
+- Swiftui-ify ScrubView

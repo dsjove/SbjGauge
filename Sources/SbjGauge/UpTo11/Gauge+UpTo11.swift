@@ -45,6 +45,22 @@ public extension Gauge.Model {
 	}
 }
 
+/*
+struct GaugeUpTo11Preview: View {
+    @State private var value: CGFloat = 0.0
+    
+    var body: some View {
+		Gauge.upTo11(.degrees(value))
+			.gesture(
+				DragGesture()
+					.onChanged { gesture in
+						self.value = (gesture.translation.width - gesture.translation.height) / 4.0
+					}
+			)
+    }
+}
+*/
+
 #Preview {
 	Gauge.upTo11()
 }

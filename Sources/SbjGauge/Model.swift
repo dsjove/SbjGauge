@@ -32,6 +32,11 @@ extension Gauge {
 			return .degrees(angle)
 		}
 
+		public func value(angle: Angle) -> Double {
+			let scale = (angle.degrees - angles.lowerBound.degrees) / (angles.upperBound.degrees - angles.lowerBound.degrees)
+			return range.lowerBound + (scale * (range.upperBound - range.lowerBound))
+		}
+
 // Needles
 		public var values: [Double?]
 
@@ -73,5 +78,14 @@ extension Gauge {
 			}
 		}
 		public var spans: [Span?] = []
+
+		func span(for value: Double) -> (Int, Span)? {
+			for span in spans.enumerated().reversed() {
+				if let test = span.element, test.range.contains(value) {
+					return (span.offset, test)
+				}
+			}
+			return nil
+		}
 	}
 }
