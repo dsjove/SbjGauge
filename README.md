@@ -24,9 +24,7 @@ To create a basic uncustomized gauge:
 
 The CompositionView's constructor exposes all the component view builders for customization. I have created other built-in schemes of the gauge: Clock, Power, and Up to 11.
 
-<img src="Sample-Clock.png" alt="Clock" width="200">
-<img src="Sample-Power.png" alt="Power" width="200">
-<img src="Sample-UpTo11.png" alt="11" width="200">
+<img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 
 
 
