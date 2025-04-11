@@ -10,33 +10,29 @@ import SwiftUI
 public extension Gauge {
 	enum UpTo11 {
 	}
-}
 
-public extension Gauge {
-	static func upTo11(_ value: Double = 11) -> some View {
-		return Gauge.CompositionView(
-				.init(upTo11: value),
-				background: { _, _ in Color(red: 0.76, green: 0.60, blue: 0.42) },
-				tickRadius: 0.7,
-				tick: { geom, _, idx, idc, radius, value in
-					Standard.TickView(
-						geom: geom,
-						style: (((idc + 2) % 2) != 0) && value != 11 ? .line(0.008) : .text(idc.description),
-						radius: radius,
-						color: .black)
-				},
-				needle: { geom, _, _, _ in
-					UpTo11.Knob(geom: geom, width: 0.45)
-				},
-				foreground: { geom, _ in
-					UpTo11.Shine(geom: geom, width: 0.45)
-				}
-			)
+	@ViewBuilder
+	static func upTo11(_ value: Double) -> some View {
+		let model = Model(upTo11: value)
+		ZStackSquare() { geom in
+			Color.sbjGauge("Gauge/UpTo11/Background")
+			Standard.TickSetView(geom: geom, model: model) { geom, _, _, idc, value in
+				Standard.TickView(
+					geom: geom,
+					style: (value == 11 || idc.isMultiple(of: 2)) ? .text(idc.description) : .line(0.008),
+					radius: 0.7,
+					color: .black)
+			}
+			Standard.NeedleSetView(geom: geom, model: model) { geom, _, _, _ in
+				UpTo11.Knob(geom: geom, width: 0.45)
+			}
+			UpTo11.Shine(geom: geom, width: 0.45)
+		}
 	}
 }
 
 public extension Gauge.Model {
-	init(upTo11 value: Double = 11) {
+	init(upTo11 value: Double) {
 		range = 0 ... 11
 		values = [value]
 		angles = .degrees(225) ... .degrees(520)
@@ -62,5 +58,5 @@ struct GaugeUpTo11Preview: View {
 */
 
 #Preview {
-	Gauge.upTo11()
+	Gauge.upTo11(11)
 }

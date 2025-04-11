@@ -10,58 +10,56 @@ import SwiftUI
 public extension Gauge {
 	enum Power {
 	}
-}
 
-public extension Gauge {
 	/**
 	 * Given a gauge model generated with .init(power), render a gauge useful for motor feedback.
 	 */
+	@ViewBuilder
 	static func power<Indicators: View>(
 		_ model: Model,
 		indicators: @escaping (Model, Double)->Indicators = {_, _ in
 			Text("Power").foregroundColor(.sbjGauge("Gauge/Power/Indicator"))
 		}) -> some View {
-		return Gauge.CompositionView(
-			model,
-			background: { geom, _ in
-				 Power.BackgroundView(geom: geom, color: .sbjGauge("Gauge/Power/Background"))
-			},
-			tickRadius: 0.88,
-			tick: { geom, _, idx, idc, radius, value in
+
+		ZStackSquare() { geom in
+			Power.BackgroundView(geom: geom)
+			Standard.TickSetView(geom: geom, model: model) { geom, _, idx, idc, value in
+				switch idx {
+					case 0:
+						Standard.TickView(
+							geom: geom,
+							style: idc.isMultiple(of: 5) ? .none : .line(0.005), radius: 0.88, length: 0.05, color: .sbjGauge("Gauge/Power/Tick"))
+					case 1:
+						Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: .sbjGauge("Gauge/Power/Tick"))
+					case 2:
+						Standard.TickView(geom: geom, style: .text(Int(value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Gauge/Power/Tick"))
+					default:
+						Standard.TickView(geom: geom, style: .none, radius: 0.88, color: .sbjGauge("Gauge/Power/Tick"))
+				}
+			}
+			Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
+			Standard.NeedleSetView(geom: geom, model: model) { geom, _, idx, value in
+				switch idx {
+					case 0:
+						Power.NeedleView(geom: geom, alpha: 1.0)
+					default:
+						Power.NeedleView(geom: geom, alpha: 0.25)
+				}
+			}
+			Standard.SpanSetView(geom: geom, model: model) { geom, _, idx, label, angles in
 				switch idx {
 				case 0:
-					Standard.TickView(
-						geom: geom,
-						style: ((idc + 5) % 5) != 0 ? .line(0.005) : .none, radius: radius, length: 0.05, color: .sbjGauge("Gauge/Power/Tick"))
+					Standard.SpanView(geom: geom, label: label, angles: angles)
 				case 1:
-					Standard.TickView(geom: geom, radius: radius, length: 0.1, color: .sbjGauge("Gauge/Power/Tick"))
+					Standard.SpanView(geom: geom, label: label, angles: angles, color: .sbjGauge("Gauge/Power/SpanNegBackground"))
 				case 2:
-					Standard.TickView(geom: geom, style: .text(Int(value).description), radius: radius, offset: 0.1, length: 0.14, color: .sbjGauge("Gauge/Power/Tick"))
+					Standard.SpanView(geom: geom, label: label, angles: angles, color: .sbjGauge("Gauge/Power/SpanPosBackground"))
 				default:
-					Standard.TickView(geom: geom, style: .none, radius: radius, color: .sbjGauge("Gauge/Power/Tick"))
+					Standard.SpanView(geom: geom, label: label, angles: angles)
 				}
-			},
-			indicators: indicators,
-			needle: { geom, _, idx, value in
-				switch idx {
-				case 0:
-					Power.NeedleView(geom: geom, alpha: 1.0)
-				default:
-					Power.NeedleView(geom: geom, alpha: 0.25)
-				}
-			},
-			span: { geom, _, idx, label, angles, radius in
-				switch idx {
-				case 0:
-					Standard.SpanView(geom: geom, label: label, angles: angles, radius: radius)
-				case 1:
-					Standard.SpanView(geom: geom, label: label, angles: angles, radius: radius, color: .sbjGauge("Gauge/Power/SpanNegBackground"))
-				case 2:
-					Standard.SpanView(geom: geom, label: label, angles: angles, radius: radius, color: .sbjGauge("Gauge/Power/SpanPosBackground"))
-				default:
-					Standard.SpanView(geom: geom, label: label, angles: angles, radius: radius)
-				}
-			})
+			}
+			Standard.RimView(geom: geom)
+		}
 	}
 }
 

@@ -9,28 +9,25 @@ import SwiftUI
 
 extension Gauge.Standard {
 	public struct SpanSetView<Range: View>: View {
-		public typealias Builder = (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>, Double) -> Range
+		public typealias Content = (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>) -> Range
 		let geom: GeometryProxy
 		let model: Gauge.Model
-		let radius: Double
-		let builder: Builder
+		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>, Double) -> SpanView {
-			{ geom, _, idx, label, angles, radius in
-				return SpanView(geom: geom, label: label, angles: angles, radius: radius)
+		public static var defaultBuilder: (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>) -> SpanView {
+			{ geom, _, idx, label, angles in
+				return SpanView(geom: geom, label: label, angles: angles)
 			}
 		}
 
 		public init(
 			geom: GeometryProxy,
 			model: Gauge.Model,
-			radius: Double = 0.97,
-			@ViewBuilder builder: @escaping Builder = defaultBuilder
+			@ViewBuilder content: @escaping Content = defaultBuilder
 		) {
 			self.geom = geom
 			self.model = model
-			self.radius = radius
-			self.builder = builder
+			self.content = content
 		}
 
 		public var body: some View {
@@ -38,7 +35,7 @@ extension Gauge.Standard {
 				if let span {
 					let angle1 = model.angle(Double(span.range.lowerBound))
 					let angle2 = model.angle(Double(span.range.upperBound))
-					builder(geom, model, index, span.label, angle1...angle2, radius)
+					content(geom, model, index, span.label, angle1...angle2)
 				}
 			}
 		}

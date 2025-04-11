@@ -9,12 +9,12 @@ import SwiftUI
 
 extension Gauge.Standard {
 	public struct IndicatorSetView<Set: View>: View {
-		public typealias Builder = (Gauge.Model, Double) -> Set
+		public typealias Content = (Gauge.Model, Double) -> Set
 		let geom: GeometryProxy
 		let model: Gauge.Model
 		let radius: Double
 		let width: Double
-		let builder: Builder
+		let content: Content
 
 		public static var defaultBuilder: (Gauge.Model, Double) -> EmptyView {
 			{ _, _ in
@@ -27,17 +27,17 @@ extension Gauge.Standard {
 			model: Gauge.Model,
 			radius: Double = 0.200,
 			width: Double = 0.185,
-			@ViewBuilder builder: @escaping Builder = defaultBuilder) {
+			@ViewBuilder content: @escaping Content = defaultBuilder) {
 				self.geom = geom
 				self.model = model
 				self.radius = radius
 				self.width = width
-				self.builder = builder
+				self.content = content
 		}
 
 		public var body: some View {
 			IndicatorRadialLayout(radius: radius) {
-				builder(model, geom.width(width))
+				content(model, geom.width(width))
 			}
 		}
 	}

@@ -24,7 +24,7 @@ extension Gauge.Standard {
 		public init(
 			geom: GeometryProxy,
 			style: Style = .line(),
-			radius: CGFloat = 1.0,
+			radius: CGFloat = 0.95,
 			offset: Double = 0.0,
 			length: Double = 0.1,
 			color: Color = .sbjGauge("Gauge/Standard/Tick")) {

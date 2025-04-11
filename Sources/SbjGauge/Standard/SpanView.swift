@@ -21,7 +21,7 @@ extension Gauge.Standard {
 			geom: GeometryProxy,
 			label: String?,
 			angles: ClosedRange<Angle>,
-			radius: CGFloat = 1.0,
+			radius: CGFloat = 0.97,
 			offset: Double = 0.0,
 			length: Double = 0.08,
 			color: Color = .sbjGauge("Gauge/Standard/SpanBackground"),

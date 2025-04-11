@@ -10,36 +10,35 @@ import SwiftUI
 public extension Gauge {
 	enum Clock {
 	}
-}
-
-public extension Gauge {
+	
 	/**
 	 * Given a Swift Date, render the time in a 12 hour analog clock.
 	 */
+	@ViewBuilder
 	static func clock(_ date: Date) -> some View {
-		return Gauge.CompositionView(
-			.init(clock: date),
-			tick: { geom, _, idx, idc, radius, value in
+		let model = Model.init(clock: date)
+		ZStackSquare() { geom in
+			Standard.BackgroundView(geom: geom)
+			Standard.TickSetView(geom: geom, model: model) { geom, _, idx, idc, _ in
 				switch idx {
 					case 0:
-						Standard.TickView(geom: geom, style: .text(idc.description), radius: radius, offset: 0.1, length: 0.2, color: .black)
+						Standard.TickView(geom: geom, style: .text(idc.description), offset: 0.1, length: 0.2, color: .black)
 					case 1:
-						Standard.TickView(geom: geom, radius: radius, color: .black)
+						Standard.TickView(geom: geom, color: .black)
 					case 2:
 						Standard.TickView(
 							geom: geom,
-							style: ((idc + 20) % 20) != 0 ? .line(0.008) : .none,
-							radius: radius, length:  0.05, color: .black)
+							style: idc.isMultiple(of: 20) ? .none : .line(0.008), length:  0.05, color: .black)
 					default:
-						Standard.TickView(geom: geom, style: .none, radius: radius)
+						Standard.TickView(geom: geom, style: .none)
 				}
-			},
-			indicators: { model, _ in
+			}
+			Standard.IndicatorSetView(geom: geom, model: model) { model, _ in
 				let am = model.values[3] ?? 0 < 12
 				Text(am ? "AM" : "PM")
 					.foregroundColor(.sbjGauge("Gauge/Clock/Indicator"))
-			},
-			needle: { geom, _, idx, value in
+			}
+			Standard.NeedleSetView(geom: geom, model: model) { geom, _, idx, value in
 				switch idx {
 				case 0:
 					Clock.SecondsHandView(geom: geom)
@@ -50,8 +49,9 @@ public extension Gauge {
 				default:
 					Standard.NeedleView(geom: geom, alpha: 0.0)
 				}
-			},
-			foreground: {geom, _ in Clock.RimView(geom: geom)})
+			}
+			Clock.RimView(geom: geom)
+		}
 	}
 }
 
