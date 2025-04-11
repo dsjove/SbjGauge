@@ -13,20 +13,18 @@ public extension Gauge.UpTo11 {
 		let width: Double
 
 		public var body: some View {
-			ZStack {
-				Circle()
-					.fill(LinearGradient(
-					gradient: Gradient(colors: [.gray, .clear]),
-					startPoint: .top,
-					endPoint: .bottom ))
-				.frame(width: geom.width(width), height: geom.width(width))
-			}
+			Circle()
+				.fill(LinearGradient(
+				gradient: Gradient(colors: [.gray, .clear]),
+				startPoint: .top,
+				endPoint: .bottom ))
+			.frame(width: geom.width(width), height: geom.width(width))
 		}
 	}
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.UpTo11.Shine(geom: $0, width: 0.45)
 	}
 }

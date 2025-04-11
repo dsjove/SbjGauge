@@ -35,7 +35,6 @@ public extension Gauge {
 		public typealias SpanBuilder = SpanSetView.Builder
 		public typealias ForegroundBuilder = (GeometryProxy, Model) -> Foreground
 
-		let preview: Bool
 		let model: Model
 		let background: BackgroundBuilder
 		let tick: TickBuilder
@@ -46,7 +45,6 @@ public extension Gauge {
 		let foreground: ForegroundBuilder
 
 		public init(
-			preview: Bool = false,
 			_ model: Model = .init(),
 			@ViewBuilder
 			background: @escaping (GeometryProxy, Model)->Background = { geom,_ in Standard.BackgroundView(geom: geom) },
@@ -64,7 +62,6 @@ public extension Gauge {
 				Standard.RimView(geom: geom)
 			}
 			) {
-				self.preview = preview
 				self.model = model
 				self.background = background
 				self.tick = tick
@@ -76,7 +73,7 @@ public extension Gauge {
 			}
 
 		public var body: some View {
-			ZStackSquare(preview: preview) { geom in
+			ZStackSquare() { geom in
 				background(geom, model)
 				TickSetView(geom: geom, model: model, radius: tickRadius, builder: tick)
 				IndicatorSetView(geom: geom, model: model, builder: indicators)
@@ -89,5 +86,5 @@ public extension Gauge {
 }
 
 #Preview {
-	Gauge.CompositionView(preview: true, .init(value: 1.5))
+	Gauge.CompositionView(.init(value: 1.5))
 }

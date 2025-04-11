@@ -17,13 +17,11 @@ public extension Gauge {
 	 * Given a gauge model generated with .init(power), render a gauge useful for motor feedback.
 	 */
 	static func power<Indicators: View>(
-		preview: Bool = false,
 		_ model: Model,
 		indicators: @escaping (Model, Double)->Indicators = {_, _ in
 			Text("Power").foregroundColor(.sbjGauge("Gauge/Power/Indicator"))
 		}) -> some View {
 		return Gauge.CompositionView(
-			preview: preview,
 			model,
 			background: { geom, _ in
 				 Power.BackgroundView(geom: geom, color: .sbjGauge("Gauge/Power/Background"))
@@ -90,5 +88,5 @@ public extension Gauge.Model {
 }
 
 #Preview {
-	Gauge.power(preview: true, .init(power: 0.09, control: 0.25, idle: 0.25))
+	Gauge.power(.init(power: 0.09, control: 0.25, idle: 0.25))
 }

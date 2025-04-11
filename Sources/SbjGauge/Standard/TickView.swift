@@ -64,7 +64,7 @@ extension Gauge.Standard {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Standard.TickView(geom: $0, style: .line(0.004), radius: 1.0)
 	}
 }

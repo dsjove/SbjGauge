@@ -61,7 +61,7 @@ extension Gauge.Power {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Power.NeedleView(geom: $0)
 	}
 }

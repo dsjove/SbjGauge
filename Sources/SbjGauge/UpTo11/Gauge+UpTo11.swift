@@ -13,9 +13,8 @@ public extension Gauge {
 }
 
 public extension Gauge {
-	static func upTo11(preview: Bool = false, _ value: Double = 11) -> some View {
+	static func upTo11(_ value: Double = 11) -> some View {
 		return Gauge.CompositionView(
-				preview: preview,
 				.init(upTo11: value),
 				background: { _, _ in Color(red: 0.76, green: 0.60, blue: 0.42) },
 				tickRadius: 0.7,
@@ -47,5 +46,5 @@ public extension Gauge.Model {
 }
 
 #Preview {
-	Gauge.upTo11(preview: true)
+	Gauge.upTo11()
 }

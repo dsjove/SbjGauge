@@ -16,9 +16,8 @@ public extension Gauge {
 	/**
 	 * Given a Swift Date, render the time in a 12 hour analog clock.
 	 */
-	static func clock(preview: Bool = false, _ date: Date) -> some View {
+	static func clock(_ date: Date) -> some View {
 		return Gauge.CompositionView(
-			preview: preview,
 			.init(clock: date),
 			tick: { geom, _, idx, idc, radius, value in
 				switch idx {
@@ -82,7 +81,7 @@ struct GaugeClockPreviewView: View {
 	@State private var currentTime = Date()
 
 	public var body: some View {
-		Gauge.clock(preview: true, currentTime)
+		Gauge.clock(currentTime)
 			.onReceive(timer) { input in
 				currentTime = input
 			}

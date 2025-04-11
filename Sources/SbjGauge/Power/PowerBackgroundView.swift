@@ -49,7 +49,7 @@ extension Gauge.Power {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Power.BackgroundView(geom: $0)
 	}
 }

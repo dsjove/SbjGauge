@@ -13,11 +13,9 @@ import SwiftUI
  * This view sets that up.
  */
 struct ZStackSquare<Content: View>: View {
-	private let preview: Bool
 	@ViewBuilder private let content: (GeometryProxy) -> Content
 
-	public init(preview: Bool = false, @ViewBuilder _ content: @escaping (GeometryProxy) -> Content) {
-		self.preview = preview
+	public init(@ViewBuilder _ content: @escaping (GeometryProxy) -> Content) {
 		self.content = content
 	}
 
@@ -29,12 +27,12 @@ struct ZStackSquare<Content: View>: View {
 			.frame(width: geometry.diameter, height: geometry.diameter, alignment: .center)
 		}
 		.aspectRatio(1.0, contentMode: .fit)
-		.background(preview ? Color.mint : Color.clear)
+		.background(isPreview ? Color.mint : Color.clear)
 	}
 }
 
 #Preview {
-	ZStackSquare(preview: true) { geom in
+	ZStackSquare() { geom in
 		Text("Hello")
 			.foregroundColor(Color.white)
 	}

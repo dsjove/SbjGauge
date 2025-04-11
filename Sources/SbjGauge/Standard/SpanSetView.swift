@@ -46,7 +46,7 @@ extension Gauge.Standard {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Standard.SpanSetView(geom: $0, model: .init())
 	}
 }

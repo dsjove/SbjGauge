@@ -53,7 +53,7 @@ extension Gauge.Standard {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Standard.TickSetView(geom: $0, model: .init())
 	}
 }

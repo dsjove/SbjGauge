@@ -41,7 +41,7 @@ public extension Gauge.Clock {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Clock.RimView(geom: $0)
 	}
 }

@@ -45,7 +45,7 @@ public extension Gauge.Standard {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Standard.NeedleView(geom: $0)
 	}
 }

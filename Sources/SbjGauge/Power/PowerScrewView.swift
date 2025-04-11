@@ -41,7 +41,7 @@ extension Gauge.Power {
 }
 
 #Preview {
-	ZStackSquare(preview: true) {
+	ZStackSquare() {
 		Gauge.Power.ScrewView(geom: $0)
 	}
 }
