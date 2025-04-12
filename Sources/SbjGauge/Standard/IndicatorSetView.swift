@@ -60,7 +60,7 @@ fileprivate struct PreviewIndicatorView: View {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.IndicatorSetView(geom: $0, model: .init()) { _, w in
+		Gauge.Standard.IndicatorSetView(geom: $0, model: .init(standard: 0)) { _, w in
 			PreviewIndicatorView(text: "H", width: w)
 			PreviewIndicatorView(text: "E", width: w)
 			PreviewIndicatorView(text: "L", width: w)

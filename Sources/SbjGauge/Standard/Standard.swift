@@ -8,22 +8,32 @@
 import SwiftUI
 
 public extension Gauge {
-	enum Standard {
-	}
+	struct Standard : View {
+		let model: Model
 
-	@ViewBuilder
-	static func standard(_ model: Model) -> some View {
-		ZStackSquare() { geom in
-			Standard.BackgroundView(geom: geom)
-			Standard.TickSetView(geom: geom, model: model)
-			Standard.IndicatorSetView(geom: geom, model: model)
-			Standard.SpanSetView(geom: geom, model: model)
-			Standard.NeedleSetView(geom: geom, model: model)
-			Standard.RimView(geom: geom)
+		public init(_ model: Model = .init(standard: 0)) {
+			self.model = model
+		}
+
+		public var body: some View {
+			ZStackSquare() { geom in
+				BackgroundView(geom: geom)
+				TickSetView(geom: geom, model: model)
+				SpanSetView(geom: geom, model: model)
+				NeedleSetView(geom: geom, model: model)
+				RimView(geom: geom)
+			}
 		}
 	}
 }
 
+public extension Gauge.Model {
+	init(standard value: Double, range: ClosedRange<Double> = 0 ... 10) {
+		self.values = [value]
+		self.range = range
+	}
+}
+
 #Preview {
-	Gauge.standard(.init(value: 1.5))
+	Gauge.Standard(.init(standard: 1.5))
 }

@@ -31,3 +31,4 @@ The CompositionView's constructor exposes all the component view builders for cu
 - Use swiftplayground as example
 - Can we set view scale so drawing values are always normalized?
 - Swiftui-ify ScrubView
+- Break up and make Model a protocol

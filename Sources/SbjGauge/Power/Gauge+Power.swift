@@ -9,6 +9,11 @@ import SwiftUI
 
 public extension Gauge {
 	enum Power {
+		@ViewBuilder
+		public static func defaultIndicators(model: Model, width: Double) -> some View {
+			Text("Power").foregroundColor(.sbjGauge("Gauge/Power/Indicator"))
+				.frame(width: width)
+		}
 	}
 
 	/**
@@ -17,10 +22,8 @@ public extension Gauge {
 	@ViewBuilder
 	static func power<Indicators: View>(
 		_ model: Model,
-		indicators: @escaping (Model, Double)->Indicators = { _, width in
-			Text("Power").foregroundColor(.sbjGauge("Gauge/Power/Indicator"))
-				.frame(width: width)
-		}) -> some View {
+		@ViewBuilder
+		indicators: @escaping (Model, Double)->Indicators = Power.defaultIndicators) -> some View {
 
 		ZStackSquare() { geom in
 			Power.BackgroundView(geom: geom)
