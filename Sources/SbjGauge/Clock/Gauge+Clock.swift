@@ -19,7 +19,7 @@ public extension Gauge {
 		let model = Model.init(clock: date)
 		ZStackSquare() { geom in
 			Standard.BackgroundView(geom: geom)
-			Standard.TickSetView(geom: geom, model: model) { geom, _, idx, idc, _ in
+			Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, _ in
 				switch idx {
 					case 0:
 						Standard.TickView(geom: geom, style: .text(idc.description), offset: 0.1, length: 0.2, color: .black)
@@ -33,12 +33,13 @@ public extension Gauge {
 						Standard.TickView(geom: geom, style: .none)
 				}
 			}
-			Standard.IndicatorSetView(geom: geom, model: model) { model, _ in
+			Standard.IndicatorSetView(geom: geom, model: model) { model, width in
 				let am = model.values[3] ?? 0 < 12
 				Text(am ? "AM" : "PM")
 					.foregroundColor(.sbjGauge("Gauge/Clock/Indicator"))
+					.frame(width: width)
 			}
-			Standard.NeedleSetView(geom: geom, model: model) { geom, _, idx, value in
+			Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
 				switch idx {
 				case 0:
 					Clock.SecondsHandView(geom: geom)

@@ -9,13 +9,13 @@ import SwiftUI
 
 extension Gauge.Standard {
 	public struct SpanSetView<Range: View>: View {
-		public typealias Content = (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>) -> Range
+		public typealias Content = (GeometryProxy, Int, String?, ClosedRange<Angle>) -> Range
 		let geom: GeometryProxy
 		let model: Gauge.Model
 		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Gauge.Model, Int, String?, ClosedRange<Angle>) -> SpanView {
-			{ geom, _, idx, label, angles in
+		public static var defaultBuilder: (GeometryProxy, Int, String?, ClosedRange<Angle>) -> SpanView {
+			{ geom, idx, label, angles in
 				return SpanView(geom: geom, label: label, angles: angles)
 			}
 		}
@@ -35,7 +35,7 @@ extension Gauge.Standard {
 				if let span {
 					let angle1 = model.angle(Double(span.range.lowerBound))
 					let angle2 = model.angle(Double(span.range.upperBound))
-					content(geom, model, index, span.label, angle1...angle2)
+					content(geom, index, span.label, angle1...angle2)
 				}
 			}
 		}

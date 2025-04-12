@@ -9,13 +9,13 @@ import SwiftUI
 
 extension Gauge.Standard {
 	public struct TickSetView<Tick: View>: View {
-		public typealias Content = (GeometryProxy, Gauge.Model, Int, Int, Double) -> Tick
+		public typealias Content = (GeometryProxy, Int, Int, Double) -> Tick
 		let geom: GeometryProxy
 		let model: Gauge.Model
 		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Gauge.Model, Int, Int, Double) -> TickView {
-			{ geom, _, idx, idc, value in
+		public static var defaultBuilder: (GeometryProxy, Int, Int, Double) -> TickView {
+			{ geom, idx, idc, value in
 				switch idx {
 					case 0:
 						TickView(geom: geom)
@@ -40,7 +40,7 @@ extension Gauge.Standard {
 			ForEach(Array(model.tickIncrements.enumerated().reversed()), id: \.offset) { (idx, increment) in
 				if let increment {
 					ForEach(model.tickValues(inc: increment), id: \.offset) { value in
-						content(geom, model, idx, value.offset, value.element)
+						content(geom, idx, value.offset, value.element)
 							.rotationEffect(model.angle(value.element))
 					}
 				}

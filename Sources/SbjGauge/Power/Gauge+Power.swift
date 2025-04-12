@@ -17,13 +17,14 @@ public extension Gauge {
 	@ViewBuilder
 	static func power<Indicators: View>(
 		_ model: Model,
-		indicators: @escaping (Model, Double)->Indicators = {_, _ in
+		indicators: @escaping (Model, Double)->Indicators = { _, width in
 			Text("Power").foregroundColor(.sbjGauge("Gauge/Power/Indicator"))
+				.frame(width: width)
 		}) -> some View {
 
 		ZStackSquare() { geom in
 			Power.BackgroundView(geom: geom)
-			Standard.TickSetView(geom: geom, model: model) { geom, _, idx, idc, value in
+			Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, value in
 				switch idx {
 					case 0:
 						Standard.TickView(
@@ -38,7 +39,7 @@ public extension Gauge {
 				}
 			}
 			Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
-			Standard.NeedleSetView(geom: geom, model: model) { geom, _, idx, value in
+			Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
 				switch idx {
 					case 0:
 						Power.NeedleView(geom: geom, alpha: 1.0)
@@ -46,7 +47,7 @@ public extension Gauge {
 						Power.NeedleView(geom: geom, alpha: 0.25)
 				}
 			}
-			Standard.SpanSetView(geom: geom, model: model) { geom, _, idx, label, angles in
+			Standard.SpanSetView(geom: geom, model: model) { geom, idx, label, angles in
 				switch idx {
 				case 0:
 					Standard.SpanView(geom: geom, label: label, angles: angles)

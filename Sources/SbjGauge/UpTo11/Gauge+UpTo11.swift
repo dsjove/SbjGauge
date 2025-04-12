@@ -16,14 +16,14 @@ public extension Gauge {
 		let model = Model(upTo11: value)
 		ZStackSquare() { geom in
 			Color.sbjGauge("Gauge/UpTo11/Background")
-			Standard.TickSetView(geom: geom, model: model) { geom, _, _, idc, value in
+			Standard.TickSetView(geom: geom, model: model) { geom, _, idc, _ in
 				Standard.TickView(
 					geom: geom,
-					style: (value == 11 || idc.isMultiple(of: 2)) ? .text(idc.description) : .line(0.008),
+					style: (idc == 11 || idc.isMultiple(of: 2)) ? .text(idc.description) : .line(0.008),
 					radius: 0.7,
 					color: .black)
 			}
-			Standard.NeedleSetView(geom: geom, model: model) { geom, _, _, _ in
+			Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
 				UpTo11.Knob(geom: geom, width: 0.45)
 			}
 			UpTo11.Shine(geom: geom, width: 0.45)
@@ -34,7 +34,7 @@ public extension Gauge {
 public extension Gauge.Model {
 	init(upTo11 value: Double) {
 		range = 0 ... 11
-		values = [value]
+		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
 		tickIncrements = [1]
 		tickEnds = .both
@@ -43,20 +43,20 @@ public extension Gauge.Model {
 
 /*
 struct GaugeUpTo11Preview: View {
-    @State private var value: CGFloat = 0.0
-    
-    var body: some View {
-		Gauge.upTo11(.degrees(value))
+	@State private var value: CGFloat = 0.0
+
+	var body: some View {
+		Gauge.upTo11(value)
 			.gesture(
 				DragGesture()
 					.onChanged { gesture in
-						self.value = (gesture.translation.width - gesture.translation.height) / 4.0
+					let maxTranslation = max(abs(gesture.translation.width), abs(gesture.translation.height))
+						self.value += maxTranslation / 11.0
 					}
 			)
-    }
+	}
 }
 */
-
 #Preview {
 	Gauge.upTo11(11)
 }
