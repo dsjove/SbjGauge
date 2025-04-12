@@ -29,8 +29,8 @@ public extension Gauge {
 
 public extension Gauge.Model {
 	init(standard value: Double, range: ClosedRange<Double> = 0 ... 10) {
-		self.values = [value]
 		self.range = range
+		values = [range.clamp(value)]
 	}
 }
 

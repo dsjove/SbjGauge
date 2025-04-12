@@ -43,21 +43,27 @@ public extension Gauge.Model {
 		tickEnds = .both
 	}
 }
-/*
+
 struct GaugeUpTo11PreviewView: View {
 	@State private var model = Gauge.Model(upTo11: 11)
 
 	var body: some View {
 		Gauge.UpTo11(model)
-			.gesture(
-				DragGesture()
-					.onChanged { gesture in
-						let maxTranslation = max(abs(gesture.translation.width), abs(gesture.translation.height))
-					}
-			)
+			.overlay(GeometryReader { geometry in
+					Color.clear // Use a clear background
+						.contentShape(Circle())
+						.gesture(
+							DragGesture()
+								.onChanged { gesture in
+									let l1 = gesture.translation.height
+									let l2 = gesture.translation.width
+									let l = abs(l1) > abs(l2) ? l1 : l2
+									model[0]? += l / geometry.size.width
+								})
+			})
 	}
 }
-*/
+
 #Preview {
-	Gauge.UpTo11()
+	GaugeUpTo11PreviewView()
 }

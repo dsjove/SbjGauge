@@ -40,6 +40,11 @@ extension Gauge {
 // Needles
 		public var values: [Double?]
 
+		subscript(index: Int) -> Double? {
+			get { values[index] }
+			set { values[index] = newValue.map { range.clamp($0) } }
+		}
+
 // Ticks
 		public var tickIncrements: [Double?] = [1, 1]
 		public enum TickEnds {
