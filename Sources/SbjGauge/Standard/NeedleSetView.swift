@@ -32,7 +32,7 @@ extension Gauge.Standard {
 		public var body: some View {
 			ForEach(Array(model.values.enumerated().reversed()), id: \.offset) { (index, value) in
 					content(geom, index, value)
-						.rotationEffect(model.angle(value) + .degrees(360.0))
+						.rotationEffect(model.angle(value: value) + .degrees(360.0))
 						.animation(.linear(duration: 0.1))
 				}
 		}

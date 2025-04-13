@@ -70,17 +70,17 @@ public extension Gauge {
 public extension Gauge.Model {
 	init(power value: Double, control: Double? = nil, idle: Double = 0.0) {
 		let magnitude = 100.0
+		range = -magnitude ... magnitude
+		angles = .degrees(210) ... .degrees(510)
+
 		let scaledValue = value * magnitude;
 		let scaledControl = control.map({ $0 * magnitude }) ?? scaledValue;
-		let scaledIdle = idle * magnitude;
-
-		range = -magnitude ... magnitude
 		values = [scaledValue, scaledControl]
-
-		angles = .degrees(210) ... .degrees(510)
 
 		tickIncrements = [5, 25, 25]
 		tickEnds = .both
+
+		let scaledIdle = idle * magnitude;
 		spans = [
 			.init(-scaledIdle ... scaledIdle, "Idle"),
 			.init(-magnitude ... -scaledIdle, "Reverse"),

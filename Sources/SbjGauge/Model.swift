@@ -22,17 +22,30 @@ extension Gauge {
 // Radial
 		public var range: ClosedRange<Double>
 
+		public func norm(value: Double) -> Double {
+			(range.clamp(value) - range.lowerBound) / (range.upperBound - range.lowerBound)
+		}
+
+		public func value(norm: Double) -> Double {
+			range.lowerBound + (norm * (range.upperBound - range.lowerBound))
+		}
+
 		public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
 
-		public func angle(_ value: Double) -> Angle {
-			let scale = (value - range.lowerBound) / (range.upperBound - range.lowerBound)
-			let angle = angles.lowerBound.degrees + (scale * (angles.upperBound.degrees - angles.lowerBound.degrees))
-			return .degrees(angle)
+		public func norm(angle: Angle) -> Double {
+			(angle.degrees - angles.lowerBound.degrees) / (angles.upperBound.degrees - angles.lowerBound.degrees)
+		}
+
+		public func angle(norm: Double) -> Angle {
+			.degrees(angles.lowerBound.degrees + (norm * (angles.upperBound.degrees - angles.lowerBound.degrees)))
+		}
+
+		public func angle(value: Double) -> Angle {
+			angle(norm: norm(value: value))
 		}
 
 		public func value(angle: Angle) -> Double {
-			let scale = (angle.degrees - angles.lowerBound.degrees) / (angles.upperBound.degrees - angles.lowerBound.degrees)
-			return range.lowerBound + (scale * (range.upperBound - range.lowerBound))
+			value(norm: norm(angle: angle))
 		}
 
 // Needles
@@ -44,8 +57,8 @@ extension Gauge {
 		}
 
 		subscript(norm index: Int) -> Double {
-			get { values[index] - range.lowerBound / (range.upperBound - range.lowerBound) }
-			set { values[index] = range.clamp(newValue * (range.upperBound - range.lowerBound) + range.lowerBound) }
+			get { norm(value: values[index]) }
+			set { values[index] = value(norm: newValue) }
 		}
 
 // Ticks

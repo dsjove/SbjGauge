@@ -32,8 +32,8 @@ extension Gauge.Standard {
 
 		public var body: some View {
 			ForEach(Array(model.spans.enumerated()), id: \.offset) { (index, span) in
-				let angle1 = model.angle(Double(span.range.lowerBound))
-				let angle2 = model.angle(Double(span.range.upperBound))
+				let angle1 = model.angle(value: Double(span.range.lowerBound))
+				let angle2 = model.angle(value: Double(span.range.upperBound))
 				content(geom, index, span.label, angle1...angle2)
 			}
 		}
