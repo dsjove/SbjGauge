@@ -32,11 +32,9 @@ extension Gauge.Standard {
 
 		public var body: some View {
 			ForEach(Array(model.spans.enumerated()), id: \.offset) { (index, span) in
-				if let span {
-					let angle1 = model.angle(Double(span.range.lowerBound))
-					let angle2 = model.angle(Double(span.range.upperBound))
-					content(geom, index, span.label, angle1...angle2)
-				}
+				let angle1 = model.angle(Double(span.range.lowerBound))
+				let angle2 = model.angle(Double(span.range.upperBound))
+				content(geom, index, span.label, angle1...angle2)
 			}
 		}
 	}
@@ -44,6 +42,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.SpanSetView(geom: $0, model: .init())
+		Gauge.Standard.SpanSetView(geom: $0, model: .init(standard: 0))
 	}
 }

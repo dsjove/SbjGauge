@@ -8,15 +8,13 @@
 import SwiftUI
 
 extension Gauge {
-
 	/**
 	 * Model has the non-rendering multivalues of the gauge.
 	 * 'angles' will likely move out into another object.
 	 * This struct will be broken up for each gauge component.
 	 */
 	public struct Model {
-	
-		public init(value: Double = 0, range: ClosedRange<Double> = 0 ... 10) {
+		public init(value: Double, range: ClosedRange<Double> = 0 ... 10) {
 			self.values = [value]
 			self.range = range
 		}
@@ -38,15 +36,20 @@ extension Gauge {
 		}
 
 // Needles
-		public var values: [Double?]
+		public var values: [Double]
 
-		subscript(index: Int) -> Double? {
+		subscript(index: Int) -> Double {
 			get { values[index] }
-			set { values[index] = newValue.map { range.clamp($0) } }
+			set { values[index] = range.clamp(newValue) }
+		}
+
+		subscript(norm index: Int) -> Double {
+			get { values[index] - range.lowerBound / (range.upperBound - range.lowerBound) }
+			set { values[index] = range.clamp(newValue * (range.upperBound - range.lowerBound) + range.lowerBound) }
 		}
 
 // Ticks
-		public var tickIncrements: [Double?] = [1, 1]
+		public var tickIncrements: [Double] = [1, 1]
 		public enum TickEnds {
 			case both
 			case start
@@ -82,12 +85,12 @@ extension Gauge {
 				self.label = label
 			}
 		}
-		public var spans: [Span?] = []
+		public var spans: [Span] = []
 
 		func span(for value: Double) -> (Int, Span)? {
 			for span in spans.enumerated().reversed() {
-				if let test = span.element, test.range.contains(value) {
-					return (span.offset, test)
+				if span.element.range.contains(value) {
+					return (span.offset, span.element)
 				}
 			}
 			return nil

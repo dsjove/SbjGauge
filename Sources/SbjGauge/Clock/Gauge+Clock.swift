@@ -36,7 +36,7 @@ public extension Gauge {
 					}
 				}
 				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
-					let am = model.values[3] ?? 0 < 12
+					let am = model.values[3] < 12
 					Text(am ? "AM" : "PM")
 						.foregroundColor(.sbjGauge("Gauge/Clock/Indicator"))
 						.frame(width: width)

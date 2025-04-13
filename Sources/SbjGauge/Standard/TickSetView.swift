@@ -38,11 +38,9 @@ extension Gauge.Standard {
 
 		public var body: some View {
 			ForEach(Array(model.tickIncrements.enumerated().reversed()), id: \.offset) { (idx, increment) in
-				if let increment {
-					ForEach(model.tickValues(inc: increment), id: \.offset) { value in
-						content(geom, idx, value.offset, value.element)
-							.rotationEffect(model.angle(value.element))
-					}
+				ForEach(model.tickValues(inc: increment), id: \.offset) { value in
+					content(geom, idx, value.offset, value.element)
+						.rotationEffect(model.angle(value.element))
 				}
 			}
 		}
@@ -51,6 +49,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.TickSetView(geom: $0, model: .init())
+		Gauge.Standard.TickSetView(geom: $0, model: .init(standard: 0))
 	}
 }

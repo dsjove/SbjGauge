@@ -31,19 +31,16 @@ extension Gauge.Standard {
 
 		public var body: some View {
 			ForEach(Array(model.values.enumerated().reversed()), id: \.offset) { (index, value) in
-				if let value {
-					//if index < model.views.needles.count, let item = model.views.needles[index] {
-						content(geom, index, value)
-							.rotationEffect(model.angle(value) + .degrees(360.0))
-							.animation(.linear(duration: 0.1))
+					content(geom, index, value)
+						.rotationEffect(model.angle(value) + .degrees(360.0))
+						.animation(.linear(duration: 0.1))
 				}
-			}
 		}
 	}
 }
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.NeedleSetView(geom: $0, model: .init())
+		Gauge.Standard.NeedleSetView(geom: $0, model: .init(standard: 0))
 	}
 }

@@ -71,7 +71,7 @@ public extension Gauge.Model {
 	init(power value: Double, control: Double? = nil, idle: Double = 0.0) {
 		let magnitude = 100.0
 		let scaledValue = value * magnitude;
-		let scaledControl = control.map({ $0 * magnitude }) ?? nil;
+		let scaledControl = control.map({ $0 * magnitude }) ?? scaledValue;
 		let scaledIdle = idle * magnitude;
 
 		range = -magnitude ... magnitude
