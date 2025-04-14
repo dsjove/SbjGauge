@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension Gauge.Standard {
+public extension Standard {
 	struct NeedleView: View {
 		let geom: GeometryProxy
 		let radius: Double
@@ -18,7 +18,7 @@ public extension Gauge.Standard {
 			geom: GeometryProxy,
 			radius: Double = 0.7,
 			width: Double = 0.025,
-			color: Color = .sbjGauge("Gauge/Standard/Needle"),
+			color: Color = .sbjGauge("Standard/Needle"),
 			alpha: Double = 1.0) {
 				self.geom = geom
 				self.radius = radius
@@ -46,6 +46,6 @@ public extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.NeedleView(geom: $0)
+		Standard.NeedleView(geom: $0)
 	}
 }

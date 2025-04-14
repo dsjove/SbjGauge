@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-public extension Gauge.Standard {
+public extension Standard {
 	struct BackgroundView: View {
 		let geom: GeometryProxy
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
-			color: Color = .sbjGauge("Gauge/Standard/Background")) {
+			color: Color = .sbjGauge("Standard/Background")) {
 				self.geom = geom
 				self.color = color
 		}
@@ -28,6 +28,6 @@ public extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.BackgroundView(geom: $0)
+		Standard.BackgroundView(geom: $0)
 	}
 }

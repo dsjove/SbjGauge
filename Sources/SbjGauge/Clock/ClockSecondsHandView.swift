@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension Gauge.Clock {
+public extension Clock {
 	struct SecondsHandView: View {
 		let geom: GeometryProxy
 		let radius: Double
@@ -20,7 +20,7 @@ public extension Gauge.Clock {
 			radius: Double = 0.9,
 			width: Double = 0.01,
 			knob: Double = 0.05,
-			color: Color = .sbjGauge("Gauge/Clock/SecondsHand")) {
+			color: Color = .sbjGauge("Clock/SecondsHand")) {
 				self.geom = geom
 				self.color = color
 				self.radius = radius
@@ -43,6 +43,6 @@ public extension Gauge.Clock {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Clock.SecondsHandView(geom: $0)
+		Clock.SecondsHandView(geom: $0)
 	}
 }

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-extension Gauge.Power {
+extension Power {
 	public struct BackgroundView: View {
 		let geom: GeometryProxy
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
-			color: Color = .sbjGauge("Gauge/Power/Background")) {
+			color: Color = .sbjGauge("Power/Background")) {
 			self.geom = geom
 			self.color = color
 		}
@@ -50,6 +50,6 @@ extension Gauge.Power {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Power.BackgroundView(geom: $0)
+		Power.BackgroundView(geom: $0)
 	}
 }

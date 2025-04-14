@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct TickView: View {
 		public enum Style {
 			case none
@@ -27,7 +27,7 @@ extension Gauge.Standard {
 			radius: CGFloat = 0.95,
 			offset: Double = 0.0,
 			length: Double = 0.1,
-			color: Color = .sbjGauge("Gauge/Standard/Tick")) {
+			color: Color = .sbjGauge("Standard/Tick")) {
 				self.geom = geom
 				self.style = style
 				self.outerRadius = radius - offset
@@ -65,6 +65,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.TickView(geom: $0, style: .line(0.004), radius: 1.0)
+		Standard.TickView(geom: $0, style: .line(0.004), radius: 1.0)
 	}
 }

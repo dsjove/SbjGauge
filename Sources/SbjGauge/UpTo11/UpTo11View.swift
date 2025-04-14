@@ -1,5 +1,5 @@
 //
-//  Gauge+upTo11.swift
+//  UpTo11View.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/10/25.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-public extension Gauge {
-	struct UpTo11: View {
+public enum UpTo11 {
+	public struct UpTo11View: View {
 		let model: Model
 
 		public init(_ model: Model = .init(upTo11: 11)) {
@@ -17,7 +17,7 @@ public extension Gauge {
 
 		public var body: some View {
 			ZStackSquare() { geom in
-				Color.sbjGauge("Gauge/UpTo11/Background")
+				Color.sbjGauge("UpTo11/Background")
 				Standard.TickSetView(geom: geom, model: model) { geom, _, idc, _ in
 					Standard.TickView(
 						geom: geom,
@@ -26,15 +26,15 @@ public extension Gauge {
 						color: .black)
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
-					UpTo11.Knob(geom: geom, width: 0.45)
+					Knob(geom: geom, width: 0.45)
 				}
-				UpTo11.Shine(geom: geom, width: 0.45)
+				Shine(geom: geom, width: 0.45)
 			}
 		}
 	}
 }
 
-public extension Gauge.Model {
+public extension Model {
 	init(upTo11 value: Double) {
 		range = 0 ... 11
 		values = [range.clamp(value)]
@@ -45,12 +45,12 @@ public extension Gauge.Model {
 }
 
 struct GaugeUpTo11PreviewView: View {
-	@State private var model = Gauge.Model(upTo11: 11)
+	@State private var model = Model(upTo11: 11)
 
 	var body: some View {
-		Gauge.UpTo11(model)
+		UpTo11.UpTo11View(model)
 			.overlay(GeometryReader { geometry in
-					Color.clear // Use a clear background
+					Color.clear
 						.contentShape(Circle())
 						.gesture(
 							DragGesture()

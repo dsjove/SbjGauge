@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct TickSetView<Tick: View>: View {
 		public typealias Content = (GeometryProxy, Int, Int, Double) -> Tick
 		let geom: GeometryProxy
-		let model: Gauge.Model
+		let model: Model
 		let content: Content
 
 		public static var defaultBuilder: (GeometryProxy, Int, Int, Double) -> TickView {
@@ -20,7 +20,10 @@ extension Gauge.Standard {
 					case 0:
 						TickView(geom: geom)
 					case 1:
-						TickView(geom: geom, style: .text(Int(value).description), offset: 0.1, length: 0.2)
+						TickView(geom: geom,
+							style: .text(Int(value).description),
+							offset: 0.1,
+							length: 0.2)
 					default:
 						TickView(geom: geom, style: .none)
 				}
@@ -29,7 +32,7 @@ extension Gauge.Standard {
 
 		public init(
 			geom: GeometryProxy,
-			model: Gauge.Model,
+			model: Model,
 			@ViewBuilder content: @escaping Content = defaultBuilder) {
 				self.geom = geom
 				self.model = model
@@ -49,6 +52,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.TickSetView(geom: $0, model: .init(standard: 0))
+		Standard.TickSetView(geom: $0, model: .init(standard: 0))
 	}
 }

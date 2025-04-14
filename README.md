@@ -18,7 +18,7 @@ The gauges render well on iPhone, iPad, Watch, and AppleTV. I have not thought a
 
 To create a basic uncustomized gauge:
 
-`Gauge.standard(.init(value: 1.5))`
+`standard(.init(value: 1.5))`
 
 <img src="Sample-Default.png" alt="Default" width="200">
 
@@ -27,8 +27,9 @@ The CompositionView's constructor exposes all the component view builders for cu
 <img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 
 ## TODOS
+- Make Model a set of protocols, 'label' becomes an associated type
+- Cleanup Tick model and views
 - Correct transition animations to have entire gauge animate together
 - Use swiftplayground as example
-- Can we set view scale so drawing values are always normalized?
+- use coordinateSpace() to eliminate the geom parameter
 - Swiftui-ify ScrubView
-- Break up and make Model a protocol

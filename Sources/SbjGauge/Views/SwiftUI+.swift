@@ -58,18 +58,6 @@ extension Color {
 	}
 }
 
-/**
- * Convenience method to clamp a value in a closed ranged
- * I think this is built in now.
- */
-extension ClosedRange {
-	func clamp(_ value : Bound) -> Bound {
-		self.lowerBound > value ? self.lowerBound :
-		self.upperBound < value ? self.upperBound :
-		value
-	}
-}
-
 extension View {
 	var isPreview: Bool {
 		return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"

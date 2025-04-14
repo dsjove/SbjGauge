@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension Gauge.UpTo11 {
+public extension UpTo11 {
 	struct Shine: View {
 		let geom: GeometryProxy
 		let width: Double
@@ -25,6 +25,6 @@ public extension Gauge.UpTo11 {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.UpTo11.Shine(geom: $0, width: 0.45)
+		UpTo11.Shine(geom: $0, width: 0.45)
 	}
 }

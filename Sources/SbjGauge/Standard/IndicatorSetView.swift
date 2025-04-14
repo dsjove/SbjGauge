@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct IndicatorSetView<Set: View>: View {
-		public typealias Content = (Gauge.Model, Double) -> Set
+		public typealias Content = (Model, Double) -> Set
 		let geom: GeometryProxy
-		let model: Gauge.Model
+		let model: Model
 		let radius: Double
 		let width: Double
 		let content: Content
 
-		public static var defaultBuilder: (Gauge.Model, Double) -> EmptyView {
+		public static var defaultBuilder: (Model, Double) -> EmptyView {
 			{ _, _ in
 				EmptyView()
 			}
@@ -24,7 +24,7 @@ extension Gauge.Standard {
 
 		public init(
 			geom: GeometryProxy,
-			model: Gauge.Model,
+			model: Model,
 			radius: Double = 0.200,
 			width: Double = 0.185,
 			@ViewBuilder content: @escaping Content = defaultBuilder) {
@@ -60,7 +60,7 @@ fileprivate struct PreviewIndicatorView: View {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.IndicatorSetView(geom: $0, model: .init(standard: 0)) { _, w in
+		Standard.IndicatorSetView(geom: $0, model: .init(standard: 0)) { _, w in
 			PreviewIndicatorView(text: "H", width: w)
 			PreviewIndicatorView(text: "E", width: w)
 			PreviewIndicatorView(text: "L", width: w)

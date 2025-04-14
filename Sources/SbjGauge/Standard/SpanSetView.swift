@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct SpanSetView<Range: View>: View {
 		public typealias Content = (GeometryProxy, Int, String?, ClosedRange<Angle>) -> Range
 		let geom: GeometryProxy
-		let model: Gauge.Model
+		let model: Model
 		let content: Content
 
 		public static var defaultBuilder: (GeometryProxy, Int, String?, ClosedRange<Angle>) -> SpanView {
@@ -22,7 +22,7 @@ extension Gauge.Standard {
 
 		public init(
 			geom: GeometryProxy,
-			model: Gauge.Model,
+			model: Model,
 			@ViewBuilder content: @escaping Content = defaultBuilder
 		) {
 			self.geom = geom
@@ -42,6 +42,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.SpanSetView(geom: $0, model: .init(standard: 0))
+		Standard.SpanSetView(geom: $0, model: .init(standard: 0))
 	}
 }

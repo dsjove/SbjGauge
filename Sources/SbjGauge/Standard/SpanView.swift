@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct SpanView: View {
 		let geom: GeometryProxy
 		let label: String?
@@ -24,8 +24,8 @@ extension Gauge.Standard {
 			radius: CGFloat = 0.97,
 			offset: Double = 0.0,
 			length: Double = 0.08,
-			color: Color = .sbjGauge("Gauge/Standard/SpanBackground"),
-			textColor: Color = .sbjGauge("Gauge/Standard/SpanLabel")) {
+			color: Color = .sbjGauge("Standard/SpanBackground"),
+			textColor: Color = .sbjGauge("Standard/SpanLabel")) {
 				self.geom = geom
 				self.label = label
 				self.angles = angles
@@ -69,7 +69,7 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.SpanView(
+		Standard.SpanView(
 			geom: $0,
 			label: "Hello",
 			angles: Angle.degrees(40) ... Angle.degrees(100))

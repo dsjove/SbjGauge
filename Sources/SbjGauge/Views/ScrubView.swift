@@ -12,6 +12,7 @@ import SwiftUI
  * This class is a bit of a mess and needs some SwiftUI best-practices.
  */
 public struct ScrubView: View {
+	//TODO: break out these members into view builders and modifiers
 	private let value: Double
 	private let range: ClosedRange<Double>
 	private let increment: Double?

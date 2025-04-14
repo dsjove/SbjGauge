@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Gauge.Standard {
+extension Standard {
 	public struct RimView: View {
 		let geom: GeometryProxy
 		let outerRadius: Double
@@ -19,11 +19,11 @@ extension Gauge.Standard {
 			radius: Double = 1.0,
 			offset: Double = 0.0,
 			length: Double = 0.03,
-			color: Color = .sbjGauge("Gauge/Standard/Rim")) {
+			color: Color = .sbjGauge("Standard/Rim")) {
 				self.geom = geom
 				self.color = color
-			self.outerRadius = radius - offset
-			self.innerRadius = outerRadius - length
+				self.outerRadius = radius - offset
+				self.innerRadius = outerRadius - length
 		}
 
 		public var body: some View {
@@ -38,6 +38,6 @@ extension Gauge.Standard {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Standard.RimView(geom: $0)
+		Standard.RimView(geom: $0)
 	}
 }

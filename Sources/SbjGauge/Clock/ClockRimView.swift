@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-public extension Gauge.Clock {
+public extension Clock {
 	struct RimView: View {
 		let geom: GeometryProxy
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
-			color: Color = .sbjGauge("Gauge/Clock/Rim")) {
+			color: Color = .sbjGauge("Clock/Rim")) {
 				self.geom = geom
 				self.color = color
 		}
@@ -42,6 +42,6 @@ public extension Gauge.Clock {
 
 #Preview {
 	ZStackSquare() {
-		Gauge.Clock.RimView(geom: $0)
+		Clock.RimView(geom: $0)
 	}
 }

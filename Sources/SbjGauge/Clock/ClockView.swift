@@ -1,5 +1,5 @@
 //
-//  Gauge+Clock.swift
+//  ClockView.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/1/25.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-public extension Gauge {
+public enum Clock {
 	/**
 	 * Given a Swift Date, render the time in a 12 hour analog clock.
 	 */
-	struct Clock : View {
+	public struct ClockView: View {
 		let model: Model
 
 		public init(_ model: Model = .init(clock: Date())) {
@@ -38,13 +38,13 @@ public extension Gauge {
 				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
 					let am = model.values[3] < 12
 					Text(am ? "AM" : "PM")
-						.foregroundColor(.sbjGauge("Gauge/Clock/Indicator"))
+						.foregroundColor(.sbjGauge("Clock/Indicator"))
 						.frame(width: width)
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
 					switch idx {
 					case 0:
-						Clock.SecondsHandView(geom: geom)
+						SecondsHandView(geom: geom)
 					case 1:
 						Standard.NeedleView(geom: geom, radius: 0.7, width: 0.025)
 					case 2:
@@ -53,13 +53,13 @@ public extension Gauge {
 						Standard.NeedleView(geom: geom, alpha: 0.0)
 					}
 				}
-				Clock.RimView(geom: geom)
+				RimView(geom: geom)
 			}
 		}
 	}
 }
 
-public extension Gauge.Model {
+public extension Model {
 	init(clock date: Date) {
 		let calendar = Calendar.current
 		let hour = Double(calendar.component(.hour, from: date))
@@ -85,7 +85,7 @@ struct GaugeClockPreviewView: View {
 	@State private var currentTime = Date()
 
 	public var body: some View {
-		Gauge.Clock(.init(clock: currentTime))
+		Clock.ClockView(.init(clock: currentTime))
 			.onReceive(timer) { input in
 				currentTime = input
 			}

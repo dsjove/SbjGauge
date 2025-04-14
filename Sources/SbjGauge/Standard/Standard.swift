@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-public extension Gauge {
-	struct Standard : View {
+public enum Standard {
+	public struct StandardView : View {
 		let model: Model
 
 		public init(_ model: Model = .init(standard: 0)) {
@@ -27,7 +27,7 @@ public extension Gauge {
 	}
 }
 
-public extension Gauge.Model {
+public extension Model {
 	init(standard value: Double, range: ClosedRange<Double> = 0 ... 10) {
 		self.range = range
 		values = [range.clamp(value)]
@@ -35,5 +35,5 @@ public extension Gauge.Model {
 }
 
 #Preview {
-	Gauge.Standard(.init(standard: 1.5))
+	Standard.StandardView(.init(standard: 1.5))
 }
