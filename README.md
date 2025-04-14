@@ -6,7 +6,7 @@ Inspired by: https://github.com/Will-tm/WMGaugeView
 
 ## Design Goals
 
-I struggle with the oversimplified symbolic UI in most applications; done in the name of minimalism. Many gauges are a a single color arc with maybe an arrow. That is not enough information for a glanceable read.
+I struggle with the oversimplified symbolic UI in most applications; done in the name of minimalism. Many gauges are a a single color arc with maybe an arrow. That is not enough information for a glanceable read. Refresh action, progress indicator, rotate action?
 
 My goal is to create a library that makes it easy to design a detailed multi-value gauge with the level of skeuomorphism that fits your application's visual language.
 
@@ -18,11 +18,11 @@ The gauges render well on iPhone, iPad, Watch, and AppleTV. I have not thought a
 
 To create a basic uncustomized gauge:
 
-`standard(.init(value: 1.5))`
+`SbjGauge.Standard.StandardView(.init(standard: 1.5))`
 
 <img src="Sample-Default.png" alt="Default" width="200">
 
-The CompositionView's constructor exposes all the component view builders for customization. I have created other built-in schemes of the gauge: Clock, Power, and Up to 11.
+I have created other built-in views of the gauge: Clock, Power, and UpTo11.
 
 <img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 

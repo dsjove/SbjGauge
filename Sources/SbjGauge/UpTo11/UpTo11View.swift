@@ -44,10 +44,10 @@ public extension Model {
 	}
 }
 
-struct GaugeUpTo11PreviewView: View {
+public struct UpTo11InteractiveView: View {
 	@State private var model = Model(upTo11: 11)
 
-	var body: some View {
+	public var body: some View {
 		UpTo11.UpTo11View(model)
 			.overlay(GeometryReader { geometry in
 					Color.clear
@@ -65,5 +65,5 @@ struct GaugeUpTo11PreviewView: View {
 }
 
 #Preview {
-	GaugeUpTo11PreviewView()
+	UpTo11InteractiveView()
 }

@@ -22,7 +22,7 @@ public enum Power {
 		let indicators: (Model, Double)->Indicators
 
 		public init(
-			_ model: Model,
+			_ model: Model = .init(power: 0.000, idle: 0.25),
 			@ViewBuilder indicators: @escaping (Model, Double)->Indicators = Power.defaultIndicators) {
 				self.model = model
 				self.indicators = indicators

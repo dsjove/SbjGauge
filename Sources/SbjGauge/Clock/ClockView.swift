@@ -79,7 +79,7 @@ public extension Model {
 	}
 }
 
-struct GaugeClockPreviewView: View {
+public struct ClockRunningView: View {
 	let calendar = Calendar.current
 	let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 	@State private var currentTime = Date()
@@ -93,5 +93,5 @@ struct GaugeClockPreviewView: View {
 }
 
 #Preview {
-	GaugeClockPreviewView()
+	ClockRunningView()
 }
