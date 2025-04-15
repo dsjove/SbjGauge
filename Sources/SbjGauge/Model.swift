@@ -96,10 +96,11 @@ public struct Model {
 // Ticks
 	public struct Tick {
 		public let increment: Double
-		public let filter: (Int, Double) -> Bool = { _, _ in true }
+		public let filter: (Int, Double) -> Bool
 
-		public init(_ increment: Double = 1.0) {
+		public init(_ increment: Double = 1.0, filter: @escaping (Int, Double) -> Bool = { _, _ in true } ) {
 			self.increment = increment
+			self.filter = filter
 		}
 	}
 	public var ticks: [Tick] = [.init(), .init()]

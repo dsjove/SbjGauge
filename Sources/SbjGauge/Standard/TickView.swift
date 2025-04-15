@@ -10,7 +10,6 @@ import SwiftUI
 extension Standard {
 	public struct TickView: View {
 		public enum Style {
-			case none
 			case line(Double = 0.008)
 			case text(String)
 		}
@@ -40,8 +39,6 @@ extension Standard {
 			let inner = geom.radius(innerRadius)
 
 			switch style {
-				case .none:
-					EmptyView()
 				case .line(let thickness):
 					let lineWidth = geom.width(thickness)
 					if lineWidth > 0.0 {

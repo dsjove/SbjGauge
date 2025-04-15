@@ -36,13 +36,13 @@ public enum Power {
 						case 0:
 							Standard.TickView(
 								geom: geom,
-								style: idc.isMultiple(of: 5) ? .none : .line(0.005), radius: 0.88, length: 0.05, color: color)
+								style: .line(0.005), radius: 0.88, length: 0.05, color: color)
 						case 1:
 							Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: color)
 						case 2:
 							Standard.TickView(geom: geom, style: .text(Int(value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
 						default:
-							Standard.TickView(geom: geom, style: .none, radius: 0.88, color: color)
+							EmptyView()
 					}
 				}
 				Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
@@ -81,7 +81,11 @@ public extension Model {
 		let scaledControl = control.map({ $0 * magnitude }) ?? scaledValue;
 		values = [scaledValue, scaledControl]
 
-		ticks = [Tick(5), Tick(25), Tick(25)]
+		ticks = [
+			Tick(5, filter: { idc, _ in !idc.isMultiple(of: 5)}),
+			Tick(25),
+			Tick(25)
+		]
 		tickEnds = .both
 
 		let scaledIdle = idle * magnitude;

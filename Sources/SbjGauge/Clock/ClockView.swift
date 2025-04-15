@@ -30,9 +30,9 @@ public enum Clock {
 						case 2:
 							Standard.TickView(
 								geom: geom,
-								style: idc.isMultiple(of: 20) ? .none : .line(0.008), length:  0.05, color: .black)
+								style: .line(0.008), length:  0.05, color: .black)
 						default:
-							Standard.TickView(geom: geom, style: .none)
+							EmptyView()
 					}
 				}
 				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
@@ -72,7 +72,11 @@ public extension Model {
 		let secondPos = 720.0 * currentSecond
 		values = [secondPos, minutePos, hourPos, hour]
 
-		ticks = [Tick(3600), Tick(3600), Tick(720)]
+		ticks = [
+			Tick(3600),
+			Tick(3600),
+			Tick(720, filter: { idc, _ in !idc.isMultiple(of: 20)})
+		]
 		tickEnds = .end
 	}
 }

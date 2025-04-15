@@ -18,12 +18,23 @@ public enum UpTo11 {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Color.sbjGauge("UpTo11/Background")
-				Standard.TickSetView(geom: geom, model: model) { geom, _, idc, _ in
-					Standard.TickView(
-						geom: geom,
-						style: (idc == 11 || idc.isMultiple(of: 2)) ? .text(idc.description) : .line(0.008),
-						radius: 0.7,
-						color: .black)
+				Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, _ in
+					switch idx {
+						case 0:
+							Standard.TickView(
+								geom: geom,
+								style: .text(idc.description),
+								radius: 0.7,
+								color: .black)
+						case 1:
+							Standard.TickView(
+								geom: geom,
+								style: .line(0.008),
+								radius: 0.7,
+								color: .black)
+						default:
+							EmptyView()
+					}
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
 					KnobView(geom: geom, width: 0.45)
@@ -39,7 +50,10 @@ public extension Model {
 		range = 0 ... 11
 		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
-		ticks = [Tick(1)]
+		ticks = [
+			Tick(1, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
+			Tick(1, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
+		]
 		tickEnds = .both
 	}
 }

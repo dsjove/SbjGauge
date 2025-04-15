@@ -19,7 +19,7 @@ extension Standard {
 					offset: 0.1,
 					length: 0.2)
 			default:
-				TickView(geom: geom, style: .none)
+				EmptyView()
 		}
 	}
 
