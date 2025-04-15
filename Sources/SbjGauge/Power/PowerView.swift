@@ -10,8 +10,7 @@ import SwiftUI
 public enum Power {
 	@ViewBuilder
 	public static func defaultIndicators(model: Model, width: Double) -> some View {
-		Text("Power").foregroundColor(.sbjGauge("Power/Indicator"))
-			.frame(width: width)
+		Standard.defaultIndicator(model: "Power", width: width, color: .sbjGauge("Power/Indicator"))
 	}
 
 	/**

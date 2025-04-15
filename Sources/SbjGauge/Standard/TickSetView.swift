@@ -8,32 +8,31 @@
 import SwiftUI
 
 extension Standard {
+	@ViewBuilder
+	public static func defaultTick(geom: GeometryProxy, idx: Int, idc: Int, value: Double) -> some View {
+		switch idx {
+			case 0:
+				TickView(geom: geom)
+			case 1:
+				TickView(geom: geom,
+					style: .text(Int(value).description),
+					offset: 0.1,
+					length: 0.2)
+			default:
+				TickView(geom: geom, style: .none)
+		}
+	}
+
 	public struct TickSetView<Tick: View>: View {
 		public typealias Content = (GeometryProxy, Int, Int, Double) -> Tick
 		let geom: GeometryProxy
 		let model: Model
 		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Int, Int, Double) -> TickView {
-			{ geom, idx, idc, value in
-				switch idx {
-					case 0:
-						TickView(geom: geom)
-					case 1:
-						TickView(geom: geom,
-							style: .text(Int(value).description),
-							offset: 0.1,
-							length: 0.2)
-					default:
-						TickView(geom: geom, style: .none)
-				}
-			}
-		}
-
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping Content = defaultBuilder) {
+			@ViewBuilder content: @escaping Content = defaultTick) {
 				self.geom = geom
 				self.model = model
 				self.content = content

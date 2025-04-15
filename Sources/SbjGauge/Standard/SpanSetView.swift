@@ -8,22 +8,21 @@
 import SwiftUI
 
 extension Standard {
+	@ViewBuilder
+	public static func defaultSpan(geom: GeometryProxy, idx: Int, label: String?, angles: ClosedRange<Angle>) -> some View {
+		SpanView(geom: geom, label: label, angles: angles)
+	}
+
 	public struct SpanSetView<Range: View>: View {
 		public typealias Content = (GeometryProxy, Int, String?, ClosedRange<Angle>) -> Range
 		let geom: GeometryProxy
 		let model: Model
 		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Int, String?, ClosedRange<Angle>) -> SpanView {
-			{ geom, idx, label, angles in
-				return SpanView(geom: geom, label: label, angles: angles)
-			}
-		}
-
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping Content = defaultBuilder
+			@ViewBuilder content: @escaping Content = defaultSpan
 		) {
 			self.geom = geom
 			self.model = model

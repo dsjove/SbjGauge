@@ -8,22 +8,21 @@
 import SwiftUI
 
 extension Standard {
+	@ViewBuilder
+	public static func defaultNeedle(geom: GeometryProxy, idx: Int, _: Double) -> some View {
+		NeedleView(geom: geom, alpha: idx == 0 ? 1.0 : 0.25)
+	}
+
 	public struct NeedleSetView<Needle: View>: View {
 		public typealias Content = (GeometryProxy, Int, Double) -> Needle
 		let geom: GeometryProxy
 		let model: Model
 		let content: Content
 
-		public static var defaultBuilder: (GeometryProxy, Int, Double) -> NeedleView {
-			{ geom, idx, _ in
-				return NeedleView(geom: geom, alpha: idx == 0 ? 1.0 : 0.25)
-			}
-		}
-
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping Content = defaultBuilder) {
+			@ViewBuilder content: @escaping Content = defaultNeedle) {
 				self.geom = geom
 				self.model = model
 				self.content = content

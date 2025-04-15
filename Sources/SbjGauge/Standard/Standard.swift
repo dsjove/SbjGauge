@@ -20,7 +20,7 @@ public enum Standard {
 				BackgroundView(geom: geom)
 				TickSetView(geom: geom, model: model)
 				SpanSetView(geom: geom, model: model)
-				Standard.IndicatorSetView(geom: geom, model: model)
+				IndicatorSetView(geom: geom, model: model)
 				NeedleSetView(geom: geom, model: model)
 				RimView(geom: geom)
 			}

@@ -8,6 +8,23 @@
 import SwiftUI
 
 extension Standard {
+
+	@ViewBuilder
+	public static func defaultIndicator(model: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
+		Text(model)
+			.foregroundColor(color)
+			.minimumScaleFactor(0.5)
+			.lineLimit(1)
+			.font(.largeTitle)
+			.truncationMode(.tail)
+			.frame(width: width)
+	}
+
+	@ViewBuilder
+	public static func defaultIndicators(model: Model, width: Double) -> some View {
+		defaultIndicator(model: String(format: "%.01f", model.values[0]), width: width)
+	}
+
 	public struct IndicatorSetView<Set: View>: View {
 		public typealias Content = (Model, Double) -> Set
 		let geom: GeometryProxy
@@ -16,25 +33,12 @@ extension Standard {
 		let width: Double
 		let content: Content
 
-		public static var defaultBuilder: (Model, Double) -> Text {
-			{ model, width in
-				Text(String(format: "%.01f", model.values[0]))
-					.foregroundColor(.sbjGauge("Standard/Tick"))
-					//.minimumScaleFactor(0.5) // Allows shrinking down to 50% of the original size
-					//.lineLimit(1) // Ensures the text stays on one line
-					//.font(.largeTitle)
-					//.truncationMode(.tail)
-					//.frame(width: width) // Set a fixed width
-
-			}
-		}
-
 		public init(
 			geom: GeometryProxy,
 			model: Model,
 			radius: Double = 0.200,
 			width: Double = 0.185,
-			@ViewBuilder content: @escaping Content = defaultBuilder) {
+			@ViewBuilder content: @escaping Content = defaultIndicators) {
 				self.geom = geom
 				self.model = model
 				self.radius = radius

@@ -37,9 +37,7 @@ public enum Clock {
 				}
 				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
 					let am = model.values[3] < 12
-					Text(am ? "AM" : "PM")
-						.foregroundColor(.sbjGauge("Clock/Indicator"))
-						.frame(width: width)
+					Standard.defaultIndicator(model: am ? "AM" : "PM", width: width)
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
 					switch idx {
