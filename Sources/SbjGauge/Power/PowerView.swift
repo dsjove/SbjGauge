@@ -10,7 +10,7 @@ import SwiftUI
 public enum Power {
 	@ViewBuilder
 	public static func defaultIndicators(model: Model, width: Double) -> some View {
-		Standard.defaultIndicator(model: "Power", width: width, color: .sbjGauge("Power/Indicator"))
+		Standard.defaultIndicator(label: "Power", width: width, color: .sbjGauge("Power/Indicator"))
 	}
 
 	/**
@@ -82,9 +82,9 @@ public extension Model {
 		values = [scaledValue, scaledControl]
 
 		ticks = [
-			Tick(5, filter: { idc, _ in !idc.isMultiple(of: 5)}),
-			Tick(25),
-			Tick(25)
+			.init(5, filter: { idc, _ in !idc.isMultiple(of: 5)}),
+			.init(25),
+			.init(25)
 		]
 		tickEnds = .both
 

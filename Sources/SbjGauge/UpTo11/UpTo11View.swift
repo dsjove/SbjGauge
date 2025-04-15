@@ -51,8 +51,8 @@ public extension Model {
 		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
 		ticks = [
-			Tick(1, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
-			Tick(1, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
+			.init(1, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
+			.init(1, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
 		]
 		tickEnds = .both
 	}

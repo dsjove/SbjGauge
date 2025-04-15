@@ -8,21 +8,20 @@
 import SwiftUI
 
 extension Standard {
-
 	@ViewBuilder
-	public static func defaultIndicator(model: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
-		Text(model)
+	public static func defaultIndicator(label: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
+		Text(label)
 			.foregroundColor(color)
 			.minimumScaleFactor(0.5)
 			.lineLimit(1)
-			.font(.largeTitle)
+			.font(.title)
 			.truncationMode(.tail)
 			.frame(width: width)
 	}
 
 	@ViewBuilder
 	public static func defaultIndicators(model: Model, width: Double) -> some View {
-		defaultIndicator(model: String(format: "%.01f", model.values[0]), width: width)
+		defaultIndicator(label: String(format: "%.01f", model.values[0]), width: width)
 	}
 
 	public struct IndicatorSetView<Set: View>: View {
@@ -54,29 +53,14 @@ extension Standard {
 	}
 }
 
-fileprivate struct PreviewIndicatorView: View {
-	let text: String
-	let width: Double
-	var body: some View {
-		Circle()
-			.stroke(Color.white, lineWidth: 1)
-			.frame(width: width, height: width)
-			.overlay(
-				Text(text)
-					.font(.caption)
-					.foregroundColor(.white)
-			)
-	}
-}
-
 #Preview {
 	ZStackSquare() {
 		Standard.IndicatorSetView(geom: $0, model: .init(standard: 0)) { _, w in
-			PreviewIndicatorView(text: "H", width: w)
-			PreviewIndicatorView(text: "E", width: w)
-			PreviewIndicatorView(text: "L", width: w)
-			PreviewIndicatorView(text: "L", width: w)
-			PreviewIndicatorView(text: "O", width: w)
+			Standard.defaultIndicator(label: "H", width: w)
+			Standard.defaultIndicator(label: "E", width: w)
+			Standard.defaultIndicator(label: "L", width: w)
+			Standard.defaultIndicator(label: "L", width: w)
+			Standard.defaultIndicator(label: "O", width: w)
 		}
 	}
 }

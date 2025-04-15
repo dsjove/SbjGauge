@@ -37,7 +37,7 @@ public enum Clock {
 				}
 				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
 					let am = model.values[3] < 12
-					Standard.defaultIndicator(model: am ? "AM" : "PM", width: width)
+					Standard.defaultIndicator(label: am ? "AM" : "PM", width: width)
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
 					switch idx {
@@ -73,9 +73,9 @@ public extension Model {
 		values = [secondPos, minutePos, hourPos, hour]
 
 		ticks = [
-			Tick(3600),
-			Tick(3600),
-			Tick(720, filter: { idc, _ in !idc.isMultiple(of: 20)})
+			.init(3600),
+			.init(3600),
+			.init(720, filter: { idc, _ in !idc.isMultiple(of: 5)})
 		]
 		tickEnds = .end
 	}

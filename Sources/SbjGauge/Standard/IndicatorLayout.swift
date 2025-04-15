@@ -9,7 +9,7 @@ import SwiftUI
 
 public extension Standard {
 	/**
-	 * This radial layout is specialized to work with the layout of the radial gauge.
+	 * This layout is specialized to work with the layout of the radial gauge.
 	 */
 	struct IndicatorLayout: Layout {
 		public let radius: Double
@@ -99,7 +99,7 @@ public extension Standard {
 	}
 }
 
-extension View {
+public extension View {
 	func indicatorRank(_ value: Int) -> some View {
 		layoutValue(key: Standard.Rank.self, value: value)
 	}
