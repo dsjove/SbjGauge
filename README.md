@@ -12,6 +12,8 @@ My goal is to create a library that makes it easy to design a detailed multi-val
 
 This library has continued to evolve as my knowledge of SwiftUI increases and SwiftUI's capabilties evolve. Every rendering strategy and value is being bubbled to the public interface; with reasonable defaults.
 
+The Gauge has no intrinsic size. On the highest level, it is a Cetered origin ZStack GeometryReader. Every component specifies its dimensions using normalized values.
+
 The gauges render well on iPhone, iPad, Watch, and AppleTV. I have not thought about the 3D space of AppleVision.
 
 ## Simple Instantiation
@@ -31,5 +33,5 @@ I have created other built-in views of the gauge: Clock, Power, and UpTo11.
 - Cleanup Tick model and views
 - Correct transition animations to have entire gauge animate together
 - Use swiftplayground as example
-- use coordinateSpace() to eliminate the geom parameter
+- use coordinateSpace() to eliminate view's calculating actual sizes
 - Swiftui-ify ScrubView

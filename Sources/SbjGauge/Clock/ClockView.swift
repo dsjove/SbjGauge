@@ -74,7 +74,7 @@ public extension Model {
 		let secondPos = 720.0 * currentSecond
 		values = [secondPos, minutePos, hourPos, hour]
 
-		tickIncrements = [3600, 3600, 720]
+		ticks = [Tick(3600), Tick(3600), Tick(720)]
 		tickEnds = .end
 	}
 }

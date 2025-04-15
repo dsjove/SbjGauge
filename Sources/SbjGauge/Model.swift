@@ -94,7 +94,15 @@ public struct Model {
 	}
 
 // Ticks
-	public var tickIncrements: [Double] = [1, 1]
+	public struct Tick {
+		public let increment: Double
+		public let filter: (Int, Double) -> Bool = { _, _ in true }
+
+		public init(_ increment: Double = 1.0) {
+			self.increment = increment
+		}
+	}
+	public var ticks: [Tick] = [.init(), .init()]
 	public enum TickEnds {
 		case both
 		case start

@@ -26,9 +26,9 @@ public enum UpTo11 {
 						color: .black)
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
-					Knob(geom: geom, width: 0.45)
+					KnobView(geom: geom, width: 0.45)
 				}
-				Shine(geom: geom, width: 0.45)
+				ShineView(geom: geom, width: 0.45)
 			}
 		}
 	}
@@ -39,7 +39,7 @@ public extension Model {
 		range = 0 ... 11
 		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
-		tickIncrements = [1]
+		ticks = [Tick(1)]
 		tickEnds = .both
 	}
 }

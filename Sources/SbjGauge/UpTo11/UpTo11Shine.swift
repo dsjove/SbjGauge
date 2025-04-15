@@ -8,23 +8,23 @@
 import SwiftUI
 
 public extension UpTo11 {
-	struct Shine: View {
+	struct ShineView: View {
 		let geom: GeometryProxy
 		let width: Double
 
 		public var body: some View {
 			Circle()
 				.fill(LinearGradient(
-				gradient: Gradient(colors: [.gray, .clear]),
-				startPoint: .top,
-				endPoint: .bottom ))
-			.frame(width: geom.width(width), height: geom.width(width))
+					gradient: Gradient(colors: [.gray, .clear]),
+					startPoint: .top,
+					endPoint: .bottom ))
+				.frame(width: geom.width(width), height: geom.width(width))
 		}
 	}
 }
 
 #Preview {
 	ZStackSquare() {
-		UpTo11.Shine(geom: $0, width: 0.45)
+		UpTo11.ShineView(geom: $0, width: 0.45)
 	}
 }

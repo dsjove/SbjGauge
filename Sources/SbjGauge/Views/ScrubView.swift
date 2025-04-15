@@ -36,9 +36,9 @@ public struct ScrubView: View {
 		autoCentering: Double? = nil,
 		minMaxSplit: Double? = nil,
 		gradient: Bool = false,
-		thumbColor: Color = .sbjGauge("ScrubView/Standard/Thumb"),
-		minTrackColor: Color = .sbjGauge("ScrubView/Standard/Min"),
-		maxTrackColor: Color = .sbjGauge("ScrubView/Standard/Max"),
+		thumbColor: Color = .sbjGauge("ScrubView/Thumb"),
+		minTrackColor: Color = .sbjGauge("Power/SpanNegBackground"),
+		maxTrackColor: Color = .sbjGauge("Power/SpanPosBackground"),
 		change: @escaping (Double) -> Void = {_ in}) {
 			self.value = value
 			self.range = range

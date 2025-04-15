@@ -16,9 +16,16 @@ extension Standard {
 		let width: Double
 		let content: Content
 
-		public static var defaultBuilder: (Model, Double) -> EmptyView {
-			{ _, _ in
-				EmptyView()
+		public static var defaultBuilder: (Model, Double) -> Text {
+			{ model, width in
+				Text(String(format: "%.01f", model.values[0]))
+					.foregroundColor(.sbjGauge("Standard/Tick"))
+					//.minimumScaleFactor(0.5) // Allows shrinking down to 50% of the original size
+					//.lineLimit(1) // Ensures the text stays on one line
+					//.font(.largeTitle)
+					//.truncationMode(.tail)
+					//.frame(width: width) // Set a fixed width
+
 			}
 		}
 
@@ -36,7 +43,7 @@ extension Standard {
 		}
 
 		public var body: some View {
-			IndicatorRadialLayout(radius: radius) {
+			IndicatorLayout(radius: radius) {
 				content(model, geom.width(width))
 			}
 		}

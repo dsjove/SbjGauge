@@ -8,7 +8,7 @@
 import SwiftUI
 
 public extension UpTo11 {
-	struct Knob: View {
+	struct KnobView: View {
 		let geom: GeometryProxy
 		let width: Double
 
@@ -32,6 +32,6 @@ public extension UpTo11 {
 
 #Preview {
 	ZStackSquare() {
-		UpTo11.Knob(geom: $0, width: 0.45)
+		UpTo11.KnobView(geom: $0, width: 0.45)
 	}
 }

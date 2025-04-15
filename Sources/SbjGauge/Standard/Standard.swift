@@ -20,6 +20,7 @@ public enum Standard {
 				BackgroundView(geom: geom)
 				TickSetView(geom: geom, model: model)
 				SpanSetView(geom: geom, model: model)
+				Standard.IndicatorSetView(geom: geom, model: model)
 				NeedleSetView(geom: geom, model: model)
 				RimView(geom: geom)
 			}
@@ -35,5 +36,5 @@ public extension Model {
 }
 
 #Preview {
-	Standard.StandardView(.init(standard: 1.5))
+	Standard.StandardView(.init(standard: 1.25))
 }

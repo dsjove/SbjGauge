@@ -82,7 +82,7 @@ public extension Model {
 		let scaledControl = control.map({ $0 * magnitude }) ?? scaledValue;
 		values = [scaledValue, scaledControl]
 
-		tickIncrements = [5, 25, 25]
+		ticks = [Tick(5), Tick(25), Tick(25)]
 		tickEnds = .both
 
 		let scaledIdle = idle * magnitude;
