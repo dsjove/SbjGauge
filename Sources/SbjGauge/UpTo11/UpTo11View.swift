@@ -58,28 +58,6 @@ public extension Model {
 	}
 }
 
-public struct UpTo11InteractiveView: View {
-	@State private var model = Model(upTo11: 11)
-
-	public var body: some View {
-		UpTo11.UpTo11View(model)
-			.overlay(GeometryReader { geometry in
-					Color.clear
-						.contentShape(Circle())
-#if !os(tvOS)
-						.gesture(
-							DragGesture()
-								.onChanged { gesture in
-									let l1 = gesture.translation.height
-									let l2 = gesture.translation.width
-									let l = abs(l1) > abs(l2) ? l1 : l2
-									model[0] += l / geometry.size.width
-								})
-#endif
-			})
-	}
-}
-
 #Preview {
-	UpTo11InteractiveView()
+	UpTo11.UpTo11View()
 }

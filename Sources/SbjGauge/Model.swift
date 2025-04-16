@@ -47,7 +47,7 @@ extension ClosedRange where Bound == Angle {
  */
 public struct Model {
 	public init(value: Double, range: ClosedRange<Double> = 0 ... 10) {
-		self.values = [value]
+		self.values = [range.clamp(value)]
 		self.range = range
 	}
 

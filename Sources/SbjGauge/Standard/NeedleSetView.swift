@@ -43,6 +43,6 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.NeedleSetView(geom: $0, model: .init(standard: 0))
+		Standard.NeedleSetView(geom: $0, model: .init(standard: 3.33))
 	}
 }

@@ -81,19 +81,6 @@ public extension Model {
 	}
 }
 
-public struct ClockRunningView: View {
-	let calendar = Calendar.current
-	let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-	@State private var currentTime = Date()
-
-	public var body: some View {
-		Clock.ClockView(.init(clock: currentTime))
-			.onReceive(timer) { input in
-				currentTime = input
-			}
-	}
-}
-
 #Preview {
-	ClockRunningView()
+	Clock.ClockView(.init(clock: Date()))
 }
