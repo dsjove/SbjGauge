@@ -29,7 +29,7 @@ I have created other built-in views of the gauge: Clock, Power, and UpTo11.
 <img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 
 ## TODOS
-- Make Model a set of protocols, 'label' becomes an associated type
+- Make Model a set of protocols; 'label' and 'idx' become an associated types.
 - Cleanup Tick model and views
 - Correct transition animations to have entire gauge animate together
 - Use swiftplayground as example

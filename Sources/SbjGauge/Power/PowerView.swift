@@ -51,7 +51,7 @@ public enum Power {
 						case 0:
 							Power.NeedleView(geom: geom, alpha: 1.0)
 						default:
-							Power.NeedleView(geom: geom, alpha: 0.25)
+							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(idx))
 					}
 				}
 				Standard.SpanSetView(geom: geom, model: model) { geom, idx, label, angles in

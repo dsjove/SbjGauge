@@ -39,11 +39,11 @@ extension ClosedRange where Bound == Angle {
 	}
 }
 
-//TODO: break up into readonly protocols
+//TODO: break up into readonly protocols with associated types
 /**
- * Model has the non-rendering multivalues of the gauge.
- * 'angles' will likely move out into another object.
- * This struct will be broken up for each gauge component.
+ * Model has the non-geometric/layout values
+ * Angle needs to be moved out
+ * Color may likely move in
  */
 public struct Model {
 	public init(value: Double, range: ClosedRange<Double> = 0 ... 10) {
@@ -51,7 +51,6 @@ public struct Model {
 		self.range = range
 	}
 
-// Radial
 	public var range: ClosedRange<Double>
 
 	public func norm(value: Double) -> Double {
@@ -62,6 +61,7 @@ public struct Model {
 		range.value(norm)
 	}
 
+// Radial
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
 
 	public func norm(angle: Angle) -> Double {
@@ -81,6 +81,7 @@ public struct Model {
 	}
 
 // Needles
+	public typealias NeedleIdx = Int
 	public var values: [Double]
 
 	subscript(index: Int) -> Double {
@@ -94,15 +95,22 @@ public struct Model {
 	}
 
 // Ticks
+	public typealias TickLabel = String
 	public struct Tick {
 		public let increment: Double
 		public let filter: (Int, Double) -> Bool
+		public let label: ((Int, Double) -> TickLabel)?
 
-		public init(_ increment: Double = 1.0, filter: @escaping (Int, Double) -> Bool = { _, _ in true } ) {
-			self.increment = increment
-			self.filter = filter
+		public init(
+			_ increment: Double = 1.0,
+			filter: @escaping (Int, Double) -> Bool = { _, _ in true },
+			label: ((Int, Double) -> TickLabel)? = {_, value in Int(value).description} ) {
+				self.increment = increment
+				self.filter = filter
+				self.label = label
 		}
 	}
+	public typealias TickIdx = Int
 	public var ticks: [Tick] = [.init(), .init()]
 	public enum TickEnds {
 		case both
@@ -111,16 +119,18 @@ public struct Model {
 	}
 	var tickEnds: TickEnds = .start
 
-	public func tickValues(inc: Double) -> [(element: Double, offset: Int)] {
+	public func tickValues(_ tick: Tick) -> [(element: Double, offset: Int)] {
 		var result: [(Double, Int)] = []
-		result.reserveCapacity(Int((range.upperBound - range.lowerBound) / inc) + 1)
+		result.reserveCapacity(Int((range.upperBound - range.lowerBound) / tick.increment) + 1)
 		var element = range.lowerBound
 		var offset = 0
 		while element <= range.upperBound {
 			if offset != 0 || tickEnds != .end {
-				result.append((element, offset))
+				if tick.filter(offset, element) {
+					result.append((element, offset))
+				}
 			}
-			element += inc
+			element += tick.increment
 			offset += 1
 		}
 		if tickEnds == .start {
@@ -130,18 +140,20 @@ public struct Model {
 	}
 
 // Spans
+	public typealias SpanLabel = String
 	public struct Span {
 		public let range: ClosedRange<Double>
-		public let label: String?
+		public let label: SpanLabel?
 
 		init(_ range: ClosedRange<Double>, _ label: String? = nil) {
 			self.range = range
 			self.label = label
 		}
 	}
+	public typealias SpanIdx = Int
 	public var spans: [Span] = []
 
-	func span(for value: Double) -> (Int, Span)? {
+	func span(for value: Double) -> (SpanIdx, Span)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.range.contains(value) {
 				return (span.offset, span.element)

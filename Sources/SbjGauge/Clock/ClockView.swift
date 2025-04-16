@@ -48,7 +48,7 @@ public enum Clock {
 					case 2:
 						Standard.NeedleView(geom: geom, radius: 0.5, width: 0.04)
 					default:
-						Standard.NeedleView(geom: geom, alpha: 0.0)
+						EmptyView()
 					}
 				}
 				RimView(geom: geom)
@@ -73,7 +73,7 @@ public extension Model {
 		values = [secondPos, minutePos, hourPos, hour]
 
 		ticks = [
-			.init(3600),
+			.init(3600, label: { idc, _ in idc.description }),
 			.init(3600),
 			.init(720, filter: { idc, _ in !idc.isMultiple(of: 5)})
 		]

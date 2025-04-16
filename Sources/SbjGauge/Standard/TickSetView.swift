@@ -40,11 +40,9 @@ extension Standard {
 
 		public var body: some View {
 			ForEach(Array(model.ticks.enumerated().reversed()), id: \.offset) { (idx, tick) in
-				ForEach(model.tickValues(inc: tick.increment), id: \.offset) { value in
-					if tick.filter(value.offset, value.element) {
-						content(geom, idx, value.offset, value.element)
-							.rotationEffect(model.angle(value: value.element))
-					}
+				ForEach(model.tickValues(tick), id: \.offset) { value in
+					content(geom, idx, value.offset, value.element)
+						.rotationEffect(model.angle(value: value.element))
 				}
 			}
 		}

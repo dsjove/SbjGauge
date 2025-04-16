@@ -66,6 +66,7 @@ public struct UpTo11InteractiveView: View {
 			.overlay(GeometryReader { geometry in
 					Color.clear
 						.contentShape(Circle())
+#if !os(tvOS)
 						.gesture(
 							DragGesture()
 								.onChanged { gesture in
@@ -74,6 +75,7 @@ public struct UpTo11InteractiveView: View {
 									let l = abs(l1) > abs(l2) ? l1 : l2
 									model[0] += l / geometry.size.width
 								})
+#endif
 			})
 	}
 }
