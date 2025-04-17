@@ -9,9 +9,9 @@ import SwiftUI
 
 public enum Standard {
 	public struct StandardView : View {
-		let model: Model
+		let model: FullModel
 
-		public init(_ model: Model = .init(standard: 0)) {
+		public init(_ model: FullModel = .init(standard: 0)) {
 			self.model = model
 		}
 
@@ -28,7 +28,7 @@ public enum Standard {
 	}
 }
 
-public extension Model {
+public extension FullModel {
 	init(standard value: Double, range: ClosedRange<Double> = 0 ... 10) {
 		self.range = range
 		values = [range.clamp(value)]

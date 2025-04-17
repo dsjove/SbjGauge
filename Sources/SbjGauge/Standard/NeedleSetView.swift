@@ -13,18 +13,17 @@ extension Standard {
 		NeedleView(geom: geom, alpha: idx == 0 ? 1.0 : 0.25)
 	}
 
-	public struct NeedleSetView<Needle: View>: View {
-		public typealias Content = (GeometryProxy, Int, Double) -> Needle
+	public struct NeedleSetView<Model: Values & Radial, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		let clockwise: Bool
-		let content: Content
+		let content: (GeometryProxy, Int, Double) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
 			clockwise: Bool = true,
-			@ViewBuilder content: @escaping Content = defaultNeedle) {
+			@ViewBuilder content: @escaping (GeometryProxy, Int, Double) -> Content = defaultNeedle) {
 				self.geom = geom
 				self.model = model
 				self.clockwise = clockwise
@@ -46,6 +45,6 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.NeedleSetView(geom: $0, model: .init(standard: 3.33))
+		Standard.NeedleSetView(geom: $0, model: FullModel(standard: 3.33))
 	}
 }

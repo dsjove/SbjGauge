@@ -9,7 +9,7 @@ import SwiftUI
 
 public enum Power {
 	@ViewBuilder
-	public static func defaultIndicators(model: Model, width: Double) -> some View {
+	public static func defaultIndicators(model: FullModel, width: Double) -> some View {
 		Standard.defaultIndicator(label: "Power", width: width, color: .sbjGauge("Power/Indicator"))
 	}
 
@@ -17,12 +17,12 @@ public enum Power {
 	 * Given a gauge model generated with .init(power), render a gauge useful for motor feedback.
 	 */
 	public struct PowerView<Indicators: View>: View {
-		let model: Model
-		let indicators: (Model, Double)->Indicators
+		let model: FullModel
+		let indicators: (FullModel, Double)->Indicators
 
 		public init(
-			_ model: Model = .init(power: 0.000, idle: 0.25),
-			@ViewBuilder indicators: @escaping (Model, Double)->Indicators = Power.defaultIndicators) {
+			_ model: FullModel = .init(power: 0.000, idle: 0.25),
+			@ViewBuilder indicators: @escaping (FullModel, Double)->Indicators = Power.defaultIndicators) {
 				self.model = model
 				self.indicators = indicators
 		}
@@ -79,7 +79,7 @@ public enum Power {
 	}
 }
 
-public extension Model {
+public extension FullModel {
 	init(power value: Double, control: Double? = nil, idle: Double = 0.0) {
 		let magnitude = 100.0
 		range = -magnitude ... magnitude

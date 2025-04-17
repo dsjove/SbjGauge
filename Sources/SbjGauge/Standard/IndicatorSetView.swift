@@ -24,24 +24,23 @@ extension Standard {
 	}
 
 	@ViewBuilder
-	public static func defaultIndicators(model: Model, width: Double) -> some View {
+	public static func defaultIndicators(model: FullModel, width: Double) -> some View {
 		defaultIndicator(label: String(format: "%.01f", model.values[0]), width: width)
 	}
 
-	public struct IndicatorSetView<Set: View>: View {
-		public typealias Content = (Model, Double) -> Set
+	public struct IndicatorSetView<Model, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		let radius: Double
 		let width: Double
-		let content: Content
+		let content: (Model, Double) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
 			radius: Double = 0.200,
 			width: Double = 0.185,
-			@ViewBuilder content: @escaping Content = defaultIndicators) {
+			@ViewBuilder content: @escaping (Model, Double) -> Content = defaultIndicators) {
 				self.geom = geom
 				self.model = model
 				self.radius = radius
@@ -59,12 +58,13 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.IndicatorSetView(geom: $0, model: .init(standard: 0)) { _, w in
+		Standard.IndicatorSetView(geom: $0, model: 99) { m, w in
 			Standard.defaultIndicator(label: "H", width: w)
 			Standard.defaultIndicator(label: "E", width: w)
 			Standard.defaultIndicator(label: "L", width: w)
 			Standard.defaultIndicator(label: "L", width: w)
 			Standard.defaultIndicator(label: "O", width: w)
+			Standard.defaultIndicator(label: m.description, width: w)
 		}
 	}
 }

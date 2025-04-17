@@ -23,16 +23,15 @@ extension Standard {
 		}
 	}
 
-	public struct TickSetView<Tick: View>: View {
-		public typealias Content = (GeometryProxy, Int, Int, Double) -> Tick
+	public struct TickSetView<Model: Values & Radial & Ticking, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
-		let content: Content
+		let content: (GeometryProxy, Int, Int, Double) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping Content = defaultTick) {
+			@ViewBuilder content: @escaping (GeometryProxy, Int, Int, Double) -> Content = defaultTick) {
 				self.geom = geom
 				self.model = model
 				self.content = content
@@ -51,6 +50,6 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.TickSetView(geom: $0, model: .init(standard: 0))
+		Standard.TickSetView(geom: $0, model: FullModel(standard: 0))
 	}
 }

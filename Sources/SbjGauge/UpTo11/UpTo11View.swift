@@ -9,9 +9,9 @@ import SwiftUI
 
 public enum UpTo11 {
 	public struct UpTo11View: View {
-		let model: Model
+		let model: FullModel
 
-		public init(_ model: Model = .init(upTo11: 11)) {
+		public init(_ model: FullModel = .init(upTo11: 11)) {
 			self.model = model
 		}
 
@@ -45,7 +45,7 @@ public enum UpTo11 {
 	}
 }
 
-public extension Model {
+public extension FullModel {
 	init(upTo11 value: Double) {
 		range = 0 ... 11
 		values = [range.clamp(value)]

@@ -13,16 +13,15 @@ extension Standard {
 		SpanView(geom: geom, label: "(\(values.lowerBound) ... \(values.upperBound))", angles: angles)
 	}
 
-	public struct SpanSetView<Range: View>: View {
-		public typealias Content = (GeometryProxy, Int, ClosedRange<Double>, ClosedRange<Angle>) -> Range
+	public struct SpanSetView<Model: Values & Radial & Spanning, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
-		let content: Content
+		let content: (GeometryProxy, Int, ClosedRange<Double>, ClosedRange<Angle>) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping Content = defaultSpan
+			@ViewBuilder content: @escaping (GeometryProxy, Int, ClosedRange<Double>, ClosedRange<Angle>) -> Content = defaultSpan
 		) {
 			self.geom = geom
 			self.model = model
@@ -40,7 +39,7 @@ extension Standard {
 #Preview {
 	ZStackSquare() {
 		Standard.SpanSetView(geom: $0, model: {
-			var m = Model.init(standard: 0)
+			var m = FullModel(standard: 0)
 			m.spans = [
 				0...2.5,
 				2.5...5,

@@ -9,7 +9,7 @@ import SwiftUI
 
 public extension UpTo11 {
 	struct InteractiveView: View {
-		@State private var model = Model(upTo11: 11)
+		@State private var model = FullModel(upTo11: 11)
 
 		public init() {
 		}

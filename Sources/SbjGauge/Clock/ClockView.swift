@@ -12,9 +12,9 @@ public enum Clock {
 	 * Given a Swift Date, render the time in a 12 hour analog clock.
 	 */
 	public struct ClockView: View {
-		let model: Model
+		let model: FullModel
 
-		public init(_ model: Model = .init(clock: Date())) {
+		public init(_ model: FullModel = .init(clock: Date())) {
 			self.model = model
 		}
 
@@ -57,7 +57,7 @@ public enum Clock {
 	}
 }
 
-public extension Model {
+public extension FullModel {
 	init(clock date: Date) {
 		let calendar = Calendar.current
 		let hour = Double(calendar.component(.hour, from: date))
