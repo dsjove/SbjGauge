@@ -34,5 +34,5 @@ See the included playgrounds for examples.
 - Make Model a set of protocols; 'label' and 'idx' become an associated types.
 - Cleanup Tick model and views
 - Correct transition animations to have entire gauge animate together
-- use coordinateSpace() to eliminate view's calculating actual sizes
+- Fix NeedleSetView warnings
 - Swiftui-ify ScrubView

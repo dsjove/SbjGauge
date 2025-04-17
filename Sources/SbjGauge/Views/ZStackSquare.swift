@@ -13,7 +13,6 @@ import SwiftUI
  * This view sets that up.
  */
 public struct ZStackSquare<Content: View>: View {
-	//TODO: use coordinateSpace() to normalize all dimensions to -1.0 ... 1.0, centered
 	@ViewBuilder private let content: (GeometryProxy) -> Content
 
 	public init(@ViewBuilder _ content: @escaping (GeometryProxy) -> Content) {
@@ -25,6 +24,7 @@ public struct ZStackSquare<Content: View>: View {
 			ZStack {
 				content(geometry)
 			}
+			.coordinateSpace(name: "Gauge")
 			.frame(width: geometry.diameter, height: geometry.diameter, alignment: .center)
 		}
 		.aspectRatio(1.0, contentMode: .fit)

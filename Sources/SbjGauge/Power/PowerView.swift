@@ -54,8 +54,8 @@ public enum Power {
 							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(idx))
 					}
 				}
-				Standard.SpanSetView(geom: geom, model: model) { geom, idx, label, angles in
-					Standard.SpanView(geom: geom, label: label, angles: angles, color: colorForSpan(idx))
+				Standard.SpanSetView(geom: geom, model: model) { geom, idx, _, angles in
+					Standard.SpanView(geom: geom, label: stringForSpan(idx), angles: angles, color: colorForSpan(idx))
 				}
 				Standard.RimView(geom: geom)
 			}
@@ -66,6 +66,14 @@ public enum Power {
 			case 1: return .sbjGauge("Power/SpanNegBackground")
 			case 2: return .sbjGauge("Power/SpanPosBackground")
 			default: return .sbjGauge("Standard/SpanBackground")
+			}
+		}
+
+		func stringForSpan(_ index: Int?) -> String {
+			switch index {
+			case 1: return "Reverse"
+			case 2: return "Forward"
+			default: return "Idle"
 			}
 		}
 	}
@@ -90,9 +98,9 @@ public extension Model {
 
 		let scaledIdle = idle * magnitude;
 		spans = [
-			.init(-scaledIdle ... scaledIdle, "Idle"),
-			.init(-magnitude ... -scaledIdle, "Reverse"),
-			.init(scaledIdle ... magnitude, "Forward"),
+			-scaledIdle ... scaledIdle,
+			-magnitude ... -scaledIdle,
+			scaledIdle ... magnitude,
 		]
 	}
 }
