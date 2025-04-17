@@ -56,3 +56,11 @@ public extension Ticking where Self: Values {
 		return result
 	}
 }
+
+public extension Ticking where Self: Values & Radial {
+	func tickAngles(_ tick: Tick) -> [(element: Double, offset: Int, angle: Angle)] {
+		tickValues(tick).map { (value, offset) in
+			(value, offset, angle(value: value))
+		}
+	}
+}

@@ -39,9 +39,9 @@ extension Standard {
 
 		public var body: some View {
 			ForEach(Array(model.ticks.enumerated().reversed()), id: \.offset) { (idx, tick) in
-				ForEach(model.tickValues(tick), id: \.offset) { value in
+				ForEach(model.tickAngles(tick), id: \.offset) { value in
 					content(geom, idx, value.offset, value.element)
-						.rotationEffect(model.angle(value: value.element))
+						.rotationEffect(value.angle)
 				}
 			}
 		}
