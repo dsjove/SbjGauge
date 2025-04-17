@@ -15,7 +15,7 @@ public extension UpTo11 {
 
 		public init(
 			geom: GeometryProxy,
-			width: Double,
+			width: Double = 0.45,
 			color: Color = .gray) {
 				self.geom = geom
 				self.width = width

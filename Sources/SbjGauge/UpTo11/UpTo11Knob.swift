@@ -11,12 +11,18 @@ public extension UpTo11 {
 	struct KnobView: View {
 		let geom: GeometryProxy
 		let width: Double
+		let color1: Color
+		let color2: Color
 
 		public init(
 			geom: GeometryProxy,
-			width: Double) {
+			width: Double = 0.45,
+			color1: Color = .black,
+			color2: Color = .white) {
 				self.geom = geom
 				self.width = width
+				self.color1 = color1
+				self.color2 = color2
 		}
 
 		public var body: some View {
@@ -24,12 +30,12 @@ public extension UpTo11 {
 			let tickHeight = actualWidth * 0.333
 			let offset = (actualWidth - tickHeight)/2 - actualWidth * 0.03
 			Circle()
-				.fill(.black)
+				.fill(color1)
 				.shadow(radius: geom.radius(0.05))
 				.frame(width: actualWidth, height: actualWidth)
 				.overlay(
 					RoundedRectangle(cornerRadius: actualWidth * 0.04)
-						.fill(Color.white)
+						.fill(color2)
 						.frame(width: actualWidth * 0.08, height: tickHeight)
 						.offset(y: -offset)
 				)

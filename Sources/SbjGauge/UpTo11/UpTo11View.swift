@@ -37,9 +37,9 @@ public enum UpTo11 {
 					}
 				}
 				Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
-					KnobView(geom: geom, width: 0.45)
+					KnobView(geom: geom)
 				}
-				ShineView(geom: geom, width: 0.45)
+				ShineView(geom: geom)
 			}
 		}
 	}

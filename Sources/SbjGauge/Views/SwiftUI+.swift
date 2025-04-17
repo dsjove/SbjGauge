@@ -58,6 +58,31 @@ extension Color {
 	}
 }
 
+extension Color: @retroactive CaseIterable {
+	public static var allCases: [Color] {
+		return [
+			Color.red,
+			Color.orange,
+			Color.yellow,
+			Color.green,
+			Color.mint,
+			Color.teal,
+			Color.cyan,
+			Color.blue,
+			Color.indigo,
+			Color.purple,
+			Color.pink,
+			Color.brown,
+			Color.white,
+			Color.gray,
+			Color.black,
+			Color.clear,
+			Color.primary,
+			Color.secondary,
+		]
+	}
+}
+
 extension View {
 	var isPreview: Bool {
 		return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"

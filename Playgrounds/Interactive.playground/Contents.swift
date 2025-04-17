@@ -11,8 +11,6 @@ PlaygroundPage.current.setLiveView(
 		SbjGauge.Clock.AnimatedView()
 		Text("Knob with Gesture (try it)").bold()
 		SbjGauge.UpTo11.InteractiveView()
-		Text("Tap Random").bold()
-		SbjGauge.Randomized.RandomizedView()
 	}
 	.frame(width: 300)
 )

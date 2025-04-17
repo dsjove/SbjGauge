@@ -4,8 +4,9 @@ import PlaygroundSupport
 
 PlaygroundPage.current.setLiveView(
 	VStack {
-		Text("Hello, playground.").multilineTextAlignment(.center)
+		Text("Modify Template View Source").multilineTextAlignment(.center)
 		Spacer()
+		Template.TemplateView()
 	}
 	.frame(width: 300)
 )
