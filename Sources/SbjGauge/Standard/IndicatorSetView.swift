@@ -10,13 +10,17 @@ import SwiftUI
 extension Standard {
 	@ViewBuilder
 	public static func defaultIndicator(label: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
-		Text(label)
-			.foregroundColor(color)
-			.minimumScaleFactor(0.5)
-			.lineLimit(1)
-			.font(.title)
-			.truncationMode(.tail)
-			.frame(width: width)
+		Circle()
+			.stroke(Color.clear)
+			.overlay() {
+				Text(label)
+					.foregroundColor(color)
+					.minimumScaleFactor(0.5)
+					.lineLimit(1)
+					.font(.title)
+					.truncationMode(.tail)
+					}
+		.frame(width: width)
 	}
 
 	@ViewBuilder

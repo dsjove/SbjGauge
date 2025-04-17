@@ -12,7 +12,7 @@ import SwiftUI
  * The gauge has no intrinsic size, stacks its views and origin is center.
  * This view sets that up.
  */
-struct ZStackSquare<Content: View>: View {
+public struct ZStackSquare<Content: View>: View {
 	//TODO: use coordinateSpace() to normalize all dimensions to -1.0 ... 1.0, centered
 	@ViewBuilder private let content: (GeometryProxy) -> Content
 

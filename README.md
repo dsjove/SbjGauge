@@ -28,10 +28,11 @@ I have created other built-in views of the gauge: Clock, Power, and UpTo11.
 
 <img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
 
+See the included playgrounds for examples.
+
 ## TODOS
 - Make Model a set of protocols; 'label' and 'idx' become an associated types.
 - Cleanup Tick model and views
 - Correct transition animations to have entire gauge animate together
-- Use swiftplayground as example
 - use coordinateSpace() to eliminate view's calculating actual sizes
 - Swiftui-ify ScrubView

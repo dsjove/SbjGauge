@@ -11,6 +11,9 @@ public extension UpTo11 {
 	struct InteractiveView: View {
 		@State private var model = Model(upTo11: 11)
 
+		public init() {
+		}
+
 		public var body: some View {
 			UpTo11View(model)
 				.overlay(GeometryReader { geometry in
