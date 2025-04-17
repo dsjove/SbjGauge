@@ -10,13 +10,13 @@ import SwiftUI
 //TODO: Continue protocol refactoring
 
 public struct FullModel: Values, Radial, Ticking, Spanning {
-	public init(value: Double, range: ClosedRange<Double>) {
+	public init(value: Value, range: ClosedRange<Value>) {
 		self.values = [range.clamp(value)]
 		self.range = range
 	}
 
-	public var range: ClosedRange<Double>
-	public var values: [Double]
+	public var range: ClosedRange<Value>
+	public var values: [Value]
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
 	public var ticks: [Tick] = [.init(), .init()]
 	public var tickEnds: TickEnds = .start

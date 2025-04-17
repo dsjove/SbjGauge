@@ -27,8 +27,8 @@ public extension Spanning {
 
 public extension Spanning where Self: Radial & Values {
 	func angles(for span: ClosedRange<Value>) -> ClosedRange<Angle> {
-		let angle1 = angle(value: Double(span.lowerBound))
-		let angle2 = angle(value: Double(span.upperBound))
+		let angle1 = angle(value: span.lowerBound)
+		let angle2 = angle(value: span.upperBound)
 		return (angle1 ... angle2)
 	}
 }

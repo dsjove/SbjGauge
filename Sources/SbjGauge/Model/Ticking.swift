@@ -29,15 +29,15 @@ public enum TickEnds {
 }
 
 public protocol Ticking {
-	typealias Value = Double
+	typealias Value = Tick.Value
 	typealias TickIdx = Int
 	var ticks: [Tick] { get set }
 	var tickEnds: TickEnds { get set }
 }
 
 public extension Ticking where Self: Values {
-	func tickValues(_ tick: Tick) -> [(element: Double, offset: Int)] {
-		var result: [(Double, Int)] = []
+	func tickValues(_ tick: Tick) -> [(element: Value, offset: Int)] {
+		var result: [(Value, Int)] = []
 		result.reserveCapacity(Int((range.upperBound - range.lowerBound) / tick.increment) + 1)
 		var element = range.lowerBound
 		var offset = 0
@@ -58,7 +58,7 @@ public extension Ticking where Self: Values {
 }
 
 public extension Ticking where Self: Values & Radial {
-	func tickAngles(_ tick: Tick) -> [(element: Double, offset: Int, angle: Angle)] {
+	func tickAngles(_ tick: Tick) -> [(element: Value, offset: Int, angle: Angle)] {
 		tickValues(tick).map { (value, offset) in
 			(value, offset, angle(value: value))
 		}
