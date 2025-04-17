@@ -12,6 +12,13 @@ public extension UpTo11 {
 		let geom: GeometryProxy
 		let width: Double
 
+		public init(
+			geom: GeometryProxy,
+			width: Double) {
+				self.geom = geom
+				self.width = width
+		}
+
 		public var body: some View {
 			let actualWidth = geom.width(width)
 			let tickHeight = actualWidth * 0.333

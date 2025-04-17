@@ -1,6 +1,6 @@
 import SwiftUI
-import PlaygroundSupport
 import SbjGauge
+import PlaygroundSupport
 
 PlaygroundPage.current.setLiveView(
 	VStack {

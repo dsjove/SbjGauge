@@ -11,11 +11,21 @@ public extension UpTo11 {
 	struct ShineView: View {
 		let geom: GeometryProxy
 		let width: Double
+		let color: Color
+
+		public init(
+			geom: GeometryProxy,
+			width: Double,
+			color: Color = .gray) {
+				self.geom = geom
+				self.width = width
+				self.color = color
+		}
 
 		public var body: some View {
 			Circle()
 				.fill(LinearGradient(
-					gradient: Gradient(colors: [.gray, .clear]),
+					gradient: Gradient(colors: [color, .clear]),
 					startPoint: .top,
 					endPoint: .bottom ))
 				.frame(width: geom.width(width), height: geom.width(width))
