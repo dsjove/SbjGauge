@@ -17,14 +17,17 @@ extension Standard {
 		public typealias Content = (GeometryProxy, Int, Double) -> Needle
 		let geom: GeometryProxy
 		let model: Model
+		let clockwise: Bool
 		let content: Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
+			clockwise: Bool = true,
 			@ViewBuilder content: @escaping Content = defaultNeedle) {
 				self.geom = geom
 				self.model = model
+				self.clockwise = clockwise
 				self.content = content
 		}
 
@@ -34,7 +37,7 @@ extension Standard {
 //TODO:
 // Does the .degrees(360.0) always fix the 'rotate in correct direction'?
 // That animation call produced both runtime and compile time warnings.
-						.rotationEffect(model.angle(value: value) + .degrees(360.0))
+						.rotationEffect((model.angle(value: value) + .degrees(360.0)) * (clockwise ? 1 : -1))
 						.animation(.linear(duration: 0.1))
 				}
 		}

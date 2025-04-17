@@ -1,5 +1,5 @@
 //
-//  ClockAnimated.swift
+//  ClockAnimatedView.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/16/25.

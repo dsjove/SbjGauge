@@ -8,7 +8,10 @@
 import SwiftUI
 
 public struct SwirlView: View {
-	public init() {
+	let color: Color
+
+	public init(color: Color = Color.red) {
+		self.color = color
 	}
 
 	public var body: some View {
@@ -34,7 +37,7 @@ public struct SwirlView: View {
 					}
 				}
 			}
-			.stroke(Color.blue, lineWidth: 2)
+			.stroke(color, lineWidth: 2)
 		}
 	}
 }

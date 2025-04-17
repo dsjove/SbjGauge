@@ -84,12 +84,12 @@ public struct Model {
 	public typealias NeedleIdx = Int
 	public var values: [Double]
 
-	subscript(index: Int) -> Double {
+	public subscript(index: Int) -> Double {
 		get { values[index] }
 		set { values[index] = range.clamp(newValue) }
 	}
 
-	subscript(norm index: Int) -> Double {
+	public subscript(norm index: Int) -> Double {
 		get { norm(value: values[index]) }
 		set { values[index] = value(norm: newValue) }
 	}
@@ -117,7 +117,7 @@ public struct Model {
 		case start
 		case end
 	}
-	var tickEnds: TickEnds = .start
+	public var tickEnds: TickEnds = .start
 
 	public func tickValues(_ tick: Tick) -> [(element: Double, offset: Int)] {
 		var result: [(Double, Int)] = []
@@ -153,7 +153,7 @@ public struct Model {
 	public typealias SpanIdx = Int
 	public var spans: [Span] = []
 
-	func span(for value: Double) -> (SpanIdx, Span)? {
+	public func span(for value: Double) -> (SpanIdx, Span)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.range.contains(value) {
 				return (span.offset, span.element)
