@@ -18,12 +18,12 @@ public enum UpTo11 {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Color.sbjGauge("UpTo11/Background")
-				Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, _ in
-					switch idx {
+				Standard.TickSetView(geom: geom, model: model) { geom, notch in
+					switch notch.idx {
 						case 0:
 							Standard.TickView(
 								geom: geom,
-								style: .text(idc.description),
+								style: .text(notch.idc.description),
 								radius: 0.7,
 								color: .black)
 						case 1:
@@ -51,10 +51,9 @@ public extension FullModel {
 		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
 		ticks = [
-			.init(1, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
-			.init(1, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
+			.init(1, ends: .both, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
+			.init(1, ends: .both, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
 		]
-		tickEnds = .both
 	}
 }
 

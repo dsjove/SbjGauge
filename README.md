@@ -24,9 +24,9 @@ To create a basic uncustomized gauge:
 
 <img src="Sample-Default.png" alt="Default" width="200">
 
-I have created other built-in views of the gauge: Clock, Power, and UpTo11.
+I have created other built-in views of the gauge: Clock, Power, Scale, and UpTo11.
 
-<img src="Sample-Clock.png" alt="Clock" width="200"><img src="Sample-Power.png" alt="Power" width="200"><img src="Sample-UpTo11.png" alt="11" width="200">
+<img src="Images/Sample-Clock.png" alt="Clock" width="200"><img src="Images/Sample-Power.png" alt="Power" width="200"><img src="Images/Sample-UpTo11.png" alt="11" width="200"><img src="Images/Sample-Scale.png" alt="11" width="200">
 
 See the included playgrounds for examples.
 

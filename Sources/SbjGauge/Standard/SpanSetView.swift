@@ -31,7 +31,7 @@ extension Standard {
 
 		public var body: some View {
 			ForEach(Array(model.spans.enumerated()), id: \.offset) { (index, span) in
-				content(geom, index, span, model.angles(for: span))
+				content(geom, index, span.range, model.angles(for: span))
 			}
 		}
 	}
@@ -42,10 +42,10 @@ extension Standard {
 		Standard.SpanSetView(geom: $0, model: {
 			var m = FullModel(standard: 0)
 			m.spans = [
-				0...2.5,
-				2.5...5,
-				5...7.5,
-				7.5...10,
+				.init(0...2.5),
+				.init(2.5...5),
+				.init(5...7.5),
+				.init(7.5...10),
 			]
 			return m
 		}())

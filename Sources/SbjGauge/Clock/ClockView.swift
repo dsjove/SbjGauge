@@ -21,10 +21,10 @@ public enum Clock {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Standard.BackgroundView(geom: geom)
-				Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, _ in
-					switch idx {
+				Standard.TickSetView(geom: geom, model: model) { geom, notch in
+					switch notch.idx {
 						case 0:
-							Standard.TickView(geom: geom, style: .text(idc.description), offset: 0.1, length: 0.2, color: .black)
+							Standard.TickView(geom: geom, style: .text(notch.idc.description), offset: 0.1, length: 0.2, color: .black)
 						case 1:
 							Standard.TickView(geom: geom, color: .black)
 						case 2:
@@ -73,11 +73,10 @@ public extension FullModel {
 		values = [secondPos, minutePos, hourPos, hour]
 
 		ticks = [
-			.init(3600),
+			.init(3600, ends: .end),
 			.init(3600),
 			.init(720, filter: { idc, _ in !idc.isMultiple(of: 5)})
 		]
-		tickEnds = .end
 	}
 }
 

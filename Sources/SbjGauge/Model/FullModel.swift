@@ -19,6 +19,5 @@ public struct FullModel: Values, Radial, Ticking, Spanning {
 	public var values: [Value]
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
 	public var ticks: [Tick] = [.init(), .init()]
-	public var tickEnds: TickEnds = .start
-	public var spans: [ClosedRange<Value>] = []
+	public var spans: [Span] = []
 }

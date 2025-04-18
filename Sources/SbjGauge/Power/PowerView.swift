@@ -30,9 +30,9 @@ public enum Power {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Power.BackgroundView(geom: geom)
-				Standard.TickSetView(geom: geom, model: model) { geom, idx, idc, value in
-					let color = colorForSpan(model.span(for: value)?.0)
-					switch idx {
+				Standard.TickSetView(geom: geom, model: model) { geom, notch in
+					let color = colorForSpan(model.span(for: notch.value)?.0)
+					switch notch.idx {
 						case 0:
 							Standard.TickView(
 								geom: geom,
@@ -40,7 +40,7 @@ public enum Power {
 						case 1:
 							Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: color)
 						case 2:
-							Standard.TickView(geom: geom, style: .text(Int(value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
+							Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
 						default:
 							EmptyView()
 					}
@@ -90,17 +90,16 @@ public extension FullModel {
 		values = [scaledValue, scaledControl]
 
 		ticks = [
-			.init(5, filter: { idc, _ in !idc.isMultiple(of: 5)}),
-			.init(25),
-			.init(25)
+			.init(5, ends: .both, filter: { idc, _ in !idc.isMultiple(of: 5)}),
+			.init(25, ends: .both),
+			.init(25, ends: .both)
 		]
-		tickEnds = .both
 
 		let scaledIdle = idle * magnitude;
 		spans = [
-			-scaledIdle ... scaledIdle,
-			-magnitude ... -scaledIdle,
-			scaledIdle ... magnitude,
+			.init(-scaledIdle ... scaledIdle),
+			.init(-magnitude ... -scaledIdle),
+			.init(scaledIdle ... magnitude),
 		]
 	}
 }

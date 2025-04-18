@@ -8,31 +8,33 @@
 import Foundation
 import SwiftUI
 
-public struct Tick {
-	public typealias Value = Double
-
-	public let increment: Value
-	public let filter: (Int, Value) -> Bool
-
-	public init(
-		_ increment: Value = 1.0,
-		filter: @escaping (Int, Value) -> Bool = { _, _ in true } ) {
-			self.increment = increment
-			self.filter = filter
-	}
-}
-
 public enum TickEnds {
 	case both
 	case start
 	case end
 }
 
+public struct Tick {
+	public typealias Value = Double
+
+	public let increment: Value
+	public let ends: TickEnds
+	public let filter: (Int, Value) -> Bool
+
+	public init(
+		_ increment: Value = 1.0,
+		ends: TickEnds = .start,
+		filter: @escaping (Int, Value) -> Bool = { _, _ in true } ) {
+			self.increment = increment
+			self.ends = ends
+			self.filter = filter
+	}
+}
+
 public protocol Ticking {
 	typealias Value = Tick.Value
 	typealias TickIdx = Int
 	var ticks: [Tick] { get set }
-	var tickEnds: TickEnds { get set }
 }
 
 public extension Ticking where Self: Values {
@@ -42,7 +44,7 @@ public extension Ticking where Self: Values {
 		var element = range.lowerBound
 		var offset = 0
 		while element <= range.upperBound {
-			if offset != 0 || tickEnds != .end {
+			if offset != 0 || tick.ends != .end {
 				if tick.filter(offset, element) {
 					result.append((element, offset))
 				}
@@ -50,7 +52,7 @@ public extension Ticking where Self: Values {
 			element += tick.increment
 			offset += 1
 		}
-		if tickEnds == .start {
+		if tick.ends == .start {
 			result.removeLast()
 		}
 		return result
