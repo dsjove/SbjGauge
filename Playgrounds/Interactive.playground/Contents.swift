@@ -11,6 +11,8 @@ PlaygroundPage.current.setLiveView(
 		SbjGauge.Clock.AnimatedView()
 		Text("Knob with Gesture (try it)").bold()
 		SbjGauge.UpTo11.InteractiveView()
+		Text("Long Press to add weight (try it)").bold()
+		SbjGauge.Scale.InteractiveView()
 	}
 	.frame(width: 300)
 )

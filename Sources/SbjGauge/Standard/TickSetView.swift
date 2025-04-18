@@ -26,7 +26,8 @@ extension Standard {
 	public struct TickSetView<Model: Values & Radial & Ticking, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
-		let content: (GeometryProxy, Int, Int, Double) -> Content
+		@ViewBuilder
+		let content: (GeometryProxy, Model.TickIdx, Int, Model.Value) -> Content
 
 		public init(
 			geom: GeometryProxy,

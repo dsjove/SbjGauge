@@ -16,7 +16,8 @@ extension Standard {
 	public struct SpanSetView<Model: Values & Radial & Spanning, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
-		let content: (GeometryProxy, Int, ClosedRange<Double>, ClosedRange<Angle>) -> Content
+		@ViewBuilder
+		let content: (GeometryProxy, Model.SpanIdx, ClosedRange<Model.Value>, ClosedRange<Angle>) -> Content
 
 		public init(
 			geom: GeometryProxy,

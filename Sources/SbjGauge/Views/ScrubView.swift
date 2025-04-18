@@ -178,7 +178,7 @@ public struct ScrubView: View {
 	}
 }
 
-fileprivate struct PreviewView : View {
+fileprivate struct ScrubPreviewView : View {
 	@State private var value = 0.3333
 	var body: some View {
 		ScrubView(value: value, increment: 0.1) { value = $0 }
@@ -186,5 +186,5 @@ fileprivate struct PreviewView : View {
 }
 
 #Preview {
-	PreviewView().frame(height: 44)
+	ScrubPreviewView().frame(height: 44)
 }

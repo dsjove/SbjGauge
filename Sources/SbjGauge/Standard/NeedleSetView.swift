@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Standard {
 	@ViewBuilder
-	public static func defaultNeedle(geom: GeometryProxy, idx: Int, _: Double) -> some View {
+	public static func defaultNeedle<Value>(geom: GeometryProxy, idx: Int, _: Value) -> some View {
 		NeedleView(geom: geom, alpha: idx == 0 ? 1.0 : 0.25)
 	}
 
@@ -17,7 +17,8 @@ extension Standard {
 		let geom: GeometryProxy
 		let model: Model
 		let clockwise: Bool
-		let content: (GeometryProxy, Int, Double) -> Content
+		@ViewBuilder
+		let content: (GeometryProxy, Model.ValueIdx, Model.Value) -> Content
 
 		public init(
 			geom: GeometryProxy,

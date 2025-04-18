@@ -117,7 +117,7 @@ private struct Sizeable: View {
 	}
 }
 
-fileprivate struct PreviewView<S: Sequence>: View {
+fileprivate struct CircleTextPreviewView<S: Sequence>: View {
 	let text: S
 	let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 	@State var angle =  Angle()
@@ -143,7 +143,7 @@ fileprivate struct PreviewView<S: Sequence>: View {
 }
 
 #Preview {
-	PreviewView(text: "The quick brown fox jumps over the lazy dog.")
+	CircleTextPreviewView(text: "The quick brown fox jumps over the lazy dog.")
 
-	PreviewView(text: 0...100)
+	CircleTextPreviewView(text: 0...100)
 }

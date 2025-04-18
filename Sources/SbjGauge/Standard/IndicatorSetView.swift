@@ -33,6 +33,7 @@ extension Standard {
 		let model: Model
 		let radius: Double
 		let width: Double
+		@ViewBuilder
 		let content: (Model, Double) -> Content
 
 		public init(

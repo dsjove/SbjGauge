@@ -14,6 +14,8 @@ PlaygroundPage.current.setLiveView(
 		SbjGauge.Power.PowerView()
 		Text("Up to 11").bold()
 		SbjGauge.UpTo11.UpTo11View()
+		Text("Scale").bold()
+		SbjGauge.Scale.ScaleView()
 	}
 	.frame(width: 300)
 )
