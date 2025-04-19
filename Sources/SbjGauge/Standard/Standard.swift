@@ -21,11 +21,10 @@ public enum Standard {
 				RadialTickView(geom, model, model.ticks[0]) { _ in
 					TickView(geom: geom)
 				}
-				RadialTickView(geom, model, model.ticks[1]) { notch in
+				RadialTickView(geom, model, model.ticks[1], radius: 0.85) { notch in
 					TickView(
 						geom: geom,
 						style: .text(Int(notch.value).description),
-						offset: 0.1,
 						length: 0.2)
 				}
 				RadialIndicatorsView(geom: geom, model: model, content: defaultIndicators)

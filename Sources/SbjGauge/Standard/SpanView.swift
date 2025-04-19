@@ -22,15 +22,14 @@ extension Standard {
 			label: String?,
 			angles: ClosedRange<Angle>,
 			radius: CGFloat = 0.97,
-			offset: Double = 0.0,
-			length: Double = 0.08,
+			width: Double = 0.07,
 			color: Color = .sbjGauge("Standard/SpanBackground"),
 			textColor: Color = .sbjGauge("Standard/SpanLabel")) {
 				self.geom = geom
 				self.label = label
 				self.angles = angles
-				self.outerRadius = radius - offset
-				self.innerRadius = outerRadius - length
+				self.outerRadius = radius
+				self.innerRadius = radius - width
 				self.color = color
 				self.textColor = textColor
 		}

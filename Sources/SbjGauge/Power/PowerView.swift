@@ -30,18 +30,18 @@ public enum Power {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Power.BackgroundView(geom: geom)
-				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
 					Standard.TickView(
 						geom: geom,
-						style: .line(0.005), radius: 0.88, length: 0.05, color: color)
+						style: .line(0.005), length: 0.05, color: color)
 				}
-				Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
+				Standard.RadialTickView(geom, model, model.ticks[1], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
-					Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: color)
+					Standard.TickView(geom: geom, length: 0.1, color: color)
 				}
-				Standard.RadialTickView(geom, model, model.ticks[2]) { notch in
-					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
+				Standard.RadialTickView(geom, model, model.ticks[2], radius: 0.8) { notch in
+					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), length: 0.14, color: .sbjGauge("Power/Tick"))
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
@@ -53,7 +53,11 @@ public enum Power {
 					}
 				}
 				Standard.RadialSpanningView(geom: geom, model: model) { spanArc in
-					Standard.SpanView(geom: geom, label: stringForSpan(spanArc.idx), angles: spanArc.angles, color: colorForSpan(spanArc.idx))
+					Standard.SpanView(
+						geom: geom,
+						label: stringForSpan(spanArc.idx),
+						angles: spanArc.angles,
+						color: colorForSpan(spanArc.idx))
 				}
 				Standard.RimView(geom: geom)
 			}

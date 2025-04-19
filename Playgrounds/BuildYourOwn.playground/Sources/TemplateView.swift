@@ -24,7 +24,6 @@ public enum Template {
 						Standard.TickView(
 							geom: geom,
 							style: .text(Int(notch.value).description),
-							offset: 0.1,
 							length: 0.2)
 					}
 				}

@@ -18,18 +18,18 @@ public enum UpTo11 {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Color.sbjGauge("UpTo11/Background")
-				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+				Standard.RadialTickView(geom, model, model.ticks[0],
+						radius: 0.7) { notch in
 					Standard.TickView(
 						geom: geom,
 						style: .text(notch.idx.description),
-						radius: 0.7,
 						color: .black)
 				}
-				Standard.RadialTickView(geom, model, model.ticks[1]) { _ in
+				Standard.RadialTickView(geom, model, model.ticks[1],
+						radius: 0.7) { _ in
 					Standard.TickView(
 						geom: geom,
 						style: .line(0.008),
-						radius: 0.7,
 						color: .black)
 				}
 				Standard.RadialNeedlesView(geom: geom, model: model) { _ in

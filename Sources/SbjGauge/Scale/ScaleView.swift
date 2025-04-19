@@ -22,20 +22,20 @@ public enum Scale {
 					.stroke(style: StrokeStyle(lineWidth: 1))
 					.frame(width: geom.width(0.8), height: geom.width(0.8))
 				Standard.RadialNeedlesView(geom: geom, model: model) { _ in
-					Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+					Standard.RadialTickView(geom, model, model.ticks[0],
+							radius: 0.75) { notch in
 						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
 						Standard.TickView(
 							geom: geom,
 							style: .text(v),
-							radius: 0.75,
 							length: notch.idx == notch.count-1 ? 0.075 : 0.1)
 					}
-					Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
+					Standard.RadialTickView(geom, model, model.ticks[1],
+							radius: 0.95) { notch in
 						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
 						Standard.TickView(
 							geom: geom,
-							style: .text(v),
-							radius: 0.95)
+							style: .text(v))
 					}
 				}
 				Standard.NeedleView(geom: geom, radius: 1.0, color: Color.red)

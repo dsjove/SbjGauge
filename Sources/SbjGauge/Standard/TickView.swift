@@ -16,45 +16,39 @@ extension Standard {
 
 		let geom: GeometryProxy
 		let style: Style
-		let outerRadius: Double
-		let innerRadius: Double
+		let length: Double
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
 			style: Style = .line(),
-			radius: CGFloat = 0.95,
-			offset: Double = 0.0,
 			length: Double = 0.1,
 			color: Color = .sbjGauge("Standard/Tick")) {
 				self.geom = geom
 				self.style = style
-				self.outerRadius = radius - offset
-				self.innerRadius = outerRadius - length
+				self.length = length
 				self.color = color
 		}
 
 		public var body: some View {
-			let outer = geom.radius(outerRadius)
-			let inner = geom.radius(innerRadius)
-
+			let height = geom.radius(length)
 			switch style {
 				case .line(let thickness):
 					let lineWidth = geom.width(thickness)
 					if lineWidth > 0.0 {
 						Path { path in
-							path.move(to: geom.center(x: 0, y: -outer))
-							path.addLine(to: geom.center(x: 0, y: -inner))
+							path.move(to: geom.center(x: 0, y: 0))
+							path.addLine(to: geom.center(x: 0, y: height))
 						}
 						.stroke(color, lineWidth: lineWidth)
 					}
 				case .text(let value):
-					let height = outer - inner
+					let height = geom.radius(length)
 					Text(value)
 						.lineLimit(1)
 						.font(.system(size: height))
+						.offset(y: height/2)
 						.foregroundColor(color)
-						.offset(y: -outer + height / 2)
 			}
 		}
 	}
@@ -62,6 +56,9 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.TickView(geom: $0, style: .line(0.004), radius: 1.0)
+		Standard.TickView(geom: $0, style: .line(0.004))
+	}
+	ZStackSquare() {
+		Standard.TickView(geom: $0, style: .text("Hi"))
 	}
 }
