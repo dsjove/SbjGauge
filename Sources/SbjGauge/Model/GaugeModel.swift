@@ -1,5 +1,5 @@
 //
-//  ClosedRange+.swift
+//  GaugeModel.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/17/25.
@@ -8,12 +8,10 @@
 import Foundation
 import SwiftUI
 
-/**
- *
- */
 public protocol GaugeValue: Comparable {
 	init(double: Double)
 	var toDouble: Double { get }
+	static func += (lhs: inout Self, rhs: Self)
 }
 
 extension Double : GaugeValue {
@@ -21,9 +19,9 @@ extension Double : GaugeValue {
 	public var toDouble: Double { self }
 }
 
-extension Angle : GaugeValue {
-	public init(double: Double) { self = .degrees(double) }
-	public var toDouble: Double { self.degrees }
+public protocol GaugeModel {
+	typealias Value = Double //GaugeValue
+	var range: ClosedRange<Value> { get set }
 }
 
 public extension ClosedRange where Bound: GaugeValue {

@@ -1,5 +1,5 @@
 //
-//  Values.swift
+//  ValuesModel.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/17/25.
@@ -7,14 +7,12 @@
 
 import Foundation
 
-public protocol Values {
-	typealias Value = Double //DoubleCovertible
+public protocol ValuesModel: GaugeModel {
 	typealias ValueIdx = Int
-	var range: ClosedRange<Value> { get set }
 	var values: [Value] { get set }
 }
 
-public extension Values {
+public extension ValuesModel {
 	subscript(index: ValueIdx) -> Value {
 		get { values[index] }
 		set { values[index] = range.clamp(newValue) }

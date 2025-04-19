@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Standard {
-	public struct RadialSpanningView<Model: Radial & Spanning, Content: View>: View {
+	public struct RadialSpanningView<Model: RadialModel & SpanningModel, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		@ViewBuilder

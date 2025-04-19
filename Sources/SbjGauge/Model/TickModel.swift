@@ -1,5 +1,5 @@
 //
-//  Tick.swift
+//  TickModel.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/17/25.
@@ -51,11 +51,20 @@ public struct Tick {
 	}
 }
 
+public protocol TickModel: GaugeModel {
+}
+
+public extension TickModel {
+	func values(_ tick: Tick) -> [(element: Value, offset: Int)] {
+		tick.values(range)
+	}
+}
+
 public struct TickNotch {
 	public typealias Value = Double
 	public let idx: Int
 	public let count: Int
-	public let value: Double
+	public let value: Value
 	public let angle: Angle
 
 	public init(_ idx: Int, _ count: Int, _ value: Value, _ angle: Angle) {
@@ -66,9 +75,9 @@ public struct TickNotch {
 	}
 }
 
-public extension Radial {
+public extension TickModel where Self: RadialModel {
 	func tickNotches(_ tick: Tick) -> [TickNotch] {
-		let values = tick.values(range)
+		let values = values(tick)
 		let count = values.count
 		return values.map { (value, offset) in
 			.init(offset, count, value, angle(value: value))

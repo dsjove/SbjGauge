@@ -1,5 +1,5 @@
 //
-//  Spanning.swift
+//  SpanningModel.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/17/25.
@@ -21,13 +21,13 @@ public struct Span {
 	}
 }
 
-public protocol Spanning {
-	typealias Value = Span.Value
+public protocol SpanningModel {
+	typealias Value = Double
 	typealias SpanIdx = Int
 	var spans: [Span]  { get set }
 }
 
-public extension Spanning {
+public extension SpanningModel {
 	func span(for value: Value) -> (offset: SpanIdx, element: Span)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.contains(value) {
@@ -40,13 +40,14 @@ public extension Spanning {
 
 public struct SpanArc {
 	public typealias Value = Double
-	public let idx: Int
+	public typealias SpanIdx = Int
+	public let idx: SpanIdx
 	public let count: Int
 	public let range: ClosedRange<Value>
 	public let angles: ClosedRange<Angle>
 
 	public init(
-		_ idx: Int,
+		_ idx: SpanIdx,
 		_ count: Int,
 		_ range: ClosedRange<Value>,
 		_ angles: ClosedRange<Angle>) {
@@ -57,12 +58,12 @@ public struct SpanArc {
 	}
 }
 
-public extension Spanning where Self: Radial {
+public extension SpanningModel where Self: RadialModel {
 	func spanArcs() -> [SpanArc] {
 		return spans.enumerated().map { span in
 			let angle1 = angle(value: span.element.range.lowerBound)
 			let angle2 = angle(value: span.element.range.upperBound)
-			return .init(span.offset, values.count, span.element.range, angle1 ... angle2)
+			return .init(span.offset, spans.count, span.element.range, angle1 ... angle2)
 		}
 	}
 }

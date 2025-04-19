@@ -24,7 +24,7 @@ extension Standard {
 	}
 
 	@ViewBuilder
-	public static func defaultIndicators<Model: Values>(model: Model, width: Double) -> some View {
+	public static func defaultIndicators<Model: ValuesModel>(model: Model, width: Double) -> some View {
 		defaultIndicator(label: String(format: "%.01f", model.values[0]), width: width)
 	}
 

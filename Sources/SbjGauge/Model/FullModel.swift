@@ -9,7 +9,7 @@ import SwiftUI
 
 //TODO: Continue protocol refactoring
 
-public struct FullModel: Radial, Spanning {
+public struct FullModel: ValuesModel & RadialModel & TickModel & SpanningModel {
 	public init(value: Value, range: ClosedRange<Value>) {
 		self.values = [range.clamp(value)]
 		self.range = range

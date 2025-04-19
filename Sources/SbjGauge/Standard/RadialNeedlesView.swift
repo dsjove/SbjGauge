@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Standard {
-	public struct RadialNeedlesView<Model: Radial, Content: View>: View {
+	public struct RadialNeedlesView<Model: ValuesModel & RadialModel, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		let clockwise: Bool
