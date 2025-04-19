@@ -32,7 +32,7 @@ public enum UpTo11 {
 						radius: 0.7,
 						color: .black)
 				}
-				Standard.NeedleSetView(geom: geom, model: model) { geom, _, _ in
+				Standard.RadialNeedlesView(geom: geom, model: model) { _ in
 					KnobView(geom: geom)
 				}
 				ShineView(geom: geom)

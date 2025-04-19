@@ -30,7 +30,9 @@ public enum Standard {
 				}
 				SpanSetView(geom: geom, model: model)
 				IndicatorSetView(geom: geom, model: model)
-				NeedleSetView(geom: geom, model: model)
+				RadialNeedlesView(geom: geom, model: model) { _ in
+					NeedleView(geom: geom)
+				}
 				RimView(geom: geom)
 			}
 		}

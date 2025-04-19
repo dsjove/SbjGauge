@@ -33,8 +33,8 @@ public enum Clock {
 					let am = model.values[3] < 12
 					Standard.defaultIndicator(label: am ? "AM" : "PM", width: width)
 				}
-				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
-					switch idx {
+				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
+					switch needle.idx {
 					case 0:
 						SecondsHandView(geom: geom)
 					case 1:

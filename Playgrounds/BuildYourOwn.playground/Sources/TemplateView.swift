@@ -16,7 +16,7 @@ public enum Template {
 			ZStackSquare() { geom in
 				SwirlView()
 				Clock.SecondsHandView(geom: geom)
-				Standard.NeedleSetView(geom: geom, model: model, clockwise: false) { geom, _, _ in
+				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
 					Standard.RadialTickView(geom, model, model.ticks[0]) { _ in
 						Standard.TickView(geom: geom)
 					}

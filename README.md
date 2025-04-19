@@ -32,5 +32,5 @@ I have created several built-in views of the gauge. See the included playgrounds
 ## TODOS
 - Continue to break down the composition of Model and 'Set' views.
 - Correct transition animations to have entire gauge animate together.
-- Fix NeedleSetView warnings
+- Fix RadialNeedlesView warnings
 - Swiftui-ify ScrubView

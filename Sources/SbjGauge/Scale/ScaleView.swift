@@ -21,7 +21,7 @@ public enum Scale {
 				Circle()
 					.stroke(style: StrokeStyle(lineWidth: 1))
 					.frame(width: geom.width(0.8), height: geom.width(0.8))
-				Standard.NeedleSetView(geom: geom, model: model, clockwise: false) { geom, _, _ in
+				Standard.RadialNeedlesView(geom: geom, model: model) { _ in
 					Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
 						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
 						Standard.TickView(

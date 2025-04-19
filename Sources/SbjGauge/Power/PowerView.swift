@@ -44,12 +44,12 @@ public enum Power {
 					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
 				}
 				Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
-				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in
-					switch idx {
+				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
+					switch needle.idx {
 						case 0:
 							Power.NeedleView(geom: geom, alpha: 1.0)
 						default:
-							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(idx))
+							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(needle.idx))
 					}
 				}
 				Standard.SpanSetView(geom: geom, model: model) { geom, idx, _, angles in
