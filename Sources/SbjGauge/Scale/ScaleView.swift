@@ -9,9 +9,9 @@ import SwiftUI
 
 public enum Scale {
 	public struct ScaleView: View {
-		let model: FullModel
+		let model: StandardModel
 
-		public init(_ model: FullModel = .init(scale: 0)) {
+		public init(_ model: StandardModel = .init(scale: 0)) {
 			self.model = model
 		}
 
@@ -47,7 +47,7 @@ public enum Scale {
 	}
 }
 
-public extension FullModel {
+public extension StandardModel {
 	init(scale value: Double) {
 		range = 0 ... 300
 		values = [value]

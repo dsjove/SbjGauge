@@ -34,7 +34,7 @@ extension Standard {
 #Preview {
 	ZStackSquare() { geom in
 		Standard.RadialSpanningView(geom: geom, model: {
-			var m = FullModel(standard: 0)
+			var m = StandardModel(standard: 0)
 			m.spans = [
 				.init(0...2.5),
 				.init(2.5...5),

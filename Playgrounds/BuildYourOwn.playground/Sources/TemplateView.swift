@@ -3,12 +3,12 @@ import SbjGauge
 
 public enum Template {
 	public struct TemplateView: View {
-		@State private var model: FullModel
+		@State private var model: StandardModel
 		@State private var increment: Double = 1.0
 
 		let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
 
-		public init(_ model: FullModel = FullModel(template: 2.5)) {
+		public init(_ model: StandardModel = StandardModel(template: 2.5)) {
 			_model = State(initialValue: model)
 		}
 
@@ -42,7 +42,7 @@ public enum Template {
 	}
 }
 
-public extension FullModel {
+public extension StandardModel {
 	init(template value: Double) {
 		self.init(standard: value)
 	}

@@ -9,9 +9,9 @@ import SwiftUI
 
 public enum Clock {
 	public struct ClockView: View {
-		let model: FullModel
+		let model: StandardModel
 
-		public init(_ model: FullModel = .init(clock: Date())) {
+		public init(_ model: StandardModel = .init(clock: Date())) {
 			self.model = model
 		}
 
@@ -51,7 +51,7 @@ public enum Clock {
 	}
 }
 
-public extension FullModel {
+public extension StandardModel {
 	init(clock date: Date) {
 		let calendar = Calendar.current
 		let hour = Double(calendar.component(.hour, from: date))

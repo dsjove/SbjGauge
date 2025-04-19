@@ -41,7 +41,7 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() { geom in
-		Standard.RadialNeedlesView(geom: geom, model: FullModel(standard: 3.33)) { _ in
+		Standard.RadialNeedlesView(geom: geom, model: StandardModel(standard: 3.33)) { _ in
 			Standard.NeedleView(geom: geom)
 		}
 	}

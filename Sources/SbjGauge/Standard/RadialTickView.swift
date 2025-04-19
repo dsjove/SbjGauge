@@ -38,7 +38,7 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() { geom in
-		Standard.RadialTickView(geom, FullModel(standard: 0), .init()) { notch in
+		Standard.RadialTickView(geom, StandardModel(standard: 0), .init()) { notch in
 			Standard.TickView(geom: geom)
 		}
 	}

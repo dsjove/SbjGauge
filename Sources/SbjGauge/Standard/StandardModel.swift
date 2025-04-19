@@ -1,5 +1,5 @@
 //
-//  FullModel.swift
+//  StandardModel.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/1/25.
@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-//TODO: Continue protocol refactoring
-
-public struct FullModel: ValuesModel & RadialModel & TickModel & SpanningModel {
+public struct StandardModel: ValuesModel & RadialModel & TickModel & SpanningModel {
 	public typealias Value = Double
+	public typealias ValueIdx = Int
 
 	public init(value: Value, range: ClosedRange<Value>) {
 		self.values = [range.clamp(value)]
@@ -20,6 +19,6 @@ public struct FullModel: ValuesModel & RadialModel & TickModel & SpanningModel {
 	public var range: ClosedRange<Value>
 	public var values: [Value]
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-	public var ticks: [Tick<Double>] = [.init(), .init()]
-	public var spans: [Span<Double>] = []
+	public var ticks: [Tick<Value>] = [.init(), .init()]
+	public var spans: [Span<Value>] = []
 }

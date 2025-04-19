@@ -9,10 +9,10 @@ import SwiftUI
 
 public extension Scale {
 	struct InteractiveView: View {
-		@State private var model: FullModel
+		@State private var model: StandardModel
 
 		public init() {
-			_model = State(initialValue: FullModel(scale: 0))
+			_model = State(initialValue: StandardModel(scale: 0))
 		}
 
 		public var body: some View {
