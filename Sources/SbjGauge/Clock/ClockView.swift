@@ -29,7 +29,7 @@ public enum Clock {
 						geom: geom,
 						style: .line(0.008), length:  0.05, color: .black)
 				}
-				Standard.IndicatorSetView(geom: geom, model: model) { model, width in
+				Standard.RadialIndicatorsView(geom: geom, model: model) { model, width in
 					let am = model.values[3] < 12
 					Standard.defaultIndicator(label: am ? "AM" : "PM", width: width)
 				}

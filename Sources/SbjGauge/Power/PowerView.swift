@@ -43,7 +43,7 @@ public enum Power {
 				Standard.RadialTickView(geom, model, model.ticks[2]) { notch in
 					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
 				}
-				Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
+				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
 					switch needle.idx {
 						case 0:

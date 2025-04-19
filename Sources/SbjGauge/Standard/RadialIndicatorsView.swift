@@ -1,5 +1,5 @@
 //
-//  IndicatorSetView.swift
+//  RadialIndicatorsView.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/1/25.
@@ -24,11 +24,11 @@ extension Standard {
 	}
 
 	@ViewBuilder
-	public static func defaultIndicators(model: FullModel, width: Double) -> some View {
+	public static func defaultIndicators<Model: Values>(model: Model, width: Double) -> some View {
 		defaultIndicator(label: String(format: "%.01f", model.values[0]), width: width)
 	}
 
-	public struct IndicatorSetView<Model, Content: View>: View {
+	public struct RadialIndicatorsView<Model, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		let radius: Double
@@ -41,7 +41,7 @@ extension Standard {
 			model: Model,
 			radius: Double = 0.200,
 			width: Double = 0.185,
-			@ViewBuilder content: @escaping (Model, Double) -> Content = defaultIndicators) {
+			@ViewBuilder content: @escaping (Model, Double) -> Content) {
 				self.geom = geom
 				self.model = model
 				self.radius = radius
@@ -59,7 +59,7 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() {
-		Standard.IndicatorSetView(geom: $0, model: 99) { m, w in
+		Standard.RadialIndicatorsView(geom: $0, model: 99) { m, w in
 			Standard.defaultIndicator(label: "H", width: w)
 			Standard.defaultIndicator(label: "E", width: w)
 			Standard.defaultIndicator(label: "L", width: w)

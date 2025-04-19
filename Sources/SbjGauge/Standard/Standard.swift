@@ -28,7 +28,7 @@ public enum Standard {
 						offset: 0.1,
 						length: 0.2)
 				}
-				IndicatorSetView(geom: geom, model: model)
+				RadialIndicatorsView(geom: geom, model: model, content: defaultIndicators)
 				RadialNeedlesView(geom: geom, model: model) { _ in
 					NeedleView(geom: geom)
 				}
