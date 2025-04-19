@@ -18,7 +18,7 @@ public extension ValuesModel {
 		set { values[index] = range.clamp(newValue) }
 	}
 
-	subscript(norm index: ValueIdx) -> Value {
+	subscript(norm index: ValueIdx) -> Double {
 		get { range.norm(values[index]) }
 		set { values[index] = range.value(newValue) }
 	}

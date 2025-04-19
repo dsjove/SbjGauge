@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Span {
-	public typealias Value = Double
+public struct Span<Value : GaugeValue> {
 	public let range: ClosedRange<Value>
 
 	public init(_ range: ClosedRange<Value>) {
@@ -21,14 +20,13 @@ public struct Span {
 	}
 }
 
-public protocol SpanningModel {
-	typealias Value = Double
+public protocol SpanningModel: GaugeModel {
 	typealias SpanIdx = Int
-	var spans: [Span]  { get set }
+	var spans: [Span<Value>]  { get set }
 }
 
 public extension SpanningModel {
-	func span(for value: Value) -> (offset: SpanIdx, element: Span)? {
+	func span(for value: Value) -> (offset: SpanIdx, element: Span<Value>)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.contains(value) {
 				return (span.offset, span.element)
@@ -38,8 +36,7 @@ public extension SpanningModel {
 	}
 }
 
-public struct SpanArc {
-	public typealias Value = Double
+public struct SpanArc<Value : GaugeValue> {
 	public typealias SpanIdx = Int
 	public let idx: SpanIdx
 	public let count: Int
@@ -59,7 +56,7 @@ public struct SpanArc {
 }
 
 public extension SpanningModel where Self: RadialModel {
-	func spanArcs() -> [SpanArc] {
+	func spanArcs() -> [SpanArc<Value>] {
 		return spans.enumerated().map { span in
 			let angle1 = angle(value: span.element.range.lowerBound)
 			let angle2 = angle(value: span.element.range.upperBound)

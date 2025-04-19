@@ -12,12 +12,12 @@ extension Standard {
 		let geom: GeometryProxy
 		let model: Model
 		@ViewBuilder
-		let content: (SpanArc) -> Content
+		let content: (SpanArc<Model.Value>) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			@ViewBuilder content: @escaping (SpanArc) -> Content) {
+			@ViewBuilder content: @escaping (SpanArc<Model.Value>) -> Content) {
 			self.geom = geom
 			self.model = model
 			self.content = content

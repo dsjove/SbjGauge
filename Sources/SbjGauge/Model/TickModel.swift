@@ -14,8 +14,7 @@ public enum TickEnds {
 	case end
 }
 
-public struct Tick {
-	public typealias Value = Double
+public struct Tick<Value: GaugeValue> {
 
 	public let increment: Value
 	public let ends: TickEnds
@@ -32,7 +31,7 @@ public struct Tick {
 
 	func values(_ range: ClosedRange<Value>) -> [(element: Value, offset: Int)] {
 		var result: [(Value, Int)] = []
-		result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
+		//result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
 		var element = range.lowerBound
 		var offset = 0
 		while element <= range.upperBound {
@@ -55,13 +54,12 @@ public protocol TickModel: GaugeModel {
 }
 
 public extension TickModel {
-	func values(_ tick: Tick) -> [(element: Value, offset: Int)] {
+	func values(_ tick: Tick<Value>) -> [(element: Value, offset: Int)] {
 		tick.values(range)
 	}
 }
 
-public struct TickNotch {
-	public typealias Value = Double
+public struct TickNotch<Value> {
 	public let idx: Int
 	public let count: Int
 	public let value: Value
@@ -76,7 +74,7 @@ public struct TickNotch {
 }
 
 public extension TickModel where Self: RadialModel {
-	func tickNotches(_ tick: Tick) -> [TickNotch] {
+	func tickNotches(_ tick: Tick<Value>) -> [TickNotch<Value>] {
 		let values = values(tick)
 		let count = values.count
 		return values.map { (value, offset) in

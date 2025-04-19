@@ -20,7 +20,7 @@ extension Double : GaugeValue {
 }
 
 public protocol GaugeModel {
-	typealias Value = Double //GaugeValue
+	associatedtype Value: GaugeValue
 	var range: ClosedRange<Value> { get set }
 }
 

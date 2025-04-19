@@ -13,13 +13,13 @@ extension Standard {
 		let model: Model
 		let clockwise: Bool
 		@ViewBuilder
-		let content: (Needle) -> Content
+		let content: (Needle<Model.Value>) -> Content
 
 		public init(
 			geom: GeometryProxy,
 			model: Model,
 			clockwise: Bool = true,
-			@ViewBuilder content: @escaping (Needle) -> Content) {
+			@ViewBuilder content: @escaping (Needle<Model.Value>) -> Content) {
 				self.geom = geom
 				self.model = model
 				self.clockwise = clockwise

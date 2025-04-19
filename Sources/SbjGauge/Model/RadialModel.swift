@@ -26,9 +26,8 @@ public extension RadialModel {
 	}
 }
 
-public struct Needle {
+public struct Needle<Value> {
 	public typealias ValueIdx = Int
-	public typealias Value = Double
 	public let idx: ValueIdx
 	public let count: Int
 	public let value: Value
@@ -43,7 +42,7 @@ public struct Needle {
 }
 
 public extension RadialModel where Self: ValuesModel {
-	func needles() -> [Needle] {
+	func needles() -> [Needle<Value>] {
 		values.enumerated().map { Needle($0.offset, values.count, $0.element, angle(value: $0.element)) }
 	}
 }

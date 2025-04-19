@@ -11,15 +11,15 @@ extension Standard {
 	public struct RadialTickView<Model: TickModel & RadialModel, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
-		let tick: Tick
+		let tick: Tick<Model.Value>
 		@ViewBuilder
-		let content: (TickNotch) -> Content
+		let content: (TickNotch<Model.Value>) -> Content
 
 		public init(
 			_ geom: GeometryProxy,
 			_ model: Model,
-			_ tick: Tick, @ViewBuilder
-			_ content: @escaping (TickNotch) -> Content) {
+			_ tick: Tick<Model.Value>, @ViewBuilder
+			_ content: @escaping (TickNotch<Model.Value>) -> Content) {
 				self.geom = geom
 				self.model = model
 				self.tick = tick
