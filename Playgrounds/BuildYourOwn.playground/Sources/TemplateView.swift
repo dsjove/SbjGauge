@@ -17,7 +17,16 @@ public enum Template {
 				SwirlView()
 				Clock.SecondsHandView(geom: geom)
 				Standard.NeedleSetView(geom: geom, model: model, clockwise: false) { geom, _, _ in
-					Standard.TickSetView(geom: geom, model: model)
+					Standard.RadialTickView(geom, model, model.ticks[0]) { _ in
+						Standard.TickView(geom: geom)
+					}
+					Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
+						Standard.TickView(
+							geom: geom,
+							style: .text(Int(notch.value).description),
+							offset: 0.1,
+							length: 0.2)
+					}
 				}
 			}
 			.onReceive(timer) { input in

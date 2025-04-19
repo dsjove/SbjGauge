@@ -30,20 +30,18 @@ public enum Power {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Power.BackgroundView(geom: geom)
-				Standard.TickSetView(geom: geom, model: model) { geom, notch in
+				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
-					switch notch.idx {
-						case 0:
-							Standard.TickView(
-								geom: geom,
-								style: .line(0.005), radius: 0.88, length: 0.05, color: color)
-						case 1:
-							Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: color)
-						case 2:
-							Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
-						default:
-							EmptyView()
-					}
+					Standard.TickView(
+						geom: geom,
+						style: .line(0.005), radius: 0.88, length: 0.05, color: color)
+				}
+				Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
+					let color = colorForSpan(model.span(for: notch.value)?.0)
+					Standard.TickView(geom: geom, radius: 0.88, length: 0.1, color: color)
+				}
+				Standard.RadialTickView(geom, model, model.ticks[2]) { notch in
+					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), radius: 0.88, offset: 0.1, length: 0.14, color: .sbjGauge("Power/Tick"))
 				}
 				Standard.IndicatorSetView(geom: geom, model: model, content: indicators)
 				Standard.NeedleSetView(geom: geom, model: model) { geom, idx, value in

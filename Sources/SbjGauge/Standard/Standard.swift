@@ -18,7 +18,16 @@ public enum Standard {
 		public var body: some View {
 			ZStackSquare() { geom in
 				BackgroundView(geom: geom)
-				TickSetView(geom: geom, model: model)
+				RadialTickView(geom, model, model.ticks[0]) { _ in
+					TickView(geom: geom)
+				}
+				RadialTickView(geom, model, model.ticks[1]) { notch in
+					TickView(
+						geom: geom,
+						style: .text(Int(notch.value).description),
+						offset: 0.1,
+						length: 0.2)
+				}
 				SpanSetView(geom: geom, model: model)
 				IndicatorSetView(geom: geom, model: model)
 				NeedleSetView(geom: geom, model: model)

@@ -22,24 +22,20 @@ public enum Scale {
 					.stroke(style: StrokeStyle(lineWidth: 1))
 					.frame(width: geom.width(0.8), height: geom.width(0.8))
 				Standard.NeedleSetView(geom: geom, model: model, clockwise: false) { geom, _, _ in
-					Standard.TickSetView(geom: geom, model: model) { geom, notch in
-						switch notch.idx {
-							case 0:
-							let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idc == 0 ? "kg" : "")"
-							Standard.TickView(
-								geom: geom,
-								style: .text(v),
-								radius: 0.75,
-								length: notch.idc == notch.count-1 ? 0.075 : 0.1)
-							case 1:
-							let v = "\(Int(notch.value).description)\(notch.idc == 0 ? "lb" : "")"
-							Standard.TickView(
-								geom: geom,
-								style: .text(v),
-								radius: 0.95)
-						default:
-							EmptyView()
-						}
+					Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
+						Standard.TickView(
+							geom: geom,
+							style: .text(v),
+							radius: 0.75,
+							length: notch.idx == notch.count-1 ? 0.075 : 0.1)
+					}
+					Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
+						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
+						Standard.TickView(
+							geom: geom,
+							style: .text(v),
+							radius: 0.95)
 					}
 				}
 				Standard.NeedleView(geom: geom, radius: 1.0, color: Color.red)

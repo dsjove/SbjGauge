@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-public protocol Radial {
+public protocol Radial: Values {
 	var angles: ClosedRange<Angle> { get set }
 }
 
-public extension Radial where Self: Values {
+public extension Radial {
 	func angle(value: Value) -> Angle {
 		angles.value(range.norm(value))
 	}
