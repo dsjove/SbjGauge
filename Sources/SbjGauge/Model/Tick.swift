@@ -52,12 +52,13 @@ public struct Tick {
 }
 
 public struct TickNotch {
+	public typealias Value = Double
 	public let idx: Int
 	public let count: Int
 	public let value: Double
 	public let angle: Angle
 
-	public init(_ idx: Int, _ count: Int, _ value: Double, _ angle: Angle) {
+	public init(_ idx: Int, _ count: Int, _ value: Value, _ angle: Angle) {
 		self.idx = idx
 		self.count = count
 		self.value = value
@@ -66,17 +67,11 @@ public struct TickNotch {
 }
 
 public extension Radial {
-	func tickAngles(_ tick: Tick) -> [TickNotch] {
+	func tickNotches(_ tick: Tick) -> [TickNotch] {
 		let values = tick.values(range)
 		let count = values.count
 		return values.map { (value, offset) in
 			.init(offset, count, value, angle(value: value))
 		}
 	}
-}
-
-public protocol Ticking {
-	typealias Value = Tick.Value
-	typealias TickIdx = Int
-	var ticks: [Tick] { get set }
 }

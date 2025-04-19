@@ -28,7 +28,6 @@ public enum Standard {
 						offset: 0.1,
 						length: 0.2)
 				}
-				SpanSetView(geom: geom, model: model)
 				IndicatorSetView(geom: geom, model: model)
 				RadialNeedlesView(geom: geom, model: model) { _ in
 					NeedleView(geom: geom)

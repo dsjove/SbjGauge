@@ -52,8 +52,8 @@ public enum Power {
 							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(needle.idx))
 					}
 				}
-				Standard.SpanSetView(geom: geom, model: model) { geom, idx, _, angles in
-					Standard.SpanView(geom: geom, label: stringForSpan(idx), angles: angles, color: colorForSpan(idx))
+				Standard.RadialSpanningView(geom: geom, model: model) { spanArc in
+					Standard.SpanView(geom: geom, label: stringForSpan(spanArc.idx), angles: spanArc.angles, color: colorForSpan(spanArc.idx))
 				}
 				Standard.RimView(geom: geom)
 			}

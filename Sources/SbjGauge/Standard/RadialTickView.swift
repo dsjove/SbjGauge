@@ -27,7 +27,7 @@ extension Standard {
 		}
 
 		public var body: some View {
-			let notches = model.tickAngles(tick)
+			let notches = model.tickNotches(tick)
 			ForEach(notches, id: \.idx) { notch in
 				content(notch)
 					.rotationEffect(notch.angle)

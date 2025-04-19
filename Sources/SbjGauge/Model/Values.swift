@@ -24,6 +24,4 @@ public extension Values {
 		get { range.norm(values[index]) }
 		set { values[index] = range.value(newValue) }
 	}
-
-
 }
