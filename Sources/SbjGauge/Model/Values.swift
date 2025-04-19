@@ -8,28 +8,20 @@
 import Foundation
 
 public protocol Values {
-	typealias Value = Double
+	typealias Value = Double //DoubleCovertible
 	typealias ValueIdx = Int
 	var range: ClosedRange<Value> { get set }
 	var values: [Value] { get set }
 }
 
 public extension Values {
-	func norm(value: Value) -> Double {
-		range.norm(value)
-	}
-
-	func value(norm: Double) -> Value {
-		range.value(norm)
-	}
-
 	subscript(index: ValueIdx) -> Value {
 		get { values[index] }
 		set { values[index] = range.clamp(newValue) }
 	}
 
 	subscript(norm index: ValueIdx) -> Value {
-		get { norm(value: values[index]) }
-		set { values[index] = value(norm: newValue) }
+		get { range.norm(values[index]) }
+		set { values[index] = range.value(newValue) }
 	}
 }

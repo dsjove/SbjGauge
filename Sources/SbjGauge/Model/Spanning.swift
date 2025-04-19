@@ -15,6 +15,10 @@ public struct Span {
 	public init(_ range: ClosedRange<Value>) {
 		self.range = range
 	}
+
+	public func contains(_ value: Value) -> Bool {
+		range.contains(value)
+	}
 }
 
 public protocol Spanning {
@@ -26,7 +30,7 @@ public protocol Spanning {
 public extension Spanning {
 	func span(for value: Value) -> (SpanIdx, Span)? {
 		for span in spans.enumerated().reversed() {
-			if span.element.range.contains(value) {
+			if span.element.contains(value) {
 				return (span.offset, span.element)
 			}
 		}
@@ -34,7 +38,7 @@ public extension Spanning {
 	}
 }
 
-public extension Spanning where Self: Radial & Values {
+public extension Spanning where Self: Values & Radial {
 	func angles(for span: Span) -> ClosedRange<Angle> {
 		let angle1 = angle(value: span.range.lowerBound)
 		let angle2 = angle(value: span.range.upperBound)

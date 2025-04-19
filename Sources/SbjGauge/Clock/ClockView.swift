@@ -8,9 +8,6 @@
 import SwiftUI
 
 public enum Clock {
-	/**
-	 * Given a Swift Date, render the time in a 12 hour analog clock.
-	 */
 	public struct ClockView: View {
 		let model: FullModel
 
@@ -74,8 +71,8 @@ public extension FullModel {
 
 		ticks = [
 			.init(3600, ends: .end),
-			.init(3600),
-			.init(720, filter: { idc, _ in !idc.isMultiple(of: 5)})
+			.init(3600, ends: .end),
+			.init(720, ends: .end, filter: { _, idc in !idc.isMultiple(of: 5)})
 		]
 	}
 }

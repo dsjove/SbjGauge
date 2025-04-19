@@ -11,22 +11,12 @@ public protocol Radial {
 	var angles: ClosedRange<Angle> { get set }
 }
 
-public extension Radial {
-	func norm(angle: Angle) -> Double {
-		angles.norm(angle)
-	}
-
-	func angle(norm: Double) -> Angle {
-		angles.value(norm)
-	}
-}
-
 public extension Radial where Self: Values {
 	func angle(value: Value) -> Angle {
-		angle(norm: norm(value: value))
+		angles.value(range.norm(value))
 	}
 
 	func value(angle: Angle) -> Value {
-		value(norm: norm(angle: angle))
+		range.value(angles.norm(angle))
 	}
 }

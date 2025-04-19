@@ -51,8 +51,8 @@ public extension FullModel {
 		values = [range.clamp(value)]
 		angles = .degrees(225) ... .degrees(520)
 		ticks = [
-			.init(1, ends: .both, filter: { inc, _ in inc.isMultiple(of: 2) || inc == 11}),
-			.init(1, ends: .both, filter: { inc, _ in !inc.isMultiple(of: 2) && inc != 11}),
+			.init(1, ends: .both, filter: { _, inc in inc.isMultiple(of: 2) || inc == 11}),
+			.init(1, ends: .both, filter: { _, inc in !inc.isMultiple(of: 2) && inc != 11}),
 		]
 	}
 }

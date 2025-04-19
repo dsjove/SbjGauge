@@ -90,7 +90,7 @@ public extension FullModel {
 		values = [scaledValue, scaledControl]
 
 		ticks = [
-			.init(5, ends: .both, filter: { idc, _ in !idc.isMultiple(of: 5)}),
+			.init(5, ends: .both, filter: { _, idc in !idc.isMultiple(of: 5)}),
 			.init(25, ends: .both),
 			.init(25, ends: .both)
 		]
