@@ -19,6 +19,11 @@ extension Double : GaugeValue {
 	public var toDouble: Double { self }
 }
 
+extension Int : GaugeValue {
+	public init(double: Double) { self = Int(double) }
+	public var toDouble: Double { Double(self) }
+}
+
 public protocol GaugeModel {
 	associatedtype Value: GaugeValue = Double
 	var range: ClosedRange<Value> { get set }

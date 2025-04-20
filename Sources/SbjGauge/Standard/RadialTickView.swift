@@ -45,7 +45,7 @@ extension Standard {
 	ZStackSquare() { geom in
 		Circle().stroke()
 		Circle().stroke().frame(width: geom.width(0.8))
-		Standard.RadialTickView(geom, StandardModel(standard: 0), .init(), radius: 0.8) { notch in
+		Standard.RadialTickView(geom, StandardModel(standard: 0), .init(1.0), radius: 0.8) { notch in
 			Standard.TickLineView(geom: geom,
 				width: 0.05,
 				offset: -0.1)

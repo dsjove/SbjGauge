@@ -17,6 +17,8 @@ extension Angle : GaugeValue {
 }
 
 public extension RadialModel {
+	var angles: ClosedRange<Angle> { .degrees(0) ... .degrees(360) }
+
 	func angle(value: Value) -> Angle {
 		angles.value(range.norm(value))
 	}

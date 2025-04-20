@@ -20,7 +20,7 @@ public struct Tick<Value: GaugeValue> {
 	public let filter: (Value, Int) -> Bool
 
 	public init(
-		_ increment: Value = 1.0,
+		_ increment: Value,
 		ends: TickEnds = .start,
 		filter: @escaping (Value, Int) -> Bool = { _, _ in true } ) {
 			self.increment = increment
