@@ -27,13 +27,12 @@ public extension RadialModel {
 }
 
 public struct Needle<Value> {
-	public typealias ValueIdx = Int
-	public let idx: ValueIdx
+	public let idx: Int
 	public let count: Int
 	public let value: Value
 	public let angle: Angle
 
-	public init(_ idx: ValueIdx, _ count: Int, _ value: Value, _ angle: Angle) {
+	public init(_ idx: Int, _ count: Int, _ value: Value, _ angle: Angle) {
 		self.idx = idx
 		self.count = count
 		self.value = value

@@ -21,12 +21,11 @@ public struct Span<Value : GaugeValue> {
 }
 
 public protocol SpanningModel: GaugeModel {
-	typealias SpanIdx = Int
 	var spans: [Span<Value>]  { get set }
 }
 
 public extension SpanningModel {
-	func span(for value: Value) -> (offset: SpanIdx, element: Span<Value>)? {
+	func span(for value: Value) -> (offset: Int, element: Span<Value>)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.contains(value) {
 				return (span.offset, span.element)
@@ -37,14 +36,13 @@ public extension SpanningModel {
 }
 
 public struct SpanArc<Value : GaugeValue> {
-	public typealias SpanIdx = Int
-	public let idx: SpanIdx
+	public let idx: Int
 	public let count: Int
 	public let range: ClosedRange<Value>
 	public let angles: ClosedRange<Angle>
 
 	public init(
-		_ idx: SpanIdx,
+		_ idx: Int,
 		_ count: Int,
 		_ range: ClosedRange<Value>,
 		_ angles: ClosedRange<Angle>) {

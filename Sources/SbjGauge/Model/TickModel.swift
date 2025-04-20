@@ -15,7 +15,6 @@ public enum TickEnds {
 }
 
 public struct Tick<Value: GaugeValue> {
-
 	public let increment: Value
 	public let ends: TickEnds
 	public let filter: (Value, Int) -> Bool
@@ -34,16 +33,18 @@ public struct Tick<Value: GaugeValue> {
 		//result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
 		var element = range.lowerBound
 		var offset = 0
+		var appended = false
 		while element <= range.upperBound {
 			if offset != 0 || ends != .end {
 				if filter(element, offset) {
 					result.append((element, offset))
+					appended = true;
 				}
 			}
 			element += increment
 			offset += 1
 		}
-		if ends == .start {
+		if ends == .start && appended && !result.isEmpty {
 			result.removeLast()
 		}
 		return result
@@ -51,6 +52,7 @@ public struct Tick<Value: GaugeValue> {
 }
 
 public protocol TickModel: GaugeModel {
+	var ticks: [Tick<Value>] { get }
 }
 
 public extension TickModel {

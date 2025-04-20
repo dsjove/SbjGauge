@@ -8,17 +8,16 @@
 import Foundation
 
 public protocol ValuesModel: GaugeModel {
-	typealias ValueIdx = Int
 	var values: [Value] { get set }
 }
 
 public extension ValuesModel {
-	subscript(index: ValueIdx) -> Value {
+	subscript(index: Int) -> Value {
 		get { values[index] }
 		set { values[index] = range.clamp(newValue) }
 	}
 
-	subscript(norm index: ValueIdx) -> Double {
+	subscript(norm index: Int) -> Double {
 		get { range.norm(values[index]) }
 		set { values[index] = range.value(newValue) }
 	}
