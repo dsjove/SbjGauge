@@ -39,9 +39,7 @@ public enum Power {
 				Standard.RadialTickView(geom, model, model.ticks[1], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
 					Standard.TickView(geom: geom, length: 0.1, color: color)
-				}
-				Standard.RadialTickView(geom, model, model.ticks[2], radius: 0.8) { notch in
-					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), length: 0.14, color: .sbjGauge("Power/Tick"))
+					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), length: 0.14, offset: 0.1, color: .sbjGauge("Power/Tick"))
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
@@ -94,7 +92,6 @@ public extension StandardModel {
 		ticks = [
 			.init(5, ends: .both, filter: { _, idc in !idc.isMultiple(of: 5)}),
 			.init(25, ends: .both),
-			.init(25, ends: .both)
 		]
 
 		let scaledIdle = idle * magnitude;

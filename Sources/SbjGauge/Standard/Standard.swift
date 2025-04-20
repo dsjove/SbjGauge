@@ -18,14 +18,12 @@ public enum Standard {
 		public var body: some View {
 			ZStackSquare() { geom in
 				BackgroundView(geom: geom)
-				RadialTickView(geom, model, model.ticks[0]) { _ in
+				RadialTickView(geom, model, model.ticks[0]) { notch in
 					TickView(geom: geom)
-				}
-				RadialTickView(geom, model, model.ticks[1], radius: 0.85) { notch in
-					TickView(
-						geom: geom,
+					TickView(geom: geom,
 						style: .text(Int(notch.value).description),
-						length: 0.2)
+						length: 0.2,
+						offset: 0.1)
 				}
 				RadialIndicatorsView(geom: geom, model: model, content: defaultIndicators)
 				RadialNeedlesView(geom: geom, model: model) { _ in

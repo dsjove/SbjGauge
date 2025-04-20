@@ -43,12 +43,12 @@ extension Standard {
 
 #Preview {
 	ZStackSquare() { geom in
-		Circle().stroke(style: StrokeStyle(lineWidth: 1, lineCap: .round))
-		Standard.RadialTickView(geom, StandardModel(standard: 0), .init()) { notch in
-			//Rectangle().frame(width: 10, height: 10).offset(x: 0, y: 5)
+		Circle().stroke()
+		Circle().stroke().frame(width: geom.width(0.8))
+		Standard.RadialTickView(geom, StandardModel(standard: 0), .init(), radius: 0.8) { notch in
 			Standard.TickView(geom: geom)
-			Standard.TickView(geom: geom, style: .text("M"))
-				
+			Standard.TickView(geom: geom, style: .text("M"), offset: 0.1)
+
 		}
 	}
 }

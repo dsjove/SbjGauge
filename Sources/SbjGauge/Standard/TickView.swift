@@ -17,21 +17,25 @@ extension Standard {
 		let geom: GeometryProxy
 		let style: Style
 		let length: Double
+		let offset: Double
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
 			style: Style = .line(),
 			length: Double = 0.1,
+			offset: Double = 0.0,
 			color: Color = .sbjGauge("Standard/Tick")) {
 				self.geom = geom
 				self.style = style
 				self.length = length
+				self.offset = offset
 				self.color = color
 		}
 
 		public var body: some View {
 			let height = geom.radius(length)
+			let additional = geom.radius(offset)
 			switch style {
 				case .line(let thickness):
 					let lineWidth = geom.width(thickness)
@@ -47,7 +51,7 @@ extension Standard {
 					Text(value)
 						.lineLimit(1)
 						.font(.system(size: height))
-						.offset(y: height/2)
+						.offset(y: (height/2) + additional)
 						.foregroundColor(color)
 			}
 		}

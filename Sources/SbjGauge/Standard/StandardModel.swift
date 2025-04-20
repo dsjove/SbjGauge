@@ -17,6 +17,6 @@ public struct StandardModel: ValuesModel & RadialModel & TickModel & SpanningMod
 	public var range: ClosedRange<Value>
 	public var values: [Value]
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-	public var ticks: [Tick<Value>] = [.init(), .init()]
+	public var ticks: [Tick<Value>] = [.init()]
 	public var spans: [Span<Value>] = []
 }

@@ -18,14 +18,13 @@ public enum Clock {
 		public var body: some View {
 			ZStackSquare() { geom in
 				Standard.BackgroundView(geom: geom)
-				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.85) { notch in
+				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+					Standard.TickView(geom: geom, color: .black)
 					Standard.TickView(geom: geom, style: .text(notch.idx.description), length: 0.2,
+						offset: 0.1,
 						color: .black)
 				}
 				Standard.RadialTickView(geom, model, model.ticks[1]) { _ in
-					Standard.TickView(geom: geom, color: .black)
-				}
-				Standard.RadialTickView(geom, model, model.ticks[2]) { _ in
 					Standard.TickView(
 						geom: geom,
 						style: .line(0.008), length:  0.05, color: .black)
@@ -68,7 +67,6 @@ public extension StandardModel {
 		values = [secondPos, minutePos, hourPos, hour]
 
 		ticks = [
-			.init(3600, ends: .end),
 			.init(3600, ends: .end),
 			.init(720, ends: .end, filter: { _, idc in !idc.isMultiple(of: 5)})
 		]
