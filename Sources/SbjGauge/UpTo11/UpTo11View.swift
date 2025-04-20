@@ -20,16 +20,14 @@ public enum UpTo11 {
 				Color.sbjGauge("UpTo11/Background")
 				Standard.RadialTickView(geom, model, model.ticks[0],
 						radius: 0.7) { notch in
-					Standard.TickView(
-						geom: geom,
-						style: .text(notch.idx.description),
+					Standard.TickTextView(geom: geom,
+						text: notch.idx.description,
 						color: .black)
 				}
 				Standard.RadialTickView(geom, model, model.ticks[1],
 						radius: 0.7) { _ in
-					Standard.TickView(
-						geom: geom,
-						style: .line(0.008),
+					Standard.TickLineView(geom: geom,
+						width: 0.008,
 						color: .black)
 				}
 				Standard.RadialNeedlesView(geom: geom, model: model) { _ in

@@ -25,17 +25,15 @@ public enum Scale {
 					Standard.RadialTickView(geom, model, model.ticks[0],
 							radius: 0.75) { notch in
 						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
-						Standard.TickView(
-							geom: geom,
-							style: .text(v),
+						Standard.TickTextView(geom: geom,
+							text: v,
 							length: notch.idx == notch.count-1 ? 0.075 : 0.1)
 					}
 					Standard.RadialTickView(geom, model, model.ticks[1],
 							radius: 0.95) { notch in
 						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
-						Standard.TickView(
-							geom: geom,
-							style: .text(v))
+						Standard.TickTextView(geom: geom,
+							text: v)
 					}
 				}
 				Standard.NeedleView(geom: geom, radius: 1.0, color: Color.red)

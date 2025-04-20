@@ -18,12 +18,12 @@ public enum Template {
 				Clock.SecondsHandView(geom: geom)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
 					Standard.RadialTickView(geom, model, model.ticks[0]) { _ in
-						Standard.TickView(geom: geom)
+						Standard.TickLineView(geom: geom)
 					}
 					Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
-						Standard.TickView(
+						Standard.TickTextView(
 							geom: geom,
-							style: .text(Int(notch.value).description),
+							text: Int(notch.value).description,
 							length: 0.2)
 					}
 				}

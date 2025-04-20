@@ -19,9 +19,9 @@ public enum Standard {
 			ZStackSquare() { geom in
 				BackgroundView(geom: geom)
 				RadialTickView(geom, model, model.ticks[0]) { notch in
-					TickView(geom: geom)
-					TickView(geom: geom,
-						style: .text(Int(notch.value).description),
+					TickLineView(geom: geom)
+					TickTextView(geom: geom,
+						text: Int(notch.value).description,
 						length: 0.2,
 						offset: 0.1)
 				}

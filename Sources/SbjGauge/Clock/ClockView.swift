@@ -19,15 +19,19 @@ public enum Clock {
 			ZStackSquare() { geom in
 				Standard.BackgroundView(geom: geom)
 				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
-					Standard.TickView(geom: geom, color: .black)
-					Standard.TickView(geom: geom, style: .text(notch.idx.description), length: 0.2,
+					Standard.TickLineView(geom: geom,
+						color: .black)
+					Standard.TickTextView(geom: geom,
+						text: notch.idx.description,
+						length: 0.2,
 						offset: 0.1,
 						color: .black)
 				}
 				Standard.RadialTickView(geom, model, model.ticks[1]) { _ in
-					Standard.TickView(
-						geom: geom,
-						style: .line(0.008), length:  0.05, color: .black)
+					Standard.TickLineView(geom: geom,
+						width: 0.008,
+						length: 0.05,
+						color: .black)
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model) { model, width in
 					let am = model.values[3] < 12

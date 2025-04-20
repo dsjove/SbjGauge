@@ -8,26 +8,21 @@
 import SwiftUI
 
 extension Standard {
-	public struct TickView: View {
-		public enum Style {
-			case line(Double = 0.008)
-			case text(String)
-		}
-
+	public struct TickLineView: View {
 		let geom: GeometryProxy
-		let style: Style
+		let width: Double
 		let length: Double
 		let offset: Double
 		let color: Color
 
 		public init(
 			geom: GeometryProxy,
-			style: Style = .line(),
+			width: Double = 0.008,
 			length: Double = 0.1,
 			offset: Double = 0.0,
 			color: Color = .sbjGauge("Standard/Tick")) {
 				self.geom = geom
-				self.style = style
+				self.width = width
 				self.length = length
 				self.offset = offset
 				self.color = color
@@ -36,33 +31,54 @@ extension Standard {
 		public var body: some View {
 			let height = geom.radius(length)
 			let additional = geom.radius(offset)
-			switch style {
-				case .line(let thickness):
-					let lineWidth = geom.width(thickness)
-					if lineWidth > 0.0 {
-						Path { path in
-							path.move(to: geom.center(x: 0, y: 0))
-							path.addLine(to: geom.center(x: 0, y: height))
-						}
-						.stroke(color, lineWidth: lineWidth)
-					}
-				case .text(let value):
-					let height = geom.radius(length)
-					Text(value)
-						.lineLimit(1)
-						.font(.system(size: height))
-						.offset(y: (height/2) + additional)
-						.foregroundColor(color)
+			let lineWidth = geom.width(width)
+			if lineWidth > 0.0 {
+				Path { path in
+					path.move(to: geom.center(x: 0, y: additional))
+					path.addLine(to: geom.center(x: 0, y: height + additional))
+				}
+				.stroke(color, lineWidth: lineWidth)
 			}
+		}
+	}
+
+	public struct TickTextView: View {
+		let geom: GeometryProxy
+		let text: String
+		let length: Double
+		let offset: Double
+		let color: Color
+
+		public init(
+			geom: GeometryProxy,
+			text: String,
+			length: Double = 0.1,
+			offset: Double = 0.0,
+			color: Color = .sbjGauge("Standard/Tick")) {
+				self.geom = geom
+				self.text = text
+				self.length = length
+				self.offset = offset
+				self.color = color
+		}
+
+		public var body: some View {
+			let height = geom.radius(length)
+			let additional = geom.radius(offset)
+			Text(text)
+				.lineLimit(1)
+				.font(.system(size: height))
+				.offset(y: (height/2) + additional)
+				.foregroundColor(color)
 		}
 	}
 }
 
 #Preview {
 	ZStackSquare() {
-		Standard.TickView(geom: $0, style: .line(0.004))
+		Standard.TickLineView(geom: $0, width: 0.004)
 	}
 	ZStackSquare() {
-		Standard.TickView(geom: $0, style: .text("Hi"))
+		Standard.TickTextView(geom: $0, text: "Hi")
 	}
 }

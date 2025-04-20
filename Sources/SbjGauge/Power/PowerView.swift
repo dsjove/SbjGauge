@@ -32,14 +32,21 @@ public enum Power {
 				Power.BackgroundView(geom: geom)
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
-					Standard.TickView(
-						geom: geom,
-						style: .line(0.005), length: 0.05, color: color)
+					Standard.TickLineView(geom: geom,
+						width: 0.005,
+						length: 0.05,
+						color: color)
 				}
 				Standard.RadialTickView(geom, model, model.ticks[1], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)
-					Standard.TickView(geom: geom, length: 0.1, color: color)
-					Standard.TickView(geom: geom, style: .text(Int(notch.value).description), length: 0.14, offset: 0.1, color: .sbjGauge("Power/Tick"))
+					Standard.TickLineView(geom: geom,
+						length: 0.1,
+						color: color)
+					Standard.TickTextView(geom: geom,
+						text: Int(notch.value).description,
+						 length: 0.14,
+						 offset: 0.1,
+						 color: .sbjGauge("Power/Tick"))
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
