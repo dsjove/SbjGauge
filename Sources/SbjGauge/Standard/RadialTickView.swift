@@ -46,9 +46,12 @@ extension Standard {
 		Circle().stroke()
 		Circle().stroke().frame(width: geom.width(0.8))
 		Standard.RadialTickView(geom, StandardModel(standard: 0), .init(), radius: 0.8) { notch in
-			Standard.TickLineView(geom: geom, width: 0.05, offset: -0.1)
-			Standard.TickTextView(geom: geom, text: "M", offset: 0.1)
-
+			Standard.TickLineView(geom: geom,
+				width: 0.05,
+				offset: -0.1)
+			Standard.TickTextView(geom: geom,
+				text: "M",
+				offset: 0.1)
 		}
 	}
 }

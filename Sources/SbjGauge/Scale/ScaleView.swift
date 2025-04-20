@@ -19,21 +19,41 @@ public enum Scale {
 			ZStackSquare() { geom in
 				Standard.BackgroundView(geom: geom)
 				Circle()
-					.stroke(style: StrokeStyle(lineWidth: 1))
-					.frame(width: geom.width(0.8), height: geom.width(0.8))
+					.stroke()
+					.frame(width: geom.width(0.80))
 				Standard.RadialNeedlesView(geom: geom, model: model, clockwise: false) { _ in
 					Standard.RadialTickView(geom, model, model.ticks[0],
-							radius: 0.75) { notch in
+							radius: 0.8) { notch in
+						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
+						Standard.TickTextView(geom: geom,
+							text: v,
+							offset: -0.15)
+						Standard.TickLineView(geom: geom,
+							length: 0.05,
+							offset: -0.05)
+					}
+					Standard.RadialTickView(geom, model, model.ticks[1],
+							radius: 0.8) { notch in
+						Standard.TickLineView(geom: geom,
+							length: 0.03,
+							offset: -0.03)
+					}
+					Standard.RadialTickView(geom, model, model.ticks[2],
+							radius: 0.8) { notch in
 						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
 						Standard.TickTextView(geom: geom,
 							text: v,
-							length: notch.idx == notch.count-1 ? 0.075 : 0.1)
+							length: notch.idx == notch.count-1 ? 0.075 : 0.1,
+							offset: 0.05)
+						Standard.TickLineView(geom: geom,
+							length: 0.05,
+							offset: 0.0)
 					}
-					Standard.RadialTickView(geom, model, model.ticks[1],
-							radius: 0.95) { notch in
-						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
-						Standard.TickTextView(geom: geom,
-							text: v)
+					Standard.RadialTickView(geom, model, model.ticks[3],
+							radius: 0.8) { notch in
+						Standard.TickLineView(geom: geom,
+							length: 0.03,
+							offset: 0.0)
 					}
 				}
 				Standard.NeedleView(geom: geom, radius: 1.0, color: Color.red)
@@ -50,8 +70,10 @@ public extension StandardModel {
 		range = 0 ... 300
 		values = [value]
 		self.ticks = [
-			Tick(10.0 * (1.0 / 0.453592), ends: .both),
-			Tick(20.0)
+			.init(20.0),
+			.init(5.0),
+			.init(10.0 * (1.0 / 0.453592), ends: .both),
+			.init(5.0 * (1.0 / 0.453592))
 		]
 	}
 }

@@ -21,8 +21,7 @@ public enum Template {
 						Standard.TickLineView(geom: geom)
 					}
 					Standard.RadialTickView(geom, model, model.ticks[1]) { notch in
-						Standard.TickTextView(
-							geom: geom,
+						Standard.TickTextView(geom: geom,
 							text: Int(notch.value).description,
 							length: 0.2)
 					}
