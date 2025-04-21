@@ -1,6 +1,6 @@
 # SbjGauge
 
-Customizable analog multi-indicator SwiftUI gauge.
+Analog multi-indicator SwiftUI gauge construction set.
 
 Inspired by: https://github.com/Will-tm/WMGaugeView
 
@@ -10,9 +10,9 @@ I struggle with the oversimplified symbolic UI in most applications; done in the
 
 My goal is to create a library that makes it easy to construct a detailed multi-value gauge with the level of skeuomorphism that fits your application's visual language.
 
-This library is continuing to evolve as my knowledge of SwiftUI increases and SwiftUI's capabilties evolve. Every rendering strategy and value is being bubbled to the public interface; with reasonable defaults. And the composition model is breaking into smaller and more reuasable parts.
+This library is continuing to evolve as my knowledge of SwiftUI increases and SwiftUI's capabilties evolve. Every rendering strategy and value is being bubbled to the public interface; with SwuiftUI views.
 
-The gauges have no intrinsic size. On the highest level, a gauge is a Centered-Origin ZStack GeometryReader. Every component should specify its dimensions using normalized values.
+The gauges have no intrinsic size. On the highest level, a gauge is a Centered-Origin ZStack GeometryReader. Every gauge component should specify its dimensions using normalized values.
 
 The gauges render well on iPhone, iPad, Watch, and AppleTV. I have not thought about the 3D space of AppleVision.
 
@@ -26,11 +26,9 @@ To create a basic uncustomized gauge:
 
 I have created several built-in views of the gauge. See the included playgrounds for usage; including a build-your-own template.
 
-<img src="Images/Sample-Clock.png" alt="Clock" width="200"><img src="Images/Sample-Power.png" alt="Power" width="200"><img src="Images/Sample-UpTo11.png" alt="11" width="200"><img src="Images/Sample-Scale.png" alt="11" width="200">
+<img src="Images/Sample-Clock.png" alt="Clock" width="200"><img src="Images/Sample-Power.png" alt="Power" width="200"><img src="Images/Sample-UpTo11.png" alt="UpTo11" width="200"><img src="Images/Sample-Scale.png" alt="Scale" width="200">
 
 
 ## TODOS
-- Continue to break down the composition of Model and 'Set' views.
 - Correct transition animations to have entire gauge animate together.
 - Fix RadialNeedlesView warnings
-- Swiftui-ify ScrubView

@@ -1,6 +1,7 @@
 import SwiftUI
 import SbjGauge
 
+//TODO: improve
 public enum Template {
 	public struct TemplateView: View {
 		@State private var model: StandardModel

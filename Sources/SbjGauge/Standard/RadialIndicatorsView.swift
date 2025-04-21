@@ -10,6 +10,7 @@ import SwiftUI
 extension Standard {
 	@ViewBuilder
 	public static func defaultIndicator(label: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
+	//TODO: not great
 		Circle()
 			.stroke(Color.clear)
 			.overlay() {

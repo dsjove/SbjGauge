@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//TODO: improve
 public enum Colors {
 	public struct ColorsView: View {
 		let model: Model = .init()

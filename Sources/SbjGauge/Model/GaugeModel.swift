@@ -11,6 +11,7 @@ import SwiftUI
 public protocol GaugeValue: Comparable {
 	init(double: Double)
 	var toDouble: Double { get }
+	//TODO: is this sufficient or abstract enough?
 	static func += (lhs: inout Self, rhs: Self)
 }
 
@@ -26,6 +27,7 @@ extension Int : GaugeValue {
 
 public protocol GaugeModel {
 	associatedtype Value: GaugeValue = Double
+	//TODO: not always a closed range
 	var range: ClosedRange<Value> { get set }
 }
 

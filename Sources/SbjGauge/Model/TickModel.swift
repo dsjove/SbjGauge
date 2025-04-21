@@ -30,6 +30,7 @@ public struct Tick<Value: GaugeValue> {
 
 	func values(_ range: ClosedRange<Value>) -> [(element: Value, offset: Int)] {
 		var result: [(Value, Int)] = []
+		//TODO: how to support this?
 		//result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
 		var element = range.lowerBound
 		var offset = 0
@@ -52,6 +53,7 @@ public struct Tick<Value: GaugeValue> {
 }
 
 public protocol TickModel: GaugeModel {
+	//TODO: necessary?
 	var ticks: [Tick<Value>] { get }
 }
 

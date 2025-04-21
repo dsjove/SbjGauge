@@ -21,6 +21,7 @@ public extension UpTo11 {
 						Color.clear
 							.contentShape(Circle())
 #if !os(tvOS)
+//TODO: better gesture
 							.gesture(
 								DragGesture()
 									.onChanged { gesture in

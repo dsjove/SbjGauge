@@ -27,6 +27,7 @@ public struct ZStackSquare<Content: View>: View {
 			.coordinateSpace(name: "Gauge")
 			.frame(width: geometry.diameter, height: geometry.diameter, alignment: .center)
 		}
+		//TODO: have more aspect options with alignments
 		.aspectRatio(1.0, contentMode: .fit)
 		.background(isPreview ? Color.mint : Color.clear)
 	}

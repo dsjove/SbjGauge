@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: necessary?
 public protocol ValuesModel: GaugeModel {
 	var values: [Value] { get set }
 }

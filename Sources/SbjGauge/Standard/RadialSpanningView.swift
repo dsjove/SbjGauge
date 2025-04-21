@@ -43,7 +43,10 @@ extension Standard {
 			]
 			return m
 		}()) { spanArc in
-			Standard.SpanView(geom: geom, label: "\(Int(spanArc.range.lowerBound)) ... \(Int(spanArc.range.upperBound))", angles: spanArc.angles)
+			Standard.SpanView(geom: geom,
+				label: "\(Int(spanArc.range.lowerBound)) ... \(Int(spanArc.range.upperBound))",
+				angles: spanArc.angles,
+				color: Color.allCases[spanArc.idx])
 		}
 	}
 }

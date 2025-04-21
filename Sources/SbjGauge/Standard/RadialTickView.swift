@@ -34,6 +34,7 @@ extension Standard {
 			let notches = model.tickNotches(tick)
 			ForEach(notches, id: \.idx) { notch in
 				content(notch)
+			//TODO: have option for rotate but keep orientation
 					.offset(CGSize(width: 0.0, height: -geom.radius( radius)))
 					.rotationEffect(notch.angle)
 			}
