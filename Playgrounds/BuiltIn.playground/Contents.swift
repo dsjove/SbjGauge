@@ -3,22 +3,28 @@ import SbjGauge
 import PlaygroundSupport
 
 PlaygroundPage.current.setLiveView(
-	VStack {
-		Text("The following gauges are built in.").multilineTextAlignment(.center)
-		Spacer()
-		Text("Standard").bold()
-		SbjGauge.Standard.StandardView(.init(standard: 1.5))
-		Text("Clock").bold()
-		SbjGauge.Clock.ClockView()
-		Text("Power").bold()
-		SbjGauge.Power.PowerView()
-		Text("Up to 11").bold()
-		SbjGauge.UpTo11.UpTo11View()
-		Text("Scale").bold()
-		SbjGauge.Scale.ScaleView()
-		Text("Colors").bold()
-		SbjGauge.Colors.ColorsView()
+	HStack {
+		VStack {
+			Text("Standard").bold()
+			SbjGauge.Standard.StandardView(.init(standard: 1.5))
+			Text("Clock").bold()
+			SbjGauge.Clock.ClockView()
+		}
+		.frame(width: 200)
+		VStack {
+			Text("Power").bold()
+			SbjGauge.Power.PowerView()
+			Text("Scale").bold()
+			SbjGauge.Scale.ScaleView()
+		}
+		.frame(width: 200)
+		VStack {
+			Text("Up to 11").bold()
+			SbjGauge.UpTo11.UpTo11View()
+			Text("Colors").bold()
+			SbjGauge.Colors.ColorsView()
+		}
+		.frame(width: 200)
 	}
-	.frame(width: 300)
 )
 

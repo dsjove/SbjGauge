@@ -17,9 +17,11 @@ public enum Colors {
 
 		public var body: some View {
 			ZStackSquare() { geom in
-				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
-					Rectangle().fill(Color.allCases[notch.idx])
-					.frame(width: 10, height: 10)
+				Standard.BackgroundView(geom: geom)
+				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.88) { notch in
+					Circle()
+						.fill(Color.allCases[notch.idx])
+					.frame(width: geom.width(0.1))
 				}
 			}
 		}
@@ -29,7 +31,7 @@ public enum Colors {
 		var values: [Int] = [0]
 		var range: ClosedRange<Int> = 0...Color.allCases.count
 		var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-		var ticks: [Tick<Int>] = [.init(1)]
+		var ticks: [Tick<Int>] = [.init(1, ends: .start)]
 	}
 }
 
@@ -51,9 +53,9 @@ extension Color: @retroactive CaseIterable {
 			Color.white,
 			Color.gray,
 			Color.black,
-			Color.clear,
-			Color.primary,
-			Color.secondary,
+			//Color.clear,
+			//Color.primary,
+			//Color.secondary,
 		]
 	}
 }

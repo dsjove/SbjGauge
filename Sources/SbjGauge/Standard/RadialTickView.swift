@@ -11,6 +11,7 @@ extension Standard {
 	public struct RadialTickView<Model: TickModel & RadialModel, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
+		let clockwise: Bool
 		let tick: Tick<Model.Value>
 		let radius: Double
 		@ViewBuilder
@@ -19,12 +20,14 @@ extension Standard {
 		public init(
 			_ geom: GeometryProxy,
 			_ model: Model,
+			clockwise: Bool = true,
 			_ tick: Tick<Model.Value>,
 			radius: Double = 0.95,
 			 @ViewBuilder
 			_ content: @escaping (TickNotch<Model.Value>) -> Content) {
 				self.geom = geom
 				self.model = model
+				self.clockwise = clockwise
 				self.tick = tick
 				self.radius = radius
 				self.content = content
@@ -36,7 +39,7 @@ extension Standard {
 				content(notch)
 			//TODO: have option for rotate but keep orientation
 					.offset(CGSize(width: 0.0, height: -geom.radius( radius)))
-					.rotationEffect(notch.angle)
+					.rotationEffect(notch.angle * (clockwise ? 1 : -1))
 			}
 		}
 	}

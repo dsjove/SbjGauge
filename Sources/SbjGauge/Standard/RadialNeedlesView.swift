@@ -29,7 +29,7 @@ extension Standard {
 		public var body: some View {
 			ForEach(Array(model.needles().reversed()), id: \.idx) { needle in
 					content(needle)
-//TODO: Does the .degrees(360.0) always fix the 'rotate in correct direction'?
+//TODO: Does the + .degrees(360.0) always fix the 'rotate in correct direction'?
 						.rotationEffect((needle.angle + .degrees(360.0)) * (clockwise ? 1 : -1))
 //TODO: fix warning
 						.animation(.linear(duration: 0.1))

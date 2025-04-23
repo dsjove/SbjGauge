@@ -11,7 +11,7 @@ import SwiftUI
 public protocol GaugeValue: Comparable {
 	init(double: Double)
 	var toDouble: Double { get }
-	//TODO: is this sufficient or abstract enough?
+	//TODO: this needs to be stridable
 	static func += (lhs: inout Self, rhs: Self)
 }
 

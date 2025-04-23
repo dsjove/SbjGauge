@@ -28,9 +28,10 @@ public struct Tick<Value: GaugeValue> {
 			self.filter = filter
 	}
 
+	//TODO: use stride?
 	func values(_ range: ClosedRange<Value>) -> [(element: Value, offset: Int)] {
 		var result: [(Value, Int)] = []
-		//TODO: how to support this?
+		//TODO: Can we support this
 		//result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
 		var element = range.lowerBound
 		var offset = 0

@@ -10,7 +10,6 @@ import SwiftUI
 extension Standard {
 	@ViewBuilder
 	public static func defaultIndicator(label: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
-	//TODO: not great
 		Circle()
 			.stroke(Color.clear)
 			.overlay() {
@@ -18,10 +17,9 @@ extension Standard {
 					.foregroundColor(color)
 					.minimumScaleFactor(0.5)
 					.lineLimit(1)
-					.font(.title)
-					.truncationMode(.tail)
+					.font(.system(size: width * 0.5))
 					}
-		.frame(width: width)
+		.frame(height: width)
 	}
 
 	@ViewBuilder
@@ -40,7 +38,7 @@ extension Standard {
 		public init(
 			geom: GeometryProxy,
 			model: Model,
-			radius: Double = 0.200,
+			radius: Double = 0.175,
 			width: Double = 0.185,
 			@ViewBuilder content: @escaping (Model, Double) -> Content) {
 				self.geom = geom
