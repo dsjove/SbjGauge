@@ -22,6 +22,7 @@ public extension UpTo11 {
 							.contentShape(Circle())
 #if !os(tvOS)
 //TODO: better gesture
+//- should create a set of useful gestures
 							.gesture(
 								DragGesture()
 									.onChanged { gesture in

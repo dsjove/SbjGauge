@@ -10,19 +10,32 @@ import SwiftUI
 //TODO: improve
 public enum Colors {
 	public struct ColorsView: View {
-		let model: Model = .init()
+		@State private var model: Model
+
+		let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
 
 		public init() {
+			_model = State(initialValue: .init())
 		}
 
 		public var body: some View {
 			ZStackSquare() { geom in
-				Standard.BackgroundView(geom: geom)
+				Power.BackgroundView(geom: geom, color: Color.allCases[model.values[0]])
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.88) { notch in
 					Circle()
 						.fill(Color.allCases[notch.idx])
-					.frame(width: geom.width(0.1))
+						.frame(width: geom.width(0.1))
+						.overlay(Text(notch.idx.description).font(.caption).foregroundColor(Color.white))
+					if notch.idx == model.values[0] {
+						Circle()
+							.stroke(Color.allCases[notch.idx].complementary(), lineWidth: geom.width(0.01))
+							.frame(width: geom.width(0.1))
+					}
 				}
+			}
+			.onReceive(timer) { input in
+				model[0] = model[0] >= (model.range.upperBound-1) ?
+					0 : model[0] + 1
 			}
 		}
 	}
@@ -57,6 +70,25 @@ extension Color: @retroactive CaseIterable {
 			//Color.primary,
 			//Color.secondary,
 		]
+	}
+
+	func complementary(alpha: Double? = nil) -> Color {
+		// Extract the RGB components of the color
+		let uiColor = UIColor(self)
+		var red: CGFloat = 0
+		var green: CGFloat = 0
+		var blue: CGFloat = 0
+		var opacity: CGFloat = 0
+
+		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &opacity)
+
+		// Calculate the complementary color
+		let complementaryRed = 1.0 - red
+		let complementaryGreen = 1.0 - green
+		let complementaryBlue = 1.0 - blue
+		let complementaryOpacity = alpha ?? opacity
+
+		return Color(red: complementaryRed, green: complementaryGreen, blue: complementaryBlue, opacity: complementaryOpacity)
 	}
 }
 

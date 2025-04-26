@@ -38,6 +38,7 @@ extension Standard {
 			ForEach(notches, id: \.idx) { notch in
 				content(notch)
 			//TODO: have option for rotate but keep orientation
+			// - initial reverse rotation around view's intrinsic center
 					.offset(CGSize(width: 0.0, height: -geom.radius( radius)))
 					.rotationEffect(notch.angle * (clockwise ? 1 : -1))
 			}

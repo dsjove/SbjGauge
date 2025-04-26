@@ -11,7 +11,7 @@ import SwiftUI
 public protocol GaugeValue: Comparable {
 	init(double: Double)
 	var toDouble: Double { get }
-	//TODO: this needs to be stridable
+	//TODO: this should be stridable
 	static func += (lhs: inout Self, rhs: Self)
 }
 
@@ -27,7 +27,7 @@ extension Int : GaugeValue {
 
 public protocol GaugeModel {
 	associatedtype Value: GaugeValue = Double
-	//TODO: not always a closed range
+	//TODO: do we need to support open Ranges?
 	var range: ClosedRange<Value> { get set }
 }
 

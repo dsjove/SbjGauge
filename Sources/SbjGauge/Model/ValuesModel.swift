@@ -8,6 +8,7 @@
 import Foundation
 
 //TODO: necessary?
+//TODO: if keeping, user defined named Values
 public protocol ValuesModel: GaugeModel {
 	var values: [Value] { get set }
 }

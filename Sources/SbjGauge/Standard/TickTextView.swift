@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//TODO: add alignment param
+//TODO: replace offset with alignment
 extension Standard {
 	public struct TickTextView: View {
 		let geom: GeometryProxy
