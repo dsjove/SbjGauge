@@ -57,7 +57,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		Standard.RadialIndicatorsView(geom: $0, model: 99) { m, w in
 			Standard.defaultIndicator(label: "H", width: w)
 			Standard.defaultIndicator(label: "E", width: w)

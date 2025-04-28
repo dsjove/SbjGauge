@@ -39,7 +39,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() { geom in
+	GaugeGeometryView() { geom in
 		Standard.RadialNeedlesView(geom: geom, model: StandardModel(standard: 3.33)) { _ in
 			Standard.NeedleView(geom: geom)
 		}

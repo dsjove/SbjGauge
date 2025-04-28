@@ -37,7 +37,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		Standard.RimView(geom: $0)
 	}
 }

@@ -30,7 +30,7 @@ public extension Standard {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		Standard.BackgroundView(geom: $0)
 	}
 }

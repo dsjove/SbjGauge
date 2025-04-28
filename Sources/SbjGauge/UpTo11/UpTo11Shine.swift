@@ -34,7 +34,7 @@ public extension UpTo11 {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		UpTo11.ShineView(geom: $0, width: 0.45)
 	}
 }

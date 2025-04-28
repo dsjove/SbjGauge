@@ -47,7 +47,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() { geom in
+	GaugeGeometryView() { geom in
 		Circle().stroke()
 		Circle().stroke().frame(width: geom.width(0.8))
 		Standard.RadialTickView(geom, StandardModel(standard: 0), .init(1.0), radius: 0.8) { notch in

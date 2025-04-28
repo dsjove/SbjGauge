@@ -16,7 +16,7 @@ public enum UpTo11 {
 		}
 
 		public var body: some View {
-			ZStackSquare() { geom in
+			GaugeGeometryView() { geom in
 				Color.sbjGauge("UpTo11/Background")
 				Standard.RadialTickView(geom, model, model.ticks[0],
 						radius: 0.7) { notch in

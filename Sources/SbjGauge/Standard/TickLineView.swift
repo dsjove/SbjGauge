@@ -44,7 +44,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		Standard.TickLineView(geom: $0, width: 0.004)
 	}
 }

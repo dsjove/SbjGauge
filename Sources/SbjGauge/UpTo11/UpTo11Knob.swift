@@ -44,7 +44,7 @@ public extension UpTo11 {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		UpTo11.KnobView(geom: $0, width: 0.45)
 	}
 }

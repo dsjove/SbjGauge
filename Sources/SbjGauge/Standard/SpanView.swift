@@ -67,7 +67,7 @@ extension Standard {
 }
 
 #Preview {
-	ZStackSquare() {
+	GaugeGeometryView() {
 		Standard.SpanView(
 			geom: $0,
 			label: "Hello",

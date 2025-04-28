@@ -16,7 +16,7 @@ public enum Standard {
 		}
 
 		public var body: some View {
-			ZStackSquare() { geom in
+			GaugeGeometryView() { geom in
 				BackgroundView(geom: geom)
 				RadialTickView(geom, model, model.ticks[0]) { notch in
 					TickLineView(geom: geom)

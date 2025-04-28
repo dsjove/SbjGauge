@@ -1,5 +1,5 @@
 //
-//  ZStackSquare.swift
+//  GaugeGeometryView.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/1/25.
@@ -12,7 +12,7 @@ import SwiftUI
  * The gauge has no intrinsic size, stacks its views and origin is center.
  * This view sets that up.
  */
-public struct ZStackSquare<Content: View>: View {
+public struct GaugeGeometryView<Content: View>: View {
 	@ViewBuilder private let content: (GeometryProxy) -> Content
 
 	public init(@ViewBuilder _ content: @escaping (GeometryProxy) -> Content) {
@@ -37,7 +37,7 @@ public struct ZStackSquare<Content: View>: View {
 }
 
 #Preview {
-	ZStackSquare() { geom in
+	GaugeGeometryView() { geom in
 		Text("Hello")
 			.foregroundColor(Color.white)
 	}

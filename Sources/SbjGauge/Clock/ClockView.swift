@@ -16,7 +16,7 @@ public enum Clock {
 		}
 
 		public var body: some View {
-			ZStackSquare() { geom in
+			GaugeGeometryView() { geom in
 				Standard.BackgroundView(geom: geom)
 				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
 					Standard.TickLineView(geom: geom,
