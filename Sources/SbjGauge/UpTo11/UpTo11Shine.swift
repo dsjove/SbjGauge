@@ -34,7 +34,7 @@ public extension UpTo11 {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		UpTo11.ShineView(geom: $0, width: 0.45)
 	}
 }

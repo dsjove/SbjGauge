@@ -19,7 +19,7 @@ public enum Colors {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				Power.BackgroundView(geom: geom, color: Color.allCases[model.values[0]])
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.88) { notch in
 					Circle()

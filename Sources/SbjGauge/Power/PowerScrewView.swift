@@ -41,7 +41,7 @@ extension Power {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Power.ScrewView(geom: $0)
 	}
 }

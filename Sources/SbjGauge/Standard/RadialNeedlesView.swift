@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//TODO: make into view modifier that takes a single needle
+
 extension Standard {
 	public struct RadialNeedlesView<Model: ValuesModel & RadialModel, Content: View>: View {
 		let geom: GeometryProxy
@@ -39,7 +41,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() { geom in
+	Standard.GeometryView() { geom in
 		Standard.RadialNeedlesView(geom: geom, model: StandardModel(standard: 3.33)) { _ in
 			Standard.NeedleView(geom: geom)
 		}

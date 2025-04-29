@@ -30,7 +30,7 @@ public extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.BackgroundView(geom: $0)
 	}
 }

@@ -16,7 +16,7 @@ public enum Clock {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				Standard.BackgroundView(geom: geom)
 				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
 					Standard.TickLineView(geom: geom,

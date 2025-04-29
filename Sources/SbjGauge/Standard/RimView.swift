@@ -37,7 +37,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.RimView(geom: $0)
 	}
 }

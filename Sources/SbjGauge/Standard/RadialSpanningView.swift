@@ -32,7 +32,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() { geom in
+	Standard.GeometryView() { geom in
 		Standard.RadialSpanningView(geom: geom, model: {
 			var m = StandardModel(standard: 0)
 			m.spans = [

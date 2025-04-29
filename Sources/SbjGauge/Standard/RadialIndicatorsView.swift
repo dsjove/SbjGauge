@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//TODO: Make into view modifier
+
 extension Standard {
 	@ViewBuilder
 	public static func defaultIndicator(label: String, width: Double, color: Color = .sbjGauge("Standard/Indicator")) -> some View {
@@ -57,7 +59,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.RadialIndicatorsView(geom: $0, model: 99) { m, w in
 			Standard.defaultIndicator(label: "H", width: w)
 			Standard.defaultIndicator(label: "E", width: w)

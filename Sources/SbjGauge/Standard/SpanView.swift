@@ -67,7 +67,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.SpanView(
 			geom: $0,
 			label: "Hello",

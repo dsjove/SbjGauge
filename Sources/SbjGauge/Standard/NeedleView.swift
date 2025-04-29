@@ -45,7 +45,7 @@ public extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.NeedleView(geom: $0)
 	}
 }

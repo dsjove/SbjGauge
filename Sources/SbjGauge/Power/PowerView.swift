@@ -28,7 +28,7 @@ public enum Power {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				Power.BackgroundView(geom: geom)
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.9) { notch in
 					let color = colorForSpan(model.span(for: notch.value)?.0)

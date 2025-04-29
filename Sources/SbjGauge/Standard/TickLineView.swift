@@ -44,7 +44,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.TickLineView(geom: $0, width: 0.004)
 	}
 }

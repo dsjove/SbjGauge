@@ -16,7 +16,7 @@ public enum UpTo11 {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				Color.sbjGauge("UpTo11/Background")
 				Standard.RadialTickView(geom, model, model.ticks[0],
 						radius: 0.7) { notch in

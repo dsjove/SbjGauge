@@ -42,7 +42,7 @@ extension Standard {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Standard.TickTextView(geom: $0, text: "Hi")
 	}
 }

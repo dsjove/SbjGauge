@@ -14,7 +14,7 @@ public enum Template {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				SwirlView()
 				Clock.SecondsHandView(geom: geom)
 				Standard.RadialNeedlesView(geom: geom, model: model) { needle in

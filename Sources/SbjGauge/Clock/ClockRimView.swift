@@ -41,7 +41,7 @@ public extension Clock {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Clock.RimView(geom: $0)
 	}
 }

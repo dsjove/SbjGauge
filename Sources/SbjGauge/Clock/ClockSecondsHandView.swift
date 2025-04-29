@@ -42,7 +42,7 @@ public extension Clock {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Clock.SecondsHandView(geom: $0)
 	}
 }

@@ -61,7 +61,7 @@ extension Power {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Power.NeedleView(geom: $0)
 	}
 }

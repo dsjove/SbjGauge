@@ -49,7 +49,7 @@ extension Power {
 }
 
 #Preview {
-	GaugeGeometryView() {
+	Standard.GeometryView() {
 		Power.BackgroundView(geom: $0)
 	}
 }

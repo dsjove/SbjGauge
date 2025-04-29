@@ -16,7 +16,7 @@ public enum Scale {
 		}
 
 		public var body: some View {
-			GaugeGeometryView() { geom in
+			Standard.GeometryView() { geom in
 				Standard.BackgroundView(geom: geom)
 				Circle()
 					.stroke()
