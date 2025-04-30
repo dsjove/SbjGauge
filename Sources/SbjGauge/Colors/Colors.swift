@@ -40,7 +40,7 @@ public enum Colors {
 		}
 	}
 
-	struct Model: RadialModel & TickModel {
+	struct Model: RadialModel {
 		var values: [Int] = [0]
 		var range: ClosedRange<Int> = 0...Color.allCases.count
 		var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)

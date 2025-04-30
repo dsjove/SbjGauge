@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct StandardModel: RadialModel & TickModel & SpanningModel {
+public struct StandardModel: RadialModel & SpanningModel {
 
 	public init(value: Value, range: ClosedRange<Value>) {
 		self.values = [range.clamp(value)]

@@ -53,18 +53,6 @@ public struct Tick<Value: GaugeValue> {
 	}
 }
 
-public protocol TickModel: GaugeModel {
-	//TODO: necessary?
-	//TODO: if keeping, user defined named Ticks
-	var ticks: [Tick<Value>] { get }
-}
-
-public extension TickModel {
-	func values(_ tick: Tick<Value>) -> [(element: Value, offset: Int)] {
-		tick.values(range)
-	}
-}
-
 public struct TickNotch<Value> {
 	public let idx: Int
 	public let count: Int
@@ -79,9 +67,9 @@ public struct TickNotch<Value> {
 	}
 }
 
-public extension TickModel where Self: RadialModel {
+public extension RadialModel {
 	func tickNotches(_ tick: Tick<Value>) -> [TickNotch<Value>] {
-		let values = values(tick)
+		let values = tick.values(self.range)
 		let count = values.count
 		return values.map { (value, offset) in
 			.init(offset, count, value, angle(value: value))

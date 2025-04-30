@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Standard {
-	public struct RadialTickView<Model: TickModel & RadialModel, Content: View>: View {
+	public struct RadialTickView<Model: RadialModel, Content: View>: View {
 		let geom: GeometryProxy
 		let model: Model
 		let clockwise: Bool

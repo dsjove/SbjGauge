@@ -34,14 +34,6 @@ public protocol GaugeModel {
 }
 
 public extension GaugeModel {
-	func norm(value: Value) -> Double {
-		range.norm(range.clamp(value))
-	}
-
-	func value(norm: Double) -> Value {
-		range.clamp(range.value(norm))
-	}
-	
 	subscript(index: Int) -> Value {
 		get { values[index] }
 		set { values[index] = range.clamp(newValue) }

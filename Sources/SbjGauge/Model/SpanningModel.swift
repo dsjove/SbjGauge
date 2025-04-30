@@ -21,7 +21,7 @@ public struct Span<Value : GaugeValue> {
 }
 
 public protocol SpanningModel: GaugeModel {
-	//TODO: user defined named spans
+	//TODO: user defined names for spans
 	var spans: [Span<Value>]  { get set }
 }
 
