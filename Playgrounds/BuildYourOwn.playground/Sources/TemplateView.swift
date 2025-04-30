@@ -17,14 +17,13 @@ public enum Template {
 			Standard.GeometryView() { geom in
 				SwirlView()
 				Clock.SecondsHandView(geom: geom)
-				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
-					Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
-						Standard.TickLineView(geom: geom)
-						Standard.TickTextView(geom: geom,
-							text: Int(notch.value).description,
-							length: 0.2)
-					}
+				Standard.RadialTickView(geom, model, model.ticks[0]) { notch in
+					Standard.TickLineView(geom: geom)
+					Standard.TickTextView(geom: geom,
+						text: Int(notch.value).description,
+						length: 0.2)
 				}
+				.radialRotate(model.needle())
 			}
 			.onReceive(timer) { input in
 				if model[0] >= model.range.upperBound {

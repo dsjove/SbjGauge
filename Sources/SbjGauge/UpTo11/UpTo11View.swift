@@ -30,9 +30,8 @@ public enum UpTo11 {
 						width: 0.008,
 						color: .black)
 				}
-				Standard.RadialNeedlesView(geom: geom, model: model) { _ in
-					KnobView(geom: geom)
-				}
+				KnobView(geom: geom)
+					.radialRotate(model.needle())
 				ShineView(geom: geom)
 			}
 		}

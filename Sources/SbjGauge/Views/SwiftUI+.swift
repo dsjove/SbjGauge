@@ -49,16 +49,8 @@ public extension Color {
 	}
 }
 
-/**
- * Convenience constructor that includes alpha
- */
-extension Color {
-	init(_ r: Double, _ g: Double, _ b: Double, _ o: Double = 1.0) {
-		self = Color( red: r, green: g, blue: b).opacity(o)
-	}
-}
-
 extension View {
+	//SwiftPlayground App-Preview has this set, not great.
 	var isPreview: Bool {
 		return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 	}

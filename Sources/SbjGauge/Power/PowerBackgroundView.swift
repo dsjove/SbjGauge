@@ -24,24 +24,24 @@ extension Power {
 				.fill(.radialGradient(
 					stops: [
 						Gradient.Stop(
-							color: Color(0.375, 0.375, 0.375), location: 0.35),
+							color: Color(red: 0.375, green: 0.375, blue: 0.375), location: 0.35),
 						Gradient.Stop(
-							color: Color(0.265, 0.265, 0.265), location: 0.96),
+							color: Color(red: 0.265, green: 0.265, blue: 0.265), location: 0.96),
 						Gradient.Stop(
-							color: Color(0.125, 0.125, 0.125), location: 1.0),
+							color: Color(red: 0.125, green: 0.125, blue: 0.125), location: 1.0),
 					], center: UnitPoint(x: 0.5, y: 0.5), startRadius: 0, endRadius: geom.radius))
 					.colorMultiply(color)
 			Circle()
 				.fill(.radialGradient(
 					stops: [
 						Gradient.Stop(
-							color: Color(0.156, 0.375, 0.664, 0.234), location: 0.60),
+							color: Color(red: 0.156, green: 0.375, blue: 0.664, opacity: 0.234), location: 0.60),
 						Gradient.Stop(
-							color: Color(0.059, 0.132, 0.382, 0.312), location: 0.85),
+							color: Color(red: 0.059, green: 0.132, blue: 0.382, opacity: 0.312), location: 0.85),
 						Gradient.Stop(
-							color: Color(0.0, 0.0, 0.0, 0.468), location: 0.96),
+							color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.468), location: 0.96),
 						Gradient.Stop(
-							color: Color(0.0, 0.0, 0.0, 0.546), location: 1.0),
+							color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.546), location: 1.0),
 					], center: UnitPoint(x: 0.5, y: 0.5), startRadius: 0, endRadius: geom.radius))
 					.colorMultiply(color)
 		}

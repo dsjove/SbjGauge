@@ -49,14 +49,12 @@ public enum Power {
 						 color: .sbjGauge("Power/Tick"))
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
-				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
-					switch needle.idx {
-						case 0:
-							Power.NeedleView(geom: geom, alpha: 1.0)
-						default:
-							Power.NeedleView(geom: geom, alpha: 0.33 /  Double(needle.idx))
-					}
-				}
+
+				Power.NeedleView(geom: geom, alpha: 0.33)
+					.radialRotate(model.needle(1))
+				Power.NeedleView(geom: geom, alpha: 1.0)
+					.radialRotate(model.needle(0))
+
 				Standard.RadialSpanningView(geom: geom, model: model) { spanArc in
 					Standard.SpanView(
 						geom: geom,

@@ -20,13 +20,13 @@ public enum Colors {
 
 		public var body: some View {
 			Standard.GeometryView() { geom in
-				Power.BackgroundView(geom: geom, color: Color.allCases[model.values[0]])
+				Power.BackgroundView(geom: geom, color: Color.allCases[model[0]])
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.88) { notch in
 					Circle()
 						.fill(Color.allCases[notch.idx])
 						.frame(width: geom.width(0.1))
 						.overlay(Text(notch.idx.description).font(.caption).foregroundColor(Color.white))
-					if notch.idx == model.values[0] {
+					if notch.idx == model[0] {
 						Circle()
 							.stroke(Color.allCases[notch.idx].complementary(), lineWidth: geom.width(0.01))
 							.frame(width: geom.width(0.1))
@@ -40,7 +40,7 @@ public enum Colors {
 		}
 	}
 
-	struct Model: ValuesModel & RadialModel & TickModel {
+	struct Model: RadialModel & TickModel {
 		var values: [Int] = [0]
 		var range: ClosedRange<Int> = 0...Color.allCases.count
 		var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)

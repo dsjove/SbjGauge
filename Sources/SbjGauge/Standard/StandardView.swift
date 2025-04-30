@@ -26,9 +26,8 @@ public enum Standard {
 						offset: 0.1)
 				}
 				RadialIndicatorsView(geom: geom, model: model, content: defaultIndicators)
-				RadialNeedlesView(geom: geom, model: model) { _ in
-					NeedleView(geom: geom)
-				}
+				NeedleView(geom: geom)
+					.radialRotate(model.needle())
 				RimView(geom: geom)
 			}
 		}

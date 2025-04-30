@@ -34,21 +34,17 @@ public enum Clock {
 						color: .black)
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model) { model, width in
-					let am = model.values[3] < 12
+					let am = model[3] < 12
 					Standard.defaultIndicator(label: am ? "AM" : "PM", width: width)
 				}
-				Standard.RadialNeedlesView(geom: geom, model: model) { needle in
-					switch needle.idx {
-					case 0:
-						SecondsHandView(geom: geom)
-					case 1:
-						Standard.NeedleView(geom: geom, radius: 0.7, width: 0.025)
-					case 2:
-						Standard.NeedleView(geom: geom, radius: 0.5, width: 0.04)
-					default:
-						EmptyView()
-					}
-				}
+
+				Standard.NeedleView(geom: geom, radius: 0.5, width: 0.04)
+					.radialRotate(model.needle(2))
+				Standard.NeedleView(geom: geom, radius: 0.7, width: 0.025)
+					.radialRotate(model.needle(1))
+				SecondsHandView(geom: geom)
+					.radialRotate(model.needle(0))
+
 				RimView(geom: geom)
 			}
 		}

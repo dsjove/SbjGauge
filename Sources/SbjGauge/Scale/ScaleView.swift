@@ -18,44 +18,49 @@ public enum Scale {
 		public var body: some View {
 			Standard.GeometryView() { geom in
 				Standard.BackgroundView(geom: geom)
+				
 				Circle()
 					.stroke()
 					.frame(width: geom.width(0.80))
-				Standard.RadialNeedlesView(geom: geom, model: model, clockwise: false) { _ in
-					Standard.RadialTickView(geom, model, model.ticks[0],
-							radius: 0.8) { notch in
-						let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
-						Standard.TickTextView(geom: geom,
-							text: v,
-							offset: -0.15)
-						Standard.TickLineView(geom: geom,
-							length: 0.05,
-							offset: -0.05)
-					}
-					Standard.RadialTickView(geom, model, model.ticks[1],
-							radius: 0.8) { notch in
-						Standard.TickLineView(geom: geom,
-							length: 0.03,
-							offset: -0.03)
-					}
-					Standard.RadialTickView(geom, model, model.ticks[2],
-							radius: 0.8) { notch in
-						let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
-						Standard.TickTextView(geom: geom,
-							text: v,
-							length: notch.idx == notch.count-1 ? 0.075 : 0.1,
-							offset: 0.05)
-						Standard.TickLineView(geom: geom,
-							length: 0.05,
-							offset: 0.0)
-					}
-					Standard.RadialTickView(geom, model, model.ticks[3],
-							radius: 0.8) { notch in
-						Standard.TickLineView(geom: geom,
-							length: 0.03,
-							offset: 0.0)
-					}
+
+				Standard.RadialTickView(geom, model, model.ticks[0],
+						radius: 0.8) { notch in
+					let v = "\(Int(notch.value).description)\(notch.idx == 0 ? "lb" : "")"
+					Standard.TickTextView(geom: geom,
+						text: v,
+						offset: -0.15)
+					Standard.TickLineView(geom: geom,
+						length: 0.05,
+						offset: -0.05)
 				}
+				.radialRotate(model.needle(), clockwise: false)
+				Standard.RadialTickView(geom, model, model.ticks[1],
+						radius: 0.8) { notch in
+					Standard.TickLineView(geom: geom,
+						length: 0.03,
+						offset: -0.03)
+				}
+				.radialRotate(model.needle(), clockwise: false)
+				Standard.RadialTickView(geom, model, model.ticks[2],
+						radius: 0.8) { notch in
+					let v = "\(Int((notch.value * 0.453592).rounded(.up)).description)\(notch.idx == 0 ? "kg" : "")"
+					Standard.TickTextView(geom: geom,
+						text: v,
+						length: notch.idx == notch.count-1 ? 0.075 : 0.1,
+						offset: 0.05)
+					Standard.TickLineView(geom: geom,
+						length: 0.05,
+						offset: 0.0)
+				}
+				.radialRotate(model.needle(), clockwise: false)
+				Standard.RadialTickView(geom, model, model.ticks[3],
+						radius: 0.8) { notch in
+					Standard.TickLineView(geom: geom,
+						length: 0.03,
+						offset: 0.0)
+				}
+				.radialRotate(model.needle(), clockwise: false)
+
 				Standard.NeedleView(geom: geom, radius: 1.0, color: Color.red)
 			}
 			.clipShape(PieWedgeShape(

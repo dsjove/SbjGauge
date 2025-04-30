@@ -31,5 +31,5 @@ I have created several built-in views of the gauge. See the included playgrounds
 
 ## BUGS
 - Correct transition animations to have entire gauge animate together.
-- Fix RadialNeedlesView warning
+- Fix RadialRotateModifier warning
 - Solve the Closed versus Open versus Cyclic Math problem

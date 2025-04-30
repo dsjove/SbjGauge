@@ -29,6 +29,28 @@ public protocol GaugeModel {
 	associatedtype Value: GaugeValue = Double
 	//TODO: do we need to support open Ranges?
 	var range: ClosedRange<Value> { get set }
+	
+	var values: [Value] { get set }
+}
+
+public extension GaugeModel {
+	func norm(value: Value) -> Double {
+		range.norm(range.clamp(value))
+	}
+
+	func value(norm: Double) -> Value {
+		range.clamp(range.value(norm))
+	}
+	
+	subscript(index: Int) -> Value {
+		get { values[index] }
+		set { values[index] = range.clamp(newValue) }
+	}
+
+	subscript(norm index: Int) -> Double {
+		get { range.norm(values[index]) }
+		set { values[index] = range.clamp(range.value(newValue)) }
+	}
 }
 
 public extension ClosedRange where Bound: GaugeValue {

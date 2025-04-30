@@ -16,6 +16,16 @@ extension Angle : GaugeValue {
 	public var toDouble: Double { self.degrees }
 }
 
+public struct Needle<Value> {
+	public let value: Value
+	public let angle: Angle
+
+	public init(_ value: Value, _ angle: Angle) {
+		self.value = value
+		self.angle = angle
+	}
+}
+
 public extension RadialModel {
 	var angles: ClosedRange<Angle> { .degrees(0) ... .degrees(360) }
 
@@ -26,24 +36,9 @@ public extension RadialModel {
 	func value(angle: Angle) -> Value {
 		range.value(angles.norm(angle))
 	}
-}
 
-public struct Needle<Value> {
-	public let idx: Int
-	public let count: Int
-	public let value: Value
-	public let angle: Angle
-
-	public init(_ idx: Int, _ count: Int, _ value: Value, _ angle: Angle) {
-		self.idx = idx
-		self.count = count
-		self.value = value
-		self.angle = angle
-	}
-}
-
-public extension RadialModel where Self: ValuesModel {
-	func needles() -> [Needle<Value>] {
-		values.enumerated().map { Needle($0.offset, values.count, $0.element, angle(value: $0.element)) }
+	func needle(_ idx: Int = 0) -> Needle<Value> {
+		let value = self[idx]
+		return Needle(value, angle(value: value))
 	}
 }
