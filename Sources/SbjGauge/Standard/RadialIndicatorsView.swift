@@ -26,7 +26,7 @@ extension Standard {
 
 	@ViewBuilder
 	public static func defaultIndicators<Model: GaugeModel>(model: Model, width: Double)  -> some View where Model.Value == Double {
-		defaultIndicator(label: String(format: "%.01f", model[0]), width: width)
+		defaultIndicator(label: String(format: "%.01f", model.value), width: width)
 	}
 
 	public struct RadialIndicatorsView<Model, Content: View>: View {

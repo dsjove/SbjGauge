@@ -8,6 +8,11 @@
 import SwiftUI
 
 public enum Power {
+	enum Value: Int {
+		case power = 0
+		case control = 1
+	}
+
 	@ViewBuilder
 	public static func defaultIndicators(model: StandardModel, width: Double) -> some View {
 		Standard.defaultIndicator(label: "Power", width: width, color: .sbjGauge("Power/Indicator"))
@@ -51,9 +56,9 @@ public enum Power {
 				Standard.RadialIndicatorsView(geom: geom, model: model, content: indicators)
 
 				Power.NeedleView(geom: geom, alpha: 0.33)
-					.radialRotate(model.needle(1))
+					.radialRotate(model.needle(Value.control))
 				Power.NeedleView(geom: geom, alpha: 1.0)
-					.radialRotate(model.needle(0))
+					.radialRotate(model.needle(Value.power))
 
 				Standard.RadialSpanningView(geom: geom, model: model) { spanArc in
 					Standard.SpanView(

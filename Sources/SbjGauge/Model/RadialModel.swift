@@ -41,4 +41,8 @@ public extension RadialModel {
 		let value = self[idx]
 		return Needle(value, angle(value: value))
 	}
+
+	func needle<Name: RawRepresentable>(_ idx: Name) -> Needle<Value> where Name.RawValue == Int {
+		return needle(idx.rawValue)
+	}
 }

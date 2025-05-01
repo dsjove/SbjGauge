@@ -20,13 +20,13 @@ public enum Colors {
 
 		public var body: some View {
 			Standard.GeometryView() { geom in
-				Power.BackgroundView(geom: geom, color: Color.allCases[model[0]])
+				Power.BackgroundView(geom: geom, color: Color.allCases[model.value])
 				Standard.RadialTickView(geom, model, model.ticks[0], radius: 0.88) { notch in
 					Circle()
 						.fill(Color.allCases[notch.idx])
 						.frame(width: geom.width(0.1))
 						.overlay(Text(notch.idx.description).font(.caption).foregroundColor(Color.white))
-					if notch.idx == model[0] {
+					if notch.idx == model.value {
 						Circle()
 							.stroke(Color.allCases[notch.idx].complementary(), lineWidth: geom.width(0.01))
 							.frame(width: geom.width(0.1))
@@ -34,8 +34,8 @@ public enum Colors {
 				}
 			}
 			.onReceive(timer) { input in
-				model[0] = model[0] >= (model.range.upperBound-1) ?
-					0 : model[0] + 1
+				model.value = model.value >= (model.range.upperBound-1) ?
+					0 : model.value + 1
 			}
 		}
 	}

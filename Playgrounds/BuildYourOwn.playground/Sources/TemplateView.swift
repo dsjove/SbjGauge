@@ -26,13 +26,13 @@ public enum Template {
 				.radialRotate(model.needle())
 			}
 			.onReceive(timer) { input in
-				if model[0] >= model.range.upperBound {
+				if model.value >= model.range.upperBound {
 					increment = -1.0
 				}
-				else if model[0] <= model.range.lowerBound {
+				else if model.value <= model.range.lowerBound {
 					increment = 1.0
 				}
-				model[0] += increment
+				model.value += increment
 			}
 		}
 	}

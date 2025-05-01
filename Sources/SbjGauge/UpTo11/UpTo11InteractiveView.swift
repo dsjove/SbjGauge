@@ -29,7 +29,7 @@ public extension UpTo11 {
 										let l1 = gesture.translation.height
 										let l2 = gesture.translation.width
 										let l = abs(l1) > abs(l2) ? l1 : l2
-										model[0] += l / geometry.size.width
+										model.value += l / geometry.size.width
 									})
 #endif
 				})

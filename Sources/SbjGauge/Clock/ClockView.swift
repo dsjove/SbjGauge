@@ -8,6 +8,13 @@
 import SwiftUI
 
 public enum Clock {
+	enum Hand: Int {
+		case second = 0
+		case minute = 1
+		case hour = 2
+		case hour24 = 3
+	}
+
 	public struct ClockView: View {
 		let model: StandardModel
 
@@ -34,16 +41,16 @@ public enum Clock {
 						color: .black)
 				}
 				Standard.RadialIndicatorsView(geom: geom, model: model) { model, width in
-					let am = model[3] < 12
+					let am = model[Hand.hour24] < 12
 					Standard.defaultIndicator(label: am ? "AM" : "PM", width: width)
 				}
 
 				Standard.NeedleView(geom: geom, radius: 0.5, width: 0.04)
-					.radialRotate(model.needle(2))
+					.radialRotate(model.needle(Hand.hour))
 				Standard.NeedleView(geom: geom, radius: 0.7, width: 0.025)
-					.radialRotate(model.needle(1))
+					.radialRotate(model.needle(Hand.minute))
 				SecondsHandView(geom: geom)
-					.radialRotate(model.needle(0))
+					.radialRotate(model.needle(Hand.second))
 
 				RimView(geom: geom)
 			}

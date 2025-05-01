@@ -43,6 +43,21 @@ public extension GaugeModel {
 		get { range.norm(values[index]) }
 		set { values[index] = range.clamp(range.value(newValue)) }
 	}
+
+	var value: Value {
+		get { self[0] }
+		set { self[0] = newValue }
+	}
+
+	subscript<Name: RawRepresentable>(index: Name) -> Value where Name.RawValue == Int {
+		get { self[index.rawValue] }
+		set { self[index.rawValue] = newValue }
+	}
+
+	subscript<Name: RawRepresentable>(norm index: Name) -> Double where Name.RawValue == Int {
+		get { self[norm: index.rawValue] }
+		set { self[norm: index.rawValue] = newValue }
+	}
 }
 
 public extension ClosedRange where Bound: GaugeValue {
