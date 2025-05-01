@@ -28,11 +28,10 @@ public struct Tick<Value: GaugeValue> {
 			self.filter = filter
 	}
 
-	//TODO: use stride?
-	func values(_ range: ClosedRange<Value>) -> [(element: Value, offset: Int)] {
+	//TODO: clamping?
+	func stride(_ range: ClosedRange<Value>) -> [(element: Value, offset: Int)] {
 		var result: [(Value, Int)] = []
-		//TODO: Can we support this?
-		//result.reserveCapacity(Int((range.upperBound - range.lowerBound) / increment) + 1)
+		result.reserveCapacity(Int((range.upperBound.toDouble - range.lowerBound.toDouble) / increment.toDouble) + 1)
 		var element = range.lowerBound
 		var offset = 0
 		var appended = false
@@ -69,7 +68,7 @@ public struct TickNotch<Value> {
 
 public extension RadialModel {
 	func tickNotches(_ tick: Tick<Value>) -> [TickNotch<Value>] {
-		let values = tick.values(self.range)
+		let values = tick.stride(self.range)
 		let count = values.count
 		return values.map { (value, offset) in
 			.init(offset, count, value, angle(value: value))
