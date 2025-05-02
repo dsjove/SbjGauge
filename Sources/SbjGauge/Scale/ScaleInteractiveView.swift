@@ -20,11 +20,11 @@ public extension Scale {
 				.contentShape(Rectangle())
 				.onLongPressGesture {
 					withAnimation(.easeOut(duration: 3.0)) {
-						model[norm: 0] = 0.95
+						model.norm = 0.95
 					}
 				} onPressingChanged: { isPressing in
 					withAnimation(.easeOut(duration: 3.0)) {
-						model[norm: 0] = isPressing ? 0.47 : 0
+						model.norm = isPressing ? 0.47 : 0
 					}
 				}
 		}

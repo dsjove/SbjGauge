@@ -16,7 +16,7 @@ public enum Standard {
 		}
 
 		public var body: some View {
-			Standard.GeometryView() { geom in
+			GeometryView() { geom in
 				BackgroundView(geom: geom)
 				RadialTickView(geom, model, model.ticks[0]) { notch in
 					TickLineView(geom: geom)
@@ -36,8 +36,7 @@ public enum Standard {
 
 public extension StandardModel {
 	init(standard value: Double, range: ClosedRange<Double> = 0 ... 10) {
-		self.range = range
-		values = [range.clamp(value)]
+		self.init(value: value, range: range, clampStyle: .cycleOpenUpper)
 	}
 }
 

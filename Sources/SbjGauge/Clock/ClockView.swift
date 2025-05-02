@@ -66,16 +66,18 @@ public extension StandardModel {
 		let currentMinute = Double(calendar.component(.minute, from: date))
 		let currentSecond = Double(calendar.component(.second, from: date))
 
-		range = 0 ... 43200.0
+		let range = 0 ... 43200.0
 
 		let hourPos = currentHour * 3600.0 + currentMinute * 60.0 + currentSecond
 		let minutePos = 12.0 * ((60.0 * currentMinute) + currentSecond)
 		let secondPos = 720.0 * currentSecond
-		values = [secondPos, minutePos, hourPos, hour]
+		let values = [secondPos, minutePos, hourPos, hour]
+
+		self.init(values: values, range: range)
 
 		ticks = [
-			.init(3600, ends: .end),
-			.init(720, ends: .end, filter: { _, idc in !idc.isMultiple(of: 5)})
+			.init(3600, ends: .cycleOpenLower),
+			.init(720, ends: .cycleOpenLower, filter: { _, idc in !idc.isMultiple(of: 5)})
 		]
 	}
 }

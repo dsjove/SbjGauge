@@ -40,12 +40,12 @@ public enum UpTo11 {
 
 public extension StandardModel {
 	init(upTo11 value: Double) {
-		range = 0 ... 11
-		values = [range.clamp(value)]
+		self.init(value: value, range: 0 ... 11)
+
 		angles = .degrees(225) ... .degrees(520)
 		ticks = [
-			.init(1, ends: .both, filter: { _, inc in inc.isMultiple(of: 2) || inc == 11}),
-			.init(1, ends: .both, filter: { _, inc in !inc.isMultiple(of: 2) && inc != 11}),
+			.init(1, ends: .closed, filter: { _, inc in inc.isMultiple(of: 2) || inc == 11}),
+			.init(1, ends: .closed, filter: { _, inc in !inc.isMultiple(of: 2) && inc != 11}),
 		]
 	}
 }

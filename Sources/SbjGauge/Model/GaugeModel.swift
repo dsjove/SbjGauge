@@ -8,14 +8,9 @@
 import Foundation
 import SwiftUI
 
-public protocol GaugeValue: Comparable {
+public protocol GaugeValue: Comparable, Strideable {
 	init(double: Double)
 	var toDouble: Double { get }
-	
-	//Stridable does not match Tick striding requirements
-	//Angle does not adhere to AdditiveArithmetic
-	//But we get this one by declaring it
-	static func += (lhs: inout Self, rhs: Self)
 }
 
 extension Double : GaugeValue {
@@ -30,12 +25,13 @@ extension Int : GaugeValue {
 
 public enum ClampStyle {
 	case closed
-	case openUpper
-	case openLower
+	case cycleOpenUpper
+	case cycleOpenLower
 }
 
 public protocol GaugeModel {
 	associatedtype Value: GaugeValue = Double
+	
 	var range: ClosedRange<Value> { get set }
 	var clampStyle: ClampStyle { get }
 
@@ -60,6 +56,11 @@ public extension GaugeModel {
 		set { self[0] = newValue }
 	}
 
+	var norm: Double {
+		get { self[norm: 0] }
+		set { self[norm: 0] = newValue }
+	}
+
 	subscript<Name: RawRepresentable>(index: Name) -> Value where Name.RawValue == Int {
 		get { self[index.rawValue] }
 		set { self[index.rawValue] = newValue }
@@ -78,11 +79,11 @@ public extension ClosedRange where Bound: GaugeValue {
 				value < self.lowerBound ? self.lowerBound :
 				value > self.upperBound ? self.upperBound :
 				value
-			case .openUpper:
+			case .cycleOpenUpper:
 				value < self.lowerBound ? self.lowerBound :
 				value >= self.upperBound ? self.lowerBound :
 				value
-			case .openLower:
+			case .cycleOpenLower:
 				value <= self.lowerBound ? self.upperBound :
 				value > self.upperBound ? self.upperBound :
 				value

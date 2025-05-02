@@ -21,8 +21,9 @@ PlaygroundPage.current.setLiveView(
 		VStack {
 			Text("Up to 11").bold()
 			SbjGauge.UpTo11.UpTo11View()
-			Text("Colors").bold()
-			SbjGauge.Colors.ColorsView()
+			//Text("Colors").bold()
+			//SbjGauge.Colors.ColorsView()
+			Spacer()
 		}
 		.frame(width: 200)
 	}

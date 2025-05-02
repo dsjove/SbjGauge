@@ -11,9 +11,17 @@ public protocol RadialModel: GaugeModel {
 	var angles: ClosedRange<Angle> { get set }
 }
 
-extension Angle : GaugeValue {
+extension Angle: GaugeValue, @retroactive Strideable {
 	public init(double: Double) { self = .degrees(double) }
 	public var toDouble: Double { self.degrees }
+
+	public func distance(to other: Angle) -> Double {
+		self.toDouble.distance(to: other.toDouble)
+	}
+	
+	public func advanced(by n: Double) -> Angle {
+		.init(double: self.toDouble.advanced(by: n))
+	}
 }
 
 public struct Needle<Value> {

@@ -72,12 +72,12 @@ public enum Scale {
 
 public extension StandardModel {
 	init(scale value: Double) {
-		range = 0 ... 300
-		values = [value]
+		self.init(value: value, range: 0 ... 300)
+
 		self.ticks = [
 			.init(20.0),
 			.init(5.0),
-			.init(10.0 * (1.0 / 0.453592), ends: .both),
+			.init(10.0 * (1.0 / 0.453592), ends: .closed),
 			.init(5.0 * (1.0 / 0.453592))
 		]
 	}

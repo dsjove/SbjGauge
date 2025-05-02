@@ -92,16 +92,19 @@ public enum Power {
 public extension StandardModel {
 	init(power value: Double, control: Double? = nil, idle: Double = 0.0) {
 		let magnitude = 100.0
-		range = -magnitude ... magnitude
-		angles = .degrees(210) ... .degrees(510)
+		let range = -magnitude ... magnitude
 
 		let scaledValue = value * magnitude;
 		let scaledControl = control.map({ $0 * magnitude }) ?? scaledValue;
-		values = [scaledValue, scaledControl]
+		let values = [scaledValue, scaledControl]
+
+		self.init(values: values, range: range)
+
+		angles = .degrees(210) ... .degrees(510)
 
 		ticks = [
-			.init(5, ends: .both, filter: { _, idc in !idc.isMultiple(of: 5)}),
-			.init(25, ends: .both),
+			.init(5, ends: .closed, filter: { _, idc in !idc.isMultiple(of: 5)}),
+			.init(25, ends: .closed),
 		]
 
 		let scaledIdle = idle * magnitude;

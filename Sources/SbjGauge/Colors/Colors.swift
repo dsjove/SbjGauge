@@ -34,8 +34,7 @@ public enum Colors {
 				}
 			}
 			.onReceive(timer) { input in
-				model.value = model.value >= (model.range.upperBound-1) ?
-					0 : model.value + 1
+				model.value += 1
 			}
 		}
 	}
@@ -43,8 +42,9 @@ public enum Colors {
 	struct Model: RadialModel {
 		var values: [Int] = [0]
 		var range: ClosedRange<Int> = 0...Color.allCases.count
+		var clampStyle: ClampStyle = .cycleOpenUpper
 		var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-		var ticks: [Tick<Int>] = [.init(1, ends: .start)]
+		var ticks: [Tick<Int>] = [.init(1, ends: .cycleOpenUpper)]
 	}
 }
 
