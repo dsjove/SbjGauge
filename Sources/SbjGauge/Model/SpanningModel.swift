@@ -21,11 +21,15 @@ public struct Span<Value : GaugeValue> {
 }
 
 public protocol SpanningModel: GaugeModel {
-	//TODO: user defined names for spans
 	var spans: [Span<Value>]  { get set }
 }
 
 public extension SpanningModel {
+	subscript<Name: RawRepresentable>(span index: Name) -> Span<Value> where Name.RawValue == Int {
+		get { self.spans[index.rawValue] }
+		set { self.spans[index.rawValue] = newValue }
+	}
+
 	func span(for value: Value) -> (offset: Int, element: Span<Value>)? {
 		for span in spans.enumerated().reversed() {
 			if span.element.contains(value) {

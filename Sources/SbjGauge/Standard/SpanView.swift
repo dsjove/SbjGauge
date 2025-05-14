@@ -53,10 +53,12 @@ extension Standard {
 				}
 				.stroke(color, lineWidth: lineWidth)
 				if let label {
-					let angle3 = angle1 + (angle2 - angle1) / 2.0
+					let offset = angle1 + (angle2 - angle1) / 2.0
+					let width = angle2 - angle1
 					CircleTextView(
-						text: label,
-						angle: angle3, tooFar: angle2 - angle1)
+						string: label,
+						offset: offset,
+						maxWidth: width)
 							.font(.system(size: lineWidth * 0.8))
 							.foregroundColor(textColor)
 							.frame(width: radius*2, height: radius * 2)

@@ -22,7 +22,7 @@ public extension Standard {
 			self.content = content
 		}
 
-	//TODO: on many parent-view transition animations, the components of the ZStack animate with sepersate timing. It looks like crap. How do we tell the framework 'This is one view for animations'.
+	//TODO: on many parent-view transition animations, the components of the ZStack animate with seperate timing. It looks like crap. How do we tell the framework 'This is one view for animations'?
 		public var body: some View {
 			GeometryReader { geometry in
 				ZStack {
@@ -34,7 +34,7 @@ public extension Standard {
 			//TODO: have more aspect options with alignments
 			// - sepecifically 'scale gauge' is half height
 			.aspectRatio(1.0, contentMode: .fit)
-			//.background(isPreview ? Color.mint : Color.clear)
+			.background(isPreview ? Color.mint : Color.clear)
 			.background(Color.clear)
 		}
 	}
@@ -43,6 +43,6 @@ public extension Standard {
 #Preview {
 	Standard.GeometryView() { geom in
 		Text("Hello")
-			.foregroundColor(Color.white)
+			.foregroundColor(Color.blue)
 	}
 }

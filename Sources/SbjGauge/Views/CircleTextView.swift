@@ -10,15 +10,18 @@ import SwiftUI
 
 /**
  * CircleTextView renders a sequnce of variable width views over an arch.
+ * Variable widths are accounted for.
  * Text kerning is not accounted for.
  */
 public struct CircleTextView<S: Sequence, Content: View>: View {
-	private let text: S
-	private let angle: Angle
-	private let alignment: Double
-	private let tooFar: Angle
-	//TODO: option to center align first letter
-	//TODO: option to span letters across range of angles
+	private let sequence: S
+	private let offset: Angle
+	//TODO: have init with horizontal align enum
+	private let alignment: Double //0 ... 1
+	//TODO: use truncation style
+	private let clip360: Bool
+	//TODO: modifier as strategy and combine efforts with clip360
+	private let maxWidth: Angle?
 	//TODO: option for different baselines
 	//TODO: have view default with String describing
 	private let view: (Int, S.Element) ->Content
@@ -26,15 +29,17 @@ public struct CircleTextView<S: Sequence, Content: View>: View {
 	@State private var textSizes: [Int:CGSize] = [:]
 
 	public init(
-		text: S,
-		angle: Angle = .init(),
+		sequence: S,
+		offset: Angle = .init(),
 		alignment: Double = 0.5,
-		tooFar: Angle = .init(degrees: 360),
+		clip360: Bool = true,
+		maxWidth: Angle? = nil,
 		@ViewBuilder view: @escaping (Int, S.Element) -> Content) {
-			self.text = text
-			self.angle = angle
+			self.sequence = sequence
+			self.offset = offset
 			self.alignment = alignment
-			self.tooFar = tooFar
+			self.clip360 = clip360
+			self.maxWidth = maxWidth
 			self.view = view
 	}
 
@@ -42,30 +47,31 @@ public struct CircleTextView<S: Sequence, Content: View>: View {
 		GeometryReader { geometry in
 			let diameter = min(geometry.size.width, geometry.size.height)
 			let radius = diameter / 2.0
-			let fullAngle = self.angle(at: self.textSizes.count, radius: radius).0
+			let lastAngle = self.calcAngles(at: self.textSizes.count, radius: radius).rotate
 			ZStack {
-				ForEach(Array(text.enumerated()), id: \.self.offset) { (offset, element) in
-					let angle = self.angle(at: offset, radius: radius)
-					VStack {
-						view(offset, element)
-							.background(Sizeable())
-							.onPreferenceChange(SizePreferenceKey.self, perform: { size in
-								self.textSizes[offset] = size
-							})
-						Spacer()
+				ForEach(Array(sequence.enumerated()), id: \.self.offset) { (offset, element) in
+					let angles = self.calcAngles(at: offset, radius: radius)
+					if !clip360 || angles.width <= .degrees(360) {
+						VStack {
+							view(offset, element)
+								.background(Sizeable())
+								.onPreferenceChange(SizePreferenceKey.self, perform: { size in
+									self.textSizes[offset] = size
+								})
+							Spacer()
+						}
+						.frame(width: diameter, height: diameter)
+						.rotationEffect(angles.rotate)
 					}
-					.frame(width: diameter, height: diameter)
-					.rotationEffect(angle.0)
-					.opacity(angle.1 > .degrees(360) ? 0 : 1)
 				}
 			}
-			.rotationEffect(-fullAngle * self.alignment + self.angle)
-			.opacity(fullAngle <= tooFar ? 1.0 : tooFar.degrees / fullAngle.degrees)
+			.rotationEffect(-lastAngle * self.alignment + self.offset)
+			.opacity(maxWidth.map { lastAngle <= $0 ? 1.0 : $0.degrees / lastAngle.degrees } ?? 1.0)
 		}
 		.aspectRatio(1.0, contentMode: .fit)
 	}
 
-	private func angle(at index: Int, radius: Double) -> (Angle, Angle) {
+	private func calcAngles(at index: Int, radius: Double) -> (rotate: Angle, width: Angle) {
 		guard textSizes.isEmpty == false else { return (Angle(), Angle()) }
 		var length = textSizes.filter{$0.key < index}.map{$0.value.width}.reduce(0,+)
 		var bounds = length
@@ -86,17 +92,39 @@ public struct CircleTextView<S: Sequence, Content: View>: View {
 
 public extension CircleTextView where S: StringProtocol {
 	init(
-		text: S,
-		angle: Angle = .init(),
+		string: S,
+		offset: Angle = .init(),
 		alignment: Double = 0.5,
-		tooFar: Angle = .init(degrees: 360),
-		@ViewBuilder view: @escaping (Int, S.Element) -> Content = {Text(String(describing: $1))}
+		clip360: Bool = true,
+		maxWidth: Angle? = nil,
+		@ViewBuilder view: @escaping (Int, S.Element) -> Content = {Text(String($1))}
 		) {
-			self.text = text
-			self.angle = angle
-			self.alignment = alignment
-			self.tooFar = tooFar
-			self.view = view
+			self.init(
+				sequence: string,
+				offset: offset,
+				alignment: alignment,
+				clip360: true,
+				maxWidth: maxWidth,
+				view: view)
+		}
+}
+
+public extension CircleTextView where S == String {
+	init<D: CustomStringConvertible>(
+		convertable: D,
+		offset: Angle = .init(),
+		alignment: Double = 0.5,
+		clip360: Bool = true,
+		maxWidth: Angle? = nil,
+		@ViewBuilder view: @escaping (Int, S.Element) -> Content = {Text(String($1))}
+		) {
+			self.init(
+				string: convertable.description,
+				offset: offset,
+				alignment: alignment,
+				clip360: clip360,
+				maxWidth: maxWidth,
+				view: view)
 		}
 }
 
@@ -120,24 +148,25 @@ private struct Sizeable: View {
 fileprivate struct CircleTextPreviewView<S: Sequence>: View {
 	let text: S
 	let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-	@State var angle =  Angle()
+	@State var offset =  Angle()
 
 	var body: some View {
 		CircleTextView(
-				text: text,
-				angle: angle,
-				alignment: 0.0) {
+				sequence: text,
+				offset: offset,
+				alignment: 0.0,
+				clip360: true) {
 					Text(String(describing: $1))
-						.bold(true)
-						.italic(true)
 						.border(Color.green, width: 1)
 				}
 			.font(.title2)
+			.bold(true)
+			.italic(true)
 			.frame(width: 200)
 			.border(Color.green, width: 3)
-			.animation(.linear(duration: 0.5), value: angle)
+			.animation(.linear(duration: 0.5), value: offset)
 			.onReceive(timer) { _ in
-				angle -= .degrees(10)
+				offset -= .degrees(10)
 			}
 	}
 }
@@ -145,5 +174,5 @@ fileprivate struct CircleTextPreviewView<S: Sequence>: View {
 #Preview {
 	CircleTextPreviewView(text: "The quick brown fox jumps over the lazy dog.")
 
-	CircleTextPreviewView(text: 0...100)
+	CircleTextPreviewView(text: 0...30)
 }
