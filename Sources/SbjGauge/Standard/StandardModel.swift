@@ -25,6 +25,6 @@ public struct StandardModel: RadialModel & SpanningModel {
 	public var clampStyle: ClampStyle;
 	public var values: [Value]
 	public var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-	public var ticks: [Tick<Value>] = [.init(1.0)]
+	public var ticks: [TickSequence<Value>] = [.init(1.0)]
 	public var spans: [Span<Value>] = []
 }

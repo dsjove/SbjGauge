@@ -49,10 +49,10 @@ public enum Clock {
 					.radialRotate(model.needle(Hand.hour))
 				Standard.NeedleView(geom: geom, radius: 0.7, width: 0.025)
 					.radialRotate(model.needle(Hand.minute))
-				SecondsHandView(geom: geom)
+				Clock.SecondsHandView(geom: geom)
 					.radialRotate(model.needle(Hand.second))
 
-				RimView(geom: geom)
+				Clock.RimView(geom: geom)
 			}
 		}
 	}

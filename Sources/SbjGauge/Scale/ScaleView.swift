@@ -20,7 +20,7 @@ public enum Scale {
 				Standard.BackgroundView(geom: geom)
 				
 				Circle()
-					.stroke()
+					.stroke(Color.black, lineWidth: geom.width(0.003))
 					.frame(width: geom.width(0.80))
 
 				Standard.RadialTickView(geom, model, model.ticks[0],

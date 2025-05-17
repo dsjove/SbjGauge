@@ -34,7 +34,7 @@ public extension Standard {
 			//TODO: have more aspect options with alignments
 			// - sepecifically 'scale gauge' is half height
 			.aspectRatio(1.0, contentMode: .fit)
-			.background(isPreview ? Color.mint : Color.clear)
+			//.background(isPreview ? Color.mint : Color.clear)
 			.background(Color.clear)
 		}
 	}

@@ -12,7 +12,7 @@ extension Standard {
 		let geom: GeometryProxy
 		let model: Model
 		let clockwise: Bool
-		let tick: Tick<Model.Value>
+		let tick: TickSequence<Model.Value>
 		let radius: Double
 		@ViewBuilder
 		let content: (TickNotch<Model.Value>) -> Content
@@ -21,7 +21,7 @@ extension Standard {
 			_ geom: GeometryProxy,
 			_ model: Model,
 			clockwise: Bool = true,
-			_ tick: Tick<Model.Value>,
+			_ tick: TickSequence<Model.Value>,
 			radius: Double = 0.95,
 			 @ViewBuilder
 			_ content: @escaping (TickNotch<Model.Value>) -> Content) {

@@ -44,7 +44,7 @@ public enum Colors {
 		var range: ClosedRange<Int> = 0...Color.allCases.count
 		var clampStyle: ClampStyle = .cycleOpenUpper
 		var angles: ClosedRange<Angle> = .degrees(0) ... .degrees(360)
-		var ticks: [Tick<Int>] = [.init(1, ends: .cycleOpenUpper)]
+		var ticks: [TickSequence<Int>] = [.init(1, ends: .cycleOpenUpper)]
 	}
 }
 

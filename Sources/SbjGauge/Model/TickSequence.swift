@@ -1,5 +1,5 @@
 //
-//  TickModel.swift
+//  TickSequence.swift
 //  SbjGauge
 //
 //  Created by David Giovannini on 4/17/25.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Tick<Value: GaugeValue> {
+public struct TickSequence<Value: GaugeValue> {
 	public let increment: Value.Stride
 	public let ends: ClampStyle
 	public let filter: (Value, Int) -> Bool
@@ -49,7 +49,7 @@ public struct TickNotch<Value> {
 	public let idx: Int
 	public let count: Int
 	public let value: Value
-	public let angle: Angle
+	public let angle: Angle //TODO: make generic and call placement
 
 	public init(_ idx: Int, _ count: Int, _ value: Value, _ angle: Angle) {
 		self.idx = idx
@@ -60,7 +60,7 @@ public struct TickNotch<Value> {
 }
 
 public extension RadialModel {
-	func tickNotches(_ tick: Tick<Value>) -> [TickNotch<Value>] {
+	func tickNotches(_ tick: TickSequence<Value>) -> [TickNotch<Value>] {
 		let values = tick.stride(self.range)
 		let count = values.count
 		return values.map { (value, offset) in
